@@ -1,14 +1,9 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
-}
+#![feature(let_chains)]
+pub mod lints;
 
 #[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
+pub(crate) mod tests {
+    pub fn parse_python_source(source: &str) -> rustpython_parser::ast::Mod {
+        rustpython_parser::parse(source, rustpython_parser::Mode::Module, "<test>").unwrap()
     }
 }
