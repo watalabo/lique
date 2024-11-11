@@ -1,4 +1,4 @@
-use lique::lints;
+use lique_core::lints;
 use rustpython_parser::{ast::Mod, parse, source_code::RandomLocator, Mode};
 
 fn main() {

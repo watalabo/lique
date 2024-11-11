@@ -1,7 +1,3 @@
-[package]
-name = "lique"
-version = "0.1.0"
-edition = "2021"
-
-[dependencies]
-rustpython-parser = "0.4.0"
+[workspace]
+members = ["lique_core", "lique_linter", "lique_ls"]
+resolver = "2"

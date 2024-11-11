@@ -1,0 +1,8 @@
+[package]
+name = "lique_linter"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+lique_core = { path = "../lique_core" }
+rustpython-parser = "0.4.0"
