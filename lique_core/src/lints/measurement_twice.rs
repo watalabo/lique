@@ -1,6 +1,9 @@
-use rustpython_parser::ast::{ExprCall, Stmt};
+use rustpython_parser::ast::Stmt;
 
-pub fn lint_measurement_twice(stmts: &[Stmt]) -> Option<(&ExprCall, &ExprCall)> {
+use crate::Diagnostic;
+
+pub fn lint_measurement_twice(stmts: &[Stmt]) -> Vec<Diagnostic> {
+    let mut diags = Vec::new();
     for (i, stmt) in stmts.iter().enumerate() {
         if let Some(expr) = stmt.as_expr_stmt()
             && let Some(call) = expr.value.as_call_expr()
@@ -20,12 +23,16 @@ pub fn lint_measurement_twice(stmts: &[Stmt]) -> Option<(&ExprCall, &ExprCall)> 
                     && func.attr == other_func.attr
                     && target_qubit == other_target_qubit
                 {
-                    return Some((call, other_call));
+                    let diag = Diagnostic {
+                        message: format!("Measurement of the same qubit twice: {}", target_qubit),
+                        range: other_call.range,
+                    };
+                    diags.push(diag);
                 }
             }
         }
     }
-    None
+    diags
 }
 
 #[cfg(test)]
@@ -49,18 +56,10 @@ circuit.measure(0, 1)"#;
             panic!("Expected a module");
         };
         let stmts = &module.body;
-        let (call, other_call) = lint_measurement_twice(stmts).unwrap();
+        let diags = lint_measurement_twice(stmts);
         let mut locator = RandomLocator::new(source);
 
-        let range = call.range;
-        let start = locator.locate(range.start());
-        let end = locator.locate(range.end());
-        assert_eq!(start.row.to_usize(), 6);
-        assert_eq!(start.column.to_usize(), 1);
-        assert_eq!(end.row.to_usize(), 6);
-        assert_eq!(end.column.to_usize(), 22);
-
-        let range = other_call.range;
+        let range = diags[0].range;
         let start = locator.locate(range.start());
         let end = locator.locate(range.end());
         assert_eq!(start.row.to_usize(), 8);

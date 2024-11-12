@@ -1,25 +1,19 @@
-use lique_core::lints;
-use rustpython_parser::{ast::Mod, parse, source_code::RandomLocator, Mode};
+use std::borrow::Borrow;
+
+use lique_core::{lints, SourceCode};
+use rustpython_parser::source_code::RandomLocator;
 
 fn main() {
     let path = "./test.py";
-    let python_source = std::fs::read_to_string(path).unwrap();
-    let module = parse(&python_source, Mode::Module, &path).unwrap();
-    dbg!(&module);
-    let Mod::Module(module) = module else {
-        panic!("Expected a module");
-    };
+    let code = SourceCode::read_from_path(path);
+    let module = code.parse().unwrap();
 
-    let mut locator = RandomLocator::new(&python_source);
+    let mut locator = RandomLocator::new(code.borrow());
     let stmts = &module.body;
-    if let Some((_, other_call)) = lints::measurement_twice::lint_measurement_twice(stmts) {
-        let range = other_call.range;
-        let start = range.start();
-        let end = range.end();
-        println!(
-            "Found a duplicate call at {:?}:{:?}",
-            locator.locate(start),
-            locator.locate(end)
-        );
+    let diags = lints::measurement_twice::lint_measurement_twice(stmts);
+    for diag in diags {
+        let start = locator.locate(diag.range.start());
+        let end = locator.locate(diag.range.end());
+        println!("{} in {:?}:{:?}", diag.message, start, end);
     }
 }

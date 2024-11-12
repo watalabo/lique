@@ -28,8 +28,6 @@ export async function activate(context: ExtensionContext) {
 		serverOptions,
 		clientOptions,
 	);
-	const messageType = new NotificationType("lique/message");
-	client.sendNotification(messageType, { message: "Hello from VSCode!" });
 	await client.start();
 }
 

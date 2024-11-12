@@ -1,8 +1,9 @@
-use std::{collections::HashMap, iter::Filter};
+use std::collections::HashMap;
 
-use anyhow::{bail, Ok};
+use anyhow::Ok;
+use log::{debug, info};
 use lsp_types::{
-    notification::{DidChangeTextDocument, DidSaveTextDocument, Notification, PublishDiagnostics},
+    notification::{DidSaveTextDocument, Notification, PublishDiagnostics},
     request::{Initialize, Request},
     Diagnostic, DiagnosticOptions, DiagnosticServerCapabilities, InitializeResult, Position,
     PublishDiagnosticsParams, Range, SemanticTokensParams, ServerCapabilities,
@@ -25,10 +26,10 @@ pub struct Server;
 impl Server {
     pub async fn start(self, port: u16) -> anyhow::Result<()> {
         let listener = TcpListener::bind(("127.0.0.1", port)).await?;
-        dbg!("Listening on port {}", port);
+        info!("Listening on port {}", port);
         loop {
             let (stream, _) = listener.accept().await?;
-            dbg!("Accepted connection");
+            debug!("Accepted connection");
             self.clone().handle(stream).await?;
         }
     }
@@ -38,7 +39,6 @@ impl Server {
         tokio::spawn(async move {
             loop {
                 if let Err(e) = {
-                    dbg!("Reading from stream");
                     let headers = Self::read_headers(&mut reader).await?;
                     let content_length = headers
                         .get("Content-Length")
@@ -48,21 +48,15 @@ impl Server {
                     let mut content = vec![0; content_length];
                     reader.read(&mut content).await?;
                     let content = String::from_utf8(content)?;
-                    dbg!(&content);
                     let req = serde_json::from_str::<RpcMessageRequest>(&content)?;
-                    dbg!(&req);
-                    let res = self.handle_request(req).await?;
-                    let res = if let Some(res) = res {
-                        match res {
-                            OutgoingMessage::RpcMessageResponse(res) => {
-                                serde_json::to_string(&res)?
-                            }
-                            OutgoingMessage::NotificationMessage(res) => {
-                                serde_json::to_string(&res)?
-                            }
-                        }
-                    } else {
+                    debug!("{:?}", &req);
+
+                    let Some(res) = self.handle_request(req).await? else {
                         continue;
+                    };
+                    let res = match res {
+                        OutgoingMessage::RpcMessageResponse(res) => serde_json::to_string(&res)?,
+                        OutgoingMessage::NotificationMessage(res) => serde_json::to_string(&res)?,
                     };
                     let res = format!(
                         "Content-Length: {}\r\nContent-Type: application/json\r\n\r\n{}",
@@ -86,10 +80,6 @@ impl Server {
         req: RpcMessageRequest,
     ) -> anyhow::Result<Option<OutgoingMessage>> {
         match req.method.as_str() {
-            "lique/message" => {
-                dbg!(&req);
-                Ok(None)
-            }
             Initialize::METHOD => Ok(Some(OutgoingMessage::RpcMessageResponse(
                 RpcMessageResponse::new(
                     req.id,
