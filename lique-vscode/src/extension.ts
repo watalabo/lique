@@ -1,30 +1,37 @@
-import * as net from "net";
+import * as net from "node:net";
 import * as vscode from "vscode";
 import { type ExtensionContext, window } from "vscode";
-import { LanguageClient, LanguageClientOptions, NotificationType, ServerOptions, StreamInfo } from "vscode-languageclient/node";
+import {
+	LanguageClient,
+	type LanguageClientOptions,
+	NotificationType,
+	type ServerOptions,
+	type StreamInfo,
+} from "vscode-languageclient/node";
 
 let client: LanguageClient;
 
 export async function activate(context: ExtensionContext) {
-	context.subscriptions.push(vscode.commands.registerCommand('lique-vscode.restartLanguageClient', restartLanguageClient));
+	context.subscriptions.push(
+		vscode.commands.registerCommand(
+			"lique-vscode.restartLanguageClient",
+			restartLanguageClient,
+		),
+	);
 
 	const serverOptions: ServerOptions = (): Promise<StreamInfo> => {
-		let socket = net.connect(3030, "localhost");
+		const socket = net.connect(3030, "localhost");
 		return Promise.resolve({
 			writer: socket,
-			reader: socket
+			reader: socket,
 		});
 	};
 
 	const clientOptions: LanguageClientOptions = {
-		documentSelector: [{ scheme: "file", language: "python" }]
+		documentSelector: [{ scheme: "file", language: "python" }],
 	};
 
-	const client = new LanguageClient(
-		"lique",
-		serverOptions,
-		clientOptions,
-	);
+	const client = new LanguageClient("lique", serverOptions, clientOptions);
 	await client.start();
 }
 
