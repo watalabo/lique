@@ -7,7 +7,7 @@ use crate::error::Result;
 use rustpython_parser::{
     ast::{Mod, ModModule},
     parse,
-    text_size::TextRange,
+    source_code::SourceRange,
     Mode,
 };
 use std::path::{Path, PathBuf};
@@ -44,7 +44,7 @@ impl SourceCode {
 
 pub struct Diagnostic {
     pub message: String,
-    pub range: TextRange,
+    pub range: SourceRange,
 }
 
 #[cfg(test)]

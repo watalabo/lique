@@ -1,8 +1,8 @@
-use rustpython_parser::ast::Stmt;
+use rustpython_parser::{ast::Stmt, source_code::SourceRange};
 
 use crate::Diagnostic;
 
-pub fn lint_measurement_twice(stmts: &[Stmt]) -> Vec<Diagnostic> {
+pub fn lint_measurement_twice(stmts: &[Stmt<SourceRange>]) -> Vec<Diagnostic> {
     let mut diags = Vec::new();
     for (i, stmt) in stmts.iter().enumerate() {
         if let Some(expr) = stmt.as_expr_stmt()
@@ -37,7 +37,7 @@ pub fn lint_measurement_twice(stmts: &[Stmt]) -> Vec<Diagnostic> {
 
 #[cfg(test)]
 mod tests {
-    use rustpython_parser::{ast::Mod, source_code::RandomLocator};
+    use rustpython_parser::{ast::{Fold, Mod}, source_code::RandomLocator};
 
     use super::*;
     use crate::tests::parse_python_source;
@@ -55,13 +55,14 @@ circuit.measure(0, 1)"#;
         let Mod::Module(module) = parse_python_source(source) else {
             panic!("Expected a module");
         };
+        let mut locator = RandomLocator::new(source);
+        let module = locator.fold(module).unwrap();
         let stmts = &module.body;
         let diags = lint_measurement_twice(stmts);
-        let mut locator = RandomLocator::new(source);
 
         let range = diags[0].range;
-        let start = locator.locate(range.start());
-        let end = locator.locate(range.end());
+        let start = range.start;
+        let end = range.end.unwrap();
         assert_eq!(start.row.to_usize(), 8);
         assert_eq!(start.column.to_usize(), 1);
         assert_eq!(end.row.to_usize(), 8);

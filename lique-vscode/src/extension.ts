@@ -4,7 +4,6 @@ import { type ExtensionContext, window } from "vscode";
 import {
 	LanguageClient,
 	type LanguageClientOptions,
-	NotificationType,
 	type ServerOptions,
 	type StreamInfo,
 } from "vscode-languageclient/node";

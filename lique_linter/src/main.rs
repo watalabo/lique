@@ -1,5 +1,5 @@
 use lique_core::{lints, SourceCode};
-use rustpython_parser::source_code::RandomLocator;
+use rustpython_parser::{ast::Fold, source_code::RandomLocator};
 
 fn main() {
     let path = "./test.py";
@@ -7,6 +7,7 @@ fn main() {
     let module = code.parse().unwrap();
 
     let mut locator = RandomLocator::new(&code);
+    let module = locator.fold(module).unwrap();
     let stmts = &module.body;
     let diags = lints::measurement_twice::lint_measurement_twice(stmts);
     for diag in diags {

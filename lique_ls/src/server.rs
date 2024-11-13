@@ -1,4 +1,4 @@
-use rustpython_parser::source_code::RandomLocator;
+use rustpython_parser::{ast::Fold, source_code::RandomLocator};
 use std::collections::HashMap;
 
 use lique_core::{lints, SourceCode};
@@ -140,40 +140,21 @@ impl Server {
                 let path = uri.path().to_string();
                 let code = SourceCode::read_from_path(path);
                 let mut locator = RandomLocator::new(&code);
-                match code.parse() {
-                    Ok(module) => {
-                        let diags = lints::measurement_twice::lint_measurement_twice(&module.body);
-                        let notification = NotificationMessage::new::<PublishDiagnostics>(
-                            PublishDiagnosticsParams {
-                                uri,
-                                version: None,
-                                diagnostics: diags
-                                    .into_iter()
-                                    .map(|diag| {
-                                        let start = locator.locate(diag.range.start());
-                                        let end = locator.locate(diag.range.end());
-                                        Diagnostic::new_simple(
-                                            Range {
-                                                start: Position {
-                                                    line: start.row.to_zero_indexed_usize() as u32,
-                                                    character: start.column.to_zero_indexed_usize()
-                                                        as u32,
-                                                },
-                                                end: Position {
-                                                    line: end.row.to_zero_indexed_usize() as u32,
-                                                    character: end.column.to_zero_indexed_usize()
-                                                        as u32,
-                                                },
-                                            },
-                                            diag.message,
-                                        )
-                                    })
-                                    .collect(),
-                            },
-                        )?;
-                        Ok(Some(OutgoingMessage::NotificationMessage(notification)))
-                    }
-                    Err(_) => Ok(None),
+                if let Ok(module) = code.parse() {
+                    let module = locator.fold(module).unwrap();
+                    let diags = lints::measurement_twice::lint_measurement_twice(&module.body)
+                        .into_iter()
+                        .map(convert_diagnostic)
+                        .collect();
+                    let notification =
+                        NotificationMessage::new::<PublishDiagnostics>(PublishDiagnosticsParams {
+                            uri,
+                            version: None,
+                            diagnostics: diags,
+                        })?;
+                    Ok(Some(OutgoingMessage::NotificationMessage(notification)))
+                } else {
+                    Ok(None)
                 }
             }
             _ => Ok(None),
@@ -213,6 +194,25 @@ impl Server {
             Err(anyhow::anyhow!("No Content-Length"))
         }
     }
+}
+
+fn convert_diagnostic(diagnostic: lique_core::Diagnostic) -> Diagnostic {
+    let range = diagnostic.range;
+    let start = range.start;
+    let end = range.end.unwrap();
+    Diagnostic::new_simple(
+        Range {
+            start: Position {
+                line: start.row.to_zero_indexed_usize() as u32,
+                character: start.column.to_zero_indexed_usize() as u32,
+            },
+            end: Position {
+                line: end.row.to_zero_indexed_usize() as u32,
+                character: end.column.to_zero_indexed_usize() as u32,
+            },
+        },
+        diagnostic.message,
+    )
 }
 
 #[cfg(test)]
