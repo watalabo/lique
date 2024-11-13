@@ -20,6 +20,7 @@ pub fn lint_measurement_twice(stmts: &[Stmt<SourceRange>]) -> Vec<Diagnostic> {
                     && let Some(target_qubit) = target_qubit.value.as_int()
                     && let Some(other_target_qubit) = other_target_qubit.value.as_int()
                     && instance_name.id == other_instance_name.id
+                    && func.attr.as_str() == "measure"
                     && func.attr == other_func.attr
                     && target_qubit == other_target_qubit
                 {
@@ -37,7 +38,10 @@ pub fn lint_measurement_twice(stmts: &[Stmt<SourceRange>]) -> Vec<Diagnostic> {
 
 #[cfg(test)]
 mod tests {
-    use rustpython_parser::{ast::{Fold, Mod}, source_code::RandomLocator};
+    use rustpython_parser::{
+        ast::{Fold, Mod},
+        source_code::RandomLocator,
+    };
 
     use super::*;
     use crate::tests::parse_python_source;

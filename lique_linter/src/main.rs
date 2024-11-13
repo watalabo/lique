@@ -11,8 +11,8 @@ fn main() {
     let stmts = &module.body;
     let diags = lints::measurement_twice::lint_measurement_twice(stmts);
     for diag in diags {
-        let start = locator.locate(diag.range.start());
-        let end = locator.locate(diag.range.end());
+        let start = diag.range.start;
+        let end = diag.range.end.unwrap();
         println!("{} in {:?}:{:?}", diag.message, start, end);
     }
 }
