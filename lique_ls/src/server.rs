@@ -142,10 +142,14 @@ impl Server {
                 let mut locator = RandomLocator::new(&code);
                 if let Ok(module) = code.parse() {
                     let module = locator.fold(module).unwrap();
-                    let diags = lints::measurement_twice::lint_measurement_twice(&module.body)
-                        .into_iter()
-                        .map(convert_diagnostic)
-                        .collect();
+                    let diags = vec![
+                        lints::measurement_twice::lint_measurement_twice(&module.body),
+                        lints::measurement_twice::lint_measurement_twice(&module.body),
+                    ]
+                    .into_iter()
+                    .flatten()
+                    .map(convert_diagnostic)
+                    .collect::<Vec<_>>();
                     let notification =
                         NotificationMessage::new::<PublishDiagnostics>(PublishDiagnosticsParams {
                             uri,

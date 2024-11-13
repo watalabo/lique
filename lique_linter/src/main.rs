@@ -9,7 +9,13 @@ fn main() {
     let mut locator = RandomLocator::new(&code);
     let module = locator.fold(module).unwrap();
     let stmts = &module.body;
-    let diags = lints::measurement_twice::lint_measurement_twice(stmts);
+    let diags = vec![
+        lints::measurement_twice::lint_measurement_twice(stmts),
+        lints::op_after_measurement::lint_op_after_measurement(stmts),
+    ]
+    .into_iter()
+    .flatten()
+    .collect::<Vec<_>>();
     for diag in diags {
         let start = diag.range.start;
         let end = diag.range.end.unwrap();
