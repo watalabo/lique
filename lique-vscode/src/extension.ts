@@ -1,15 +1,12 @@
 import * as net from "net";
 import * as vscode from "vscode";
-import { type ExtensionContext } from "vscode";
+import { type ExtensionContext, window } from "vscode";
 import { LanguageClient, LanguageClientOptions, NotificationType, ServerOptions, StreamInfo } from "vscode-languageclient/node";
 
 let client: LanguageClient;
 
 export async function activate(context: ExtensionContext) {
-	const disposable = vscode.commands.registerCommand('lique-vscode.helloWorld', () => {
-		vscode.window.showInformationMessage('Hello World from lique-vscode!');
-	});
-	context.subscriptions.push(disposable);
+	context.subscriptions.push(vscode.commands.registerCommand('lique-vscode.restartLanguageClient', restartLanguageClient));
 
 	const serverOptions: ServerOptions = (): Promise<StreamInfo> => {
 		let socket = net.connect(3030, "localhost");
@@ -29,6 +26,18 @@ export async function activate(context: ExtensionContext) {
 		clientOptions,
 	);
 	await client.start();
+}
+
+async function restartLanguageClient() {
+	try {
+		if (client === undefined) {
+			throw new Error();
+		}
+		await client.restart();
+	} catch (e) {
+		window.showErrorMessage("Failed to restart lique LSP client,");
+		window.showErrorMessage(`${e}`);
+	}
 }
 
 export function deactivate(): Thenable<void> | undefined {

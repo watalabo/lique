@@ -1,6 +1,7 @@
+use rustpython_parser::source_code::RandomLocator;
 use std::collections::HashMap;
 
-use anyhow::Ok;
+use lique_core::{lints, SourceCode};
 use log::{debug, info};
 use lsp_types::{
     notification::{DidSaveTextDocument, Notification, PublishDiagnostics},
@@ -46,7 +47,7 @@ impl Server {
                         .parse::<usize>()
                         .unwrap();
                     let mut content = vec![0; content_length];
-                    reader.read(&mut content).await?;
+                    reader.read_exact(&mut content).await?;
                     let content = String::from_utf8(content)?;
                     let req = serde_json::from_str::<RpcMessageRequest>(&content)?;
                     debug!("{:?}", &req);
@@ -63,14 +64,14 @@ impl Server {
                         res.len(),
                         res
                     );
-                    writer.write(res.as_bytes()).await?;
-                    Ok(())
+                    writer.write_all(res.as_bytes()).await?;
+                    anyhow::Ok(())
                 } {
                     eprintln!("Error reading from stream: {:?}", e);
                     break;
                 }
             }
-            Ok(())
+            anyhow::Ok(())
         });
         Ok(())
     }
@@ -136,25 +137,44 @@ impl Server {
             DidSaveTextDocument::METHOD => {
                 let params = serde_json::from_value::<SemanticTokensParams>(req.params)?;
                 let uri = params.text_document.uri;
-                let notification =
-                    NotificationMessage::new::<PublishDiagnostics>(PublishDiagnosticsParams {
-                        uri,
-                        version: None,
-                        diagnostics: vec![Diagnostic::new_simple(
-                            Range {
-                                start: Position {
-                                    line: 0,
-                                    character: 0,
-                                },
-                                end: Position {
-                                    line: 0,
-                                    character: 2,
-                                },
+                let path = uri.path().to_string();
+                let code = SourceCode::read_from_path(path);
+                let mut locator = RandomLocator::new(&code);
+                match code.parse() {
+                    Ok(module) => {
+                        let diags = lints::measurement_twice::lint_measurement_twice(&module.body);
+                        let notification = NotificationMessage::new::<PublishDiagnostics>(
+                            PublishDiagnosticsParams {
+                                uri,
+                                version: None,
+                                diagnostics: diags
+                                    .into_iter()
+                                    .map(|diag| {
+                                        let start = locator.locate(diag.range.start());
+                                        let end = locator.locate(diag.range.end());
+                                        Diagnostic::new_simple(
+                                            Range {
+                                                start: Position {
+                                                    line: start.row.to_zero_indexed_usize() as u32,
+                                                    character: start.column.to_zero_indexed_usize()
+                                                        as u32,
+                                                },
+                                                end: Position {
+                                                    line: end.row.to_zero_indexed_usize() as u32,
+                                                    character: end.column.to_zero_indexed_usize()
+                                                        as u32,
+                                                },
+                                            },
+                                            diag.message,
+                                        )
+                                    })
+                                    .collect(),
                             },
-                            "test diag".to_string(),
-                        )],
-                    })?;
-                Ok(Some(OutgoingMessage::NotificationMessage(notification)))
+                        )?;
+                        Ok(Some(OutgoingMessage::NotificationMessage(notification)))
+                    }
+                    Err(_) => Ok(None),
+                }
             }
             _ => Ok(None),
         }

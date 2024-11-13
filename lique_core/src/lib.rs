@@ -10,10 +10,7 @@ use rustpython_parser::{
     text_size::TextRange,
     Mode,
 };
-use std::{
-    borrow::Borrow,
-    path::{Path, PathBuf},
-};
+use std::path::{Path, PathBuf};
 
 #[derive(Debug)]
 pub struct SourceCode {
@@ -21,8 +18,10 @@ pub struct SourceCode {
     path: PathBuf,
 }
 
-impl Borrow<str> for SourceCode {
-    fn borrow(&self) -> &str {
+impl std::ops::Deref for SourceCode {
+    type Target = str;
+
+    fn deref(&self) -> &Self::Target {
         &self.code
     }
 }
