@@ -1,39 +1,53 @@
-use rustpython_parser::{ast::Stmt, source_code::SourceRange};
+use oq3_syntax::{
+    ast::{AstChildren, Expr, GateOperand, Stmt},
+    AstNode,
+};
 
-use crate::Diagnostic;
+use crate::{lints::contains_or_equal, Diagnostic};
 
-pub fn lint_op_after_measurement(stmts: &[Stmt<SourceRange>]) -> Vec<Diagnostic> {
+pub fn lint_op_after_measurement(stmts: AstChildren<Stmt>) -> Vec<Diagnostic> {
     let mut diags = Vec::new();
-    dbg!(stmts);
-    for (i, measure_stmt) in stmts.iter().enumerate() {
-        if let Some(measure_expr) = measure_stmt.as_expr_stmt()
-            && let Some(measure_call) = measure_expr.value.as_call_expr()
-        {
-            for op_stmt in stmts.iter().skip(i + 1) {
-                if let Some(op_expr) = op_stmt.as_expr_stmt()
-                    && let Some(op_call) = op_expr.value.as_call_expr()
-                    && let Some(measure_func) = measure_call.func.as_attribute_expr()
-                    && let Some(op_func) = op_call.func.as_attribute_expr()
-                    && let Some(measure_instance_name) = measure_func.value.as_name_expr()
-                    && let Some(op_instance_name) = op_func.value.as_name_expr()
-                    && let Some(measure_target_qubit) = measure_call.args[0].as_constant_expr()
-                    && let Some(op_target_qubit) = op_call.args[0].as_constant_expr()
-                    && let Some(measure_target_qubit) = measure_target_qubit.value.as_int()
-                    && let Some(op_target_qubit) = op_target_qubit.value.as_int()
-                    && measure_instance_name.id == op_instance_name.id
-                    && measure_func.attr.as_str() == "measure"
-                    && op_func.attr.as_str() != "measure"
-                    && measure_target_qubit == op_target_qubit
+    let mut measurement_operands: Vec<GateOperand> = Vec::new();
+    for stmt in stmts {
+        match stmt {
+            Stmt::AssignmentStmt(assignment) => {
+                if let Some(rhs) = assignment.rhs()
+                    && let Expr::MeasureExpression(measurement) = rhs
+                    && let Some(operand) = measurement.gate_operand()
                 {
-                    let diag = Diagnostic {
-                        message: format!(
-                            "Operation after measurement of the same qubit: {}",
-                            measure_target_qubit
-                        ),
-                        range: op_call.range,
-                    };
-                    diags.push(diag);
+                    dbg!(&assignment, &operand);
+                    measurement_operands.push(operand);
                 }
+            }
+            Stmt::ExprStmt(expr_stmt) => {
+                if let Some(expr) = expr_stmt.expr()
+                    && let Expr::GateCallExpr(gate_call) = expr
+                    && let Some(qubit_list) = gate_call.qubit_list()
+                {
+                    let gate_operands = qubit_list.gate_operands();
+                    for operand in gate_operands {
+                        dbg!(&expr_stmt, &operand);
+                        if measurement_operands
+                            .iter()
+                            .any(|o| contains_or_equal(o, &operand))
+                        {
+                            let range = operand.syntax().text_range();
+                            let start: usize = range.start().into();
+                            let end: usize = range.end().into();
+                            let diag = Diagnostic {
+                                message: format!(
+                                    "Operation after measurement of the same qubit: {}",
+                                    operand
+                                ),
+                                range_zero_indexed: start..end,
+                            };
+                            diags.push(diag);
+                        }
+                    }
+                }
+            }
+            _ => {
+                continue;
             }
         }
     }
@@ -42,36 +56,51 @@ pub fn lint_op_after_measurement(stmts: &[Stmt<SourceRange>]) -> Vec<Diagnostic>
 
 #[cfg(test)]
 mod tests {
-    use rustpython_parser::{
-        ast::{Fold, Mod},
-        source_code::RandomLocator,
-    };
+    use oq3_semantics::syntax_to_semantics;
+    use oq3_source_file::SourceTrait;
 
     use super::*;
-    use crate::tests::parse_python_source;
 
     #[test]
-    fn test_statements_module_root() {
-        let source = r#"from qiskit import QuantumCircuit
-circuit = QuantumCircuit(3, 3)
-circuit.h(0)
-circuit.measure(0, 0)
-circuit.h(1)
-circuit.h(0)"#;
-        let Mod::Module(module) = parse_python_source(source) else {
-            panic!("Expected a module");
-        };
-        let mut locator = RandomLocator::new(source);
-        let module = locator.fold(module).unwrap();
-        let stmts = &module.body;
+    fn test_statements_root_same_index() {
+        let source = r#"OPENQASM 3.0;
+include "stdgates.inc";
+bit[3] c;
+qubit[3] q;
+h q[0];
+c[0] = measure q[0];
+h q[1];
+h q[0];"#;
+        let result =
+            syntax_to_semantics::parse_source_string(source, Some("test.qasm"), None::<&[String]>);
+        let stmts = result.syntax_result().syntax_ast().tree().statements();
         let diags = lint_op_after_measurement(stmts);
 
-        let range = diags[0].range;
+        let range = &diags[0].range_zero_indexed;
         let start = range.start;
-        let end = range.end.unwrap();
-        assert_eq!(start.row.to_usize(), 6);
-        assert_eq!(start.column.to_usize(), 1);
-        assert_eq!(end.row.to_usize(), 6);
-        assert_eq!(end.column.to_usize(), 13);
+        let end = range.end;
+        assert_eq!(start, 99);
+        assert_eq!(end, 103);
+    }
+
+    #[test]
+    fn test_statements_root_contains() {
+        let source = r#"OPENQASM 3.0;
+include "stdgates.inc";
+bit[3] c;
+qubit[3] q;
+h q[0];
+c = measure q;
+h q[0];"#;
+        let result =
+            syntax_to_semantics::parse_source_string(source, Some("test.qasm"), None::<&[String]>);
+        let stmts = result.syntax_result().syntax_ast().tree().statements();
+        let diags = lint_op_after_measurement(stmts);
+
+        let range = &diags[0].range_zero_indexed;
+        let start = range.start;
+        let end = range.end;
+        assert_eq!(start, 85);
+        assert_eq!(end, 89);
     }
 }

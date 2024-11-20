@@ -10,7 +10,7 @@ use rustpython_parser::{
     source_code::SourceRange,
     Mode,
 };
-use std::path::{Path, PathBuf};
+use std::{ops::Range, path::{Path, PathBuf}};
 
 #[derive(Debug)]
 pub struct SourceCode {
@@ -44,7 +44,7 @@ impl SourceCode {
 
 pub struct Diagnostic {
     pub message: String,
-    pub range: SourceRange,
+    pub range_zero_indexed: Range<usize>,
 }
 
 #[cfg(test)]
