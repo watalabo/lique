@@ -4,5 +4,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
+ariadne = "0.5.0"
 lique_core = { path = "../lique_core" }
+oq3_semantics = "0.7.0"
+oq3_source_file = "0.7.0"
 rustpython-parser = "0.4.0"

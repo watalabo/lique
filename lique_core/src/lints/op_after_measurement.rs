@@ -3,7 +3,8 @@ use oq3_syntax::{
     AstNode,
 };
 
-use crate::{lints::contains_or_equal, Diagnostic};
+use super::contains_or_equal;
+use crate::{Diagnostic, RelatedInformation};
 
 pub fn lint_op_after_measurement(stmts: AstChildren<Stmt>) -> Vec<Diagnostic> {
     let mut diags = Vec::new();
@@ -15,7 +16,6 @@ pub fn lint_op_after_measurement(stmts: AstChildren<Stmt>) -> Vec<Diagnostic> {
                     && let Expr::MeasureExpression(measurement) = rhs
                     && let Some(operand) = measurement.gate_operand()
                 {
-                    dbg!(&assignment, &operand);
                     measurement_operands.push(operand);
                 }
             }
@@ -26,20 +26,24 @@ pub fn lint_op_after_measurement(stmts: AstChildren<Stmt>) -> Vec<Diagnostic> {
                 {
                     let gate_operands = qubit_list.gate_operands();
                     for operand in gate_operands {
-                        dbg!(&expr_stmt, &operand);
-                        if measurement_operands
+                        if let Some(earlier) = measurement_operands
                             .iter()
-                            .any(|o| contains_or_equal(o, &operand))
+                            .find(|o| contains_or_equal(o, &operand))
                         {
-                            let range = operand.syntax().text_range();
-                            let start: usize = range.start().into();
-                            let end: usize = range.end().into();
                             let diag = Diagnostic {
-                                message: format!(
-                                    "Operation after measurement of the same qubit: {}",
-                                    operand
-                                ),
-                                range_zero_indexed: start..end,
+                                message: "Operation after measurement of the same qubit"
+                                    .to_string(),
+                                range_zero_indexed: gate_call.syntax().text_range().into(),
+                                related_informations: vec![
+                                    RelatedInformation {
+                                        message: "Earlier measurement".to_string(),
+                                        range_zero_indexed: earlier.syntax().text_range().into(),
+                                    },
+                                    RelatedInformation {
+                                        message: "For this qubit".to_string(),
+                                        range_zero_indexed: operand.syntax().text_range().into(),
+                                    },
+                                ],
                             };
                             diags.push(diag);
                         }

@@ -1,32 +1,42 @@
-use std::collections::HashSet;
-
 use oq3_syntax::{
     ast::{AstChildren, Expr, GateOperand, Stmt},
     AstNode,
 };
 
-use crate::Diagnostic;
+use crate::{Diagnostic, RelatedInformation};
+
+use super::contains_or_equal;
 
 pub fn lint_measurement_twice(stmts: AstChildren<Stmt>) -> Vec<Diagnostic> {
     let mut diags = Vec::new();
-    let mut measurement_operands: HashSet<GateOperand> = HashSet::new();
+    let mut measurement_operands: Vec<GateOperand> = Vec::new();
     for stmt in stmts {
         if let Stmt::AssignmentStmt(assignment) = stmt
             && let Some(rhs) = assignment.rhs()
             && let Expr::MeasureExpression(measurement) = rhs
             && let Some(operand) = measurement.gate_operand()
         {
-            if measurement_operands.contains(&operand) {
-                let range = operand.syntax().text_range();
-                let start: usize = range.start().into();
-                let end: usize = range.end().into();
+            if let Some(earlier) = measurement_operands
+                .iter()
+                .find(|o| contains_or_equal(o, &operand))
+            {
                 let diag = Diagnostic {
-                    message: format!("Measurement of the same qubit twice: {}", operand),
-                    range_zero_indexed: start..end,
+                    message: "Measurement of the same qubit twice".to_string(),
+                    range_zero_indexed: assignment.syntax().text_range().into(),
+                    related_informations: vec![
+                        RelatedInformation {
+                            message: "Earlier measurement here".to_string(),
+                            range_zero_indexed: earlier.syntax().text_range().into(),
+                        },
+                        RelatedInformation {
+                            message: "For this qubit".to_string(),
+                            range_zero_indexed: operand.syntax().text_range().into(),
+                        },
+                    ],
                 };
                 diags.push(diag);
             }
-            measurement_operands.insert(operand);
+            measurement_operands.push(operand);
         }
     }
     diags
