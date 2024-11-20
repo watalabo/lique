@@ -33,7 +33,7 @@ pub fn lint_op_after_measurement(stmts: AstChildren<Stmt>) -> Vec<Diagnostic> {
                             let diag = Diagnostic {
                                 message: "Operation after measurement of the same qubit"
                                     .to_string(),
-                                range_zero_indexed: gate_call.syntax().text_range().into(),
+                                range_zero_indexed: expr_stmt.syntax().text_range().into(),
                                 related_informations: vec![
                                     RelatedInformation {
                                         message: "Earlier measurement".to_string(),
@@ -83,8 +83,8 @@ h q[0];"#;
         let range = &diags[0].range_zero_indexed;
         let start = range.start;
         let end = range.end;
-        assert_eq!(start, 99);
-        assert_eq!(end, 103);
+        assert_eq!(start, 97);
+        assert_eq!(end, 104);
     }
 
     #[test]
@@ -104,7 +104,7 @@ h q[0];"#;
         let range = &diags[0].range_zero_indexed;
         let start = range.start;
         let end = range.end;
-        assert_eq!(start, 85);
-        assert_eq!(end, 89);
+        assert_eq!(start, 83);
+        assert_eq!(end, 90);
     }
 }

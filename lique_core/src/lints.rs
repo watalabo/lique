@@ -5,10 +5,21 @@ use oq3_syntax::ast::{Expr, GateOperand, Identifier, IndexKind, IndexedIdentifie
 
 pub(crate) fn contains_or_equal(operand: &GateOperand, other_operand: &GateOperand) -> bool {
     fn contains(identifier: &Identifier, indexed_identifier: &IndexedIdentifier) -> bool {
-        identifier.ident_token().unwrap().text() == indexed_identifier.identifier().unwrap().ident_token().unwrap().text()
+        identifier.ident_token().unwrap().text()
+            == indexed_identifier
+                .identifier()
+                .unwrap()
+                .ident_token()
+                .unwrap()
+                .text()
     }
 
     match (operand, other_operand) {
+        (GateOperand::Identifier(q1), GateOperand::IndexedIdentifier(q2)) => contains(q1, q2),
+        (GateOperand::IndexedIdentifier(q1), GateOperand::Identifier(q2)) => contains(q2, q1),
+        (GateOperand::Identifier(q1), GateOperand::Identifier(q2)) => {
+            q1.ident_token().unwrap().text() == q2.ident_token().unwrap().text()
+        }
         (GateOperand::IndexedIdentifier(q1), GateOperand::IndexedIdentifier(q2)) => {
             if let Some(q1_index) = q1.index_operators().next().unwrap().index_kind()
                 && let Some(q2_index) = q2.index_operators().next().unwrap().index_kind()
@@ -31,8 +42,6 @@ pub(crate) fn contains_or_equal(operand: &GateOperand, other_operand: &GateOpera
                 false
             }
         }
-        (GateOperand::Identifier(q1), GateOperand::IndexedIdentifier(q2)) => contains(q1, q2),
-        (GateOperand::IndexedIdentifier(q1), GateOperand::Identifier(q2)) => contains(q2, q1),
         _ => false,
     }
 }

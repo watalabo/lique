@@ -50,7 +50,7 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_statements_module_root() {
+    fn test_statements_root() {
         let source = r#"OPENQASM 3.0;
 include "stdgates.inc";
 bit[3] c;
@@ -60,7 +60,7 @@ cx q[0], q[1];
 cx q[1], q[2];
 c[0] = measure q[0];
 c[1] = measure q[1];
-c[2] = measure q[0]"#;
+c[2] = measure q[0];"#;
         let result =
             syntax_to_semantics::parse_source_string(source, Some("test.qasm"), None::<&[String]>);
         let stmts = result.syntax_result().syntax_ast().tree().statements();
@@ -69,7 +69,30 @@ c[2] = measure q[0]"#;
         let range = &diags[0].range_zero_indexed;
         let start = range.start;
         let end = range.end;
-        assert_eq!(start, 155);
-        assert_eq!(end, 159);
+        assert_eq!(start, 140);
+        assert_eq!(end, 160);
+    }
+
+    #[test]
+    fn test_statements_root_same_qubits() {
+        let source = r#"OPENQASM 3.0;
+include "stdgates.inc";
+bit[3] c;
+qubit[3] q;
+h q[0];
+cx q[0], q[1];
+cx q[1], q[2];
+c = measure q;
+c = measure q;"#;
+        let result =
+            syntax_to_semantics::parse_source_string(source, Some("test.qasm"), None::<&[String]>);
+        let stmts = result.syntax_result().syntax_ast().tree().statements();
+        let diags = lint_measurement_twice(stmts);
+
+        let range = &diags[0].range_zero_indexed;
+        let start = range.start;
+        let end = range.end;
+        assert_eq!(start, 113);
+        assert_eq!(end, 127);
     }
 }
