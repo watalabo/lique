@@ -1,8 +1,7 @@
-use std::{ops::Range, path::Path};
+use std::ops::Range;
 
 use line_index::{LineIndex, TextSize};
 use lsp_types::Position;
-use std::fs;
 
 #[derive(Clone)]
 pub struct Locator {
@@ -10,10 +9,9 @@ pub struct Locator {
 }
 
 impl Locator {
-    pub fn read_file<P: AsRef<Path>>(path: P) -> Self {
-        let text = fs::read_to_string(path).expect("Unable to read file");
+    pub fn read_string(s: &str) -> Self {
         Self {
-            index: LineIndex::new(&text),
+            index: LineIndex::new(s),
         }
     }
 

@@ -1,11 +1,11 @@
-import * as net from "node:net";
+import { join } from "node:path";
 import * as vscode from "vscode";
 import { type ExtensionContext, window } from "vscode";
 import {
 	LanguageClient,
+	TransportKind,
 	type LanguageClientOptions,
 	type ServerOptions,
-	type StreamInfo,
 } from "vscode-languageclient/node";
 
 let client: LanguageClient;
@@ -18,19 +18,21 @@ export async function activate(context: ExtensionContext) {
 		),
 	);
 
-	const serverOptions: ServerOptions = (): Promise<StreamInfo> => {
-		const socket = net.connect(3030, "localhost");
-		return Promise.resolve({
-			writer: socket,
-			reader: socket,
-		});
+	const serverModule = context.asAbsolutePath(join("dist", "server.js"));
+	const serverOptions: ServerOptions = {
+		run: { module: serverModule, transport: TransportKind.ipc },
+		debug: {
+			module: serverModule,
+			transport: TransportKind.ipc,
+			options: { execArgv: ["--nolazy", "--inspect=6009"] },
+		},
 	};
 
 	const clientOptions: LanguageClientOptions = {
 		documentSelector: [{ scheme: "file", language: "qasm" }],
 	};
 
-	const client = new LanguageClient("lique", serverOptions, clientOptions);
+	client = new LanguageClient("lique", serverOptions, clientOptions);
 	await client.start();
 }
 
@@ -52,3 +54,4 @@ export function deactivate(): Thenable<void> | undefined {
 	}
 	return client.stop();
 }
+

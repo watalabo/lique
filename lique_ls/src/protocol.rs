@@ -1,6 +1,5 @@
 use lsp_types::notification::Notification;
 use serde::{Deserialize, Serialize};
-use serde_json::Value;
 
 #[derive(Debug, Deserialize, PartialEq, Eq)]
 #[serde(rename_all = "camelCase")]
