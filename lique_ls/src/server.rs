@@ -1,8 +1,8 @@
 use lique_core::run_lints;
 use lsp_types::{
-    notification::{DidChangeTextDocument, Notification},
+    notification::{DidChangeTextDocument, DidOpenTextDocument, Notification},
     Diagnostic, DiagnosticRelatedInformation, DiagnosticSeverity, DidChangeTextDocumentParams,
-    Location, PublishDiagnosticsParams, Uri,
+    DidOpenTextDocumentParams, Location, PublishDiagnosticsParams, Uri,
 };
 use oq3_semantics::syntax_to_semantics;
 use serde_wasm_bindgen::{from_value, to_value};
@@ -39,21 +39,30 @@ impl Server {
     pub fn on_notification(&self, method: &str, params: JsValue) {
         console_log(&format!("Received notification: {}", method));
         match method {
+            DidOpenTextDocument::METHOD => {
+                let params = from_value::<DidOpenTextDocumentParams>(params).unwrap();
+                let uri = params.text_document.uri;
+                let source = params.text_document.text;
+                self.on_update(uri, source);
+            }
             DidChangeTextDocument::METHOD => {
                 let params = from_value::<DidChangeTextDocumentParams>(params).unwrap();
                 let uri = params.text_document.uri;
                 let source = params.content_changes[0].text.clone();
-                let locator = Locator::read_string(&source);
-                let result =
-                    syntax_to_semantics::parse_source_string(source, None, None::<&[String]>);
-                let diagnostics = run_lints(result)
-                    .into_iter()
-                    .map(|diag| self.convert_diagnostic(diag, &uri, &locator))
-                    .collect::<Vec<_>>();
-                self.send_diagnostics(uri, diagnostics);
+                self.on_update(uri, source);
             }
             _ => {}
         }
+    }
+
+    fn on_update(&self, uri: Uri, source: String) {
+        let locator = Locator::read_string(&source);
+        let parsed = syntax_to_semantics::parse_source_string(source, None, None::<&[String]>);
+        let diagnostics = run_lints(parsed)
+            .into_iter()
+            .map(|diag| self.convert_diagnostic(diag, &uri, &locator))
+            .collect::<Vec<_>>();
+        self.send_diagnostics(uri, diagnostics);
     }
 
     fn convert_diagnostic(

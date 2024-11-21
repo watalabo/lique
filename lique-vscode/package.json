@@ -34,7 +34,7 @@
   },
   "scripts": {
     "vscode:prepublish": "npm run package",
-    "build:all": "npm run build:client && npm run build:server",
+    "build:all": "npm run build:client && npm run build:server && npm run build:wasm",
     "build:client": "esbuild client=./packages/client/src --bundle --outdir=dist --external:vscode --format=cjs --platform=node",
     "build:server": "esbuild server=./packages/server/src --bundle --outdir=dist --external:vscode --format=cjs --platform=node",
     "build:wasm": "wasm-pack build ../lique_ls --target nodejs --out-dir ../lique-vscode/dist && rm -f ./dist/{.gitignore,package.json}",
