@@ -6,6 +6,9 @@
   "author": "",
   "license": "ISC",
   "description": "",
+  "scripts": {
+    "build": "node esbuild.js --production"
+  },
   "dependencies": {
     "vscode-languageclient": "9.0.1"
   }
