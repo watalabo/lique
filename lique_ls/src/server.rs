@@ -1,11 +1,10 @@
-use lique_core::lints;
+use lique_core::run_lints;
 use lsp_types::{
     notification::{DidChangeTextDocument, Notification},
     Diagnostic, DiagnosticRelatedInformation, DiagnosticSeverity, DidChangeTextDocumentParams,
     Location, PublishDiagnosticsParams, Uri,
 };
 use oq3_semantics::syntax_to_semantics;
-use oq3_source_file::SourceTrait;
 use serde_wasm_bindgen::{from_value, to_value};
 use wasm_bindgen::prelude::*;
 
@@ -47,17 +46,8 @@ impl Server {
                 let locator = Locator::read_string(&source);
                 let result =
                     syntax_to_semantics::parse_source_string(source, None, None::<&[String]>);
-                let diagnostics = vec![
-                    lints::measurement_twice::lint_measurement_twice(
-                        result.syntax_result().syntax_ast().tree().statements(),
-                    ),
-                    lints::op_after_measurement::lint_op_after_measurement(
-                        result.syntax_result().syntax_ast().tree().statements(),
-                    ),
-                ];
-                let diagnostics = diagnostics
+                let diagnostics = run_lints(result)
                     .into_iter()
-                    .flatten()
                     .map(|diag| self.convert_diagnostic(diag, &uri, &locator))
                     .collect::<Vec<_>>();
                 self.send_diagnostics(uri, diagnostics);

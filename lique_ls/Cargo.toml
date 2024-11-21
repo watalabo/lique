@@ -5,11 +5,9 @@ edition = "2021"
 
 [dependencies]
 anyhow = "1.0.93"
-env_logger = "0.11.5"
 js-sys = "0.3.72"
 line-index = "0.1.2"
 lique_core = { path = "../lique_core" }
-log = "0.4.22"
 lsp-types = "0.97.0"
 oq3_semantics = "0.7.0"
 oq3_source_file = "0.7.0"
