@@ -10,7 +10,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onLanguage:python"
+    "onLanguage:qasm"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -22,12 +22,9 @@
     ],
     "languages": [
       {
-        "id": "python",
-        "aliases": [
-          "Python"
-        ],
+        "id": "qasm",
         "extensions": [
-          ".py"
+          ".qasm"
         ]
       }
     ]

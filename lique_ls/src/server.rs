@@ -1,30 +1,40 @@
-use rustpython_parser::{ast::Fold, source_code::RandomLocator};
 use std::collections::HashMap;
 
-use lique_core::{lints, SourceCode};
+use lique_core::lints;
 use log::{debug, info};
 use lsp_types::{
     notification::{DidSaveTextDocument, Notification, PublishDiagnostics},
     request::{Initialize, Request},
-    Diagnostic, DiagnosticOptions, DiagnosticServerCapabilities, InitializeResult, Position,
-    PublishDiagnosticsParams, Range, SemanticTokensParams, ServerCapabilities,
-    TextDocumentSyncCapability, TextDocumentSyncKind,
+    Diagnostic, DiagnosticOptions, DiagnosticRelatedInformation, DiagnosticServerCapabilities,
+    DiagnosticSeverity, InitializeResult, Location, PublishDiagnosticsParams, SemanticTokensParams,
+    ServerCapabilities, TextDocumentSyncCapability, TextDocumentSyncKind, Uri,
 };
+use oq3_semantics::syntax_to_semantics;
+use oq3_source_file::SourceTrait;
 use tokio::{
     io::{AsyncReadExt, AsyncWriteExt},
     net::{TcpListener, TcpStream},
 };
 
-use crate::protocol::{
-    NotificationMessage, OutgoingMessage, RpcMessageRequest, RpcMessageResponse,
+use crate::{
+    locator::Locator,
+    protocol::{NotificationMessage, OutgoingMessage, RpcMessageRequest, RpcMessageResponse},
 };
 
 type Header = HashMap<String, String>;
 
 #[derive(Clone)]
-pub struct Server;
+pub struct Server {
+    file_locators: HashMap<Uri, Locator>,
+}
 
 impl Server {
+    pub fn new() -> Self {
+        Self {
+            file_locators: Default::default(),
+        }
+    }
+
     pub async fn start(self, port: u16) -> anyhow::Result<()> {
         let listener = TcpListener::bind(("127.0.0.1", port)).await?;
         info!("Listening on port {}", port);
@@ -35,7 +45,7 @@ impl Server {
         }
     }
 
-    async fn handle(self, stream: TcpStream) -> anyhow::Result<()> {
+    async fn handle(mut self, stream: TcpStream) -> anyhow::Result<()> {
         let (mut reader, mut writer) = tokio::io::split(stream);
         tokio::spawn(async move {
             loop {
@@ -77,7 +87,7 @@ impl Server {
     }
 
     async fn handle_request(
-        &self,
+        &mut self,
         req: RpcMessageRequest,
     ) -> anyhow::Result<Option<OutgoingMessage>> {
         match req.method.as_str() {
@@ -138,28 +148,32 @@ impl Server {
                 let params = serde_json::from_value::<SemanticTokensParams>(req.params)?;
                 let uri = params.text_document.uri;
                 let path = uri.path().to_string();
-                let code = SourceCode::read_from_path(path);
-                let mut locator = RandomLocator::new(&code);
-                if let Ok(module) = code.parse() {
-                    let module = locator.fold(module).unwrap();
-                    let diags = vec![
-                        lints::measurement_twice::lint_measurement_twice(&module.body),
-                        lints::measurement_twice::lint_measurement_twice(&module.body),
-                    ]
-                    .into_iter()
-                    .flatten()
-                    .map(convert_diagnostic)
-                    .collect::<Vec<_>>();
-                    let notification =
-                        NotificationMessage::new::<PublishDiagnostics>(PublishDiagnosticsParams {
-                            uri,
-                            version: None,
-                            diagnostics: diags,
-                        })?;
-                    Ok(Some(OutgoingMessage::NotificationMessage(notification)))
-                } else {
-                    Ok(None)
+                debug!("Handling save for {}", path);
+                if !self.file_locators.contains_key(&uri) {
+                    let locator = Locator::read_file(&path);
+                    self.file_locators.insert(uri.clone(), locator);
                 }
+                let result = syntax_to_semantics::parse_source_file(&path, None::<&[String]>);
+                let diags = vec![
+                    lints::measurement_twice::lint_measurement_twice(
+                        result.syntax_result().syntax_ast().tree().statements(),
+                    ),
+                    lints::op_after_measurement::lint_op_after_measurement(
+                        result.syntax_result().syntax_ast().tree().statements(),
+                    ),
+                ]
+                .into_iter()
+                .flatten()
+                .map(|diag| self.convert_diagnostic(diag, &uri))
+                .collect::<Vec<_>>();
+                debug!("#diags: {}", diags.len());
+                let notification =
+                    NotificationMessage::new::<PublishDiagnostics>(PublishDiagnosticsParams {
+                        uri,
+                        version: None,
+                        diagnostics: diags,
+                    })?;
+                Ok(Some(OutgoingMessage::NotificationMessage(notification)))
             }
             _ => Ok(None),
         }
@@ -198,25 +212,32 @@ impl Server {
             Err(anyhow::anyhow!("No Content-Length"))
         }
     }
-}
 
-fn convert_diagnostic(diagnostic: lique_core::Diagnostic) -> Diagnostic {
-    let range = diagnostic.range;
-    let start = range.start;
-    let end = range.end.unwrap();
-    Diagnostic::new_simple(
-        Range {
-            start: Position {
-                line: start.row.to_zero_indexed_usize() as u32,
-                character: start.column.to_zero_indexed_usize() as u32,
-            },
-            end: Position {
-                line: end.row.to_zero_indexed_usize() as u32,
-                character: end.column.to_zero_indexed_usize() as u32,
-            },
-        },
-        diagnostic.message,
-    )
+    fn convert_diagnostic(&self, diagnostic: lique_core::Diagnostic, uri: &Uri) -> Diagnostic {
+        let locator = self.file_locators.get(uri).unwrap();
+        let range = diagnostic.range_zero_indexed;
+        Diagnostic::new(
+            locator.locate(range),
+            Some(DiagnosticSeverity::WARNING),
+            None,
+            Some(diagnostic.message),
+            "lique".to_string(),
+            Some(
+                diagnostic
+                    .related_informations
+                    .into_iter()
+                    .map(|info| DiagnosticRelatedInformation {
+                        location: Location {
+                            uri: uri.clone(),
+                            range: locator.locate(info.range_zero_indexed.clone()),
+                        },
+                        message: info.message,
+                    })
+                    .collect(),
+            ),
+            None,
+        )
+    }
 }
 
 #[cfg(test)]
@@ -226,7 +247,7 @@ mod tests {
     #[test]
     fn test_read_payload() {
         let packet = "Content-Length: 57\r\nContent-Type: application/json\r\n\r\n";
-        let header = Server::parse_headers(&packet).unwrap();
+        let header = Server::parse_headers(packet).unwrap();
         assert_eq!(
             header,
             vec![
@@ -241,6 +262,6 @@ mod tests {
     #[test]
     fn test_read_payload_without_content_length() {
         let packet = "Content-Type: application/json\r\n\r\n";
-        assert!(Server::parse_headers(&packet).is_err());
+        assert!(Server::parse_headers(packet).is_err());
     }
 }
