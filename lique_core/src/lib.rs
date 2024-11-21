@@ -1,6 +1,5 @@
 #![feature(let_chains)]
 
-pub mod error;
 pub mod lints;
 
 use std::ops::Range;
