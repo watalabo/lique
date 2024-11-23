@@ -1,3 +1,7 @@
 [workspace]
 members = ["lique_core", "lique_linter", "lique_ls"]
 resolver = "2"
+
+[workspace.dependencies]
+oq3_semantics = "0.7.0"
+oq3_source_file = "0.7.0"

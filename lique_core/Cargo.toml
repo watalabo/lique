@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-oq3_semantics = "0.7.0"
-oq3_source_file = "0.7.0"
+oq3_semantics = { workspace = true }
+oq3_source_file = { workspace = true }
 oq3_syntax = "0.7.0"
 thiserror = "2.0.3"

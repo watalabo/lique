@@ -9,8 +9,8 @@ js-sys = "0.3.72"
 line-index = "0.1.2"
 lique_core = { path = "../lique_core" }
 lsp-types = "0.97.0"
-oq3_semantics = "0.7.0"
-oq3_source_file = "0.7.0"
+oq3_semantics = { workspace = true }
+oq3_source_file = { workspace = true }
 serde = { version = "1.0.214", features = ["derive"] }
 serde-wasm-bindgen = "0.6.5"
 wasm-bindgen = "0.2.95"
