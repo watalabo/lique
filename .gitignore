@@ -23,3 +23,5 @@ Cargo.lock
 .vscode/*
 !.vscode/launch.json
 !.vscode/tasks.json
+
+__pycache__/
