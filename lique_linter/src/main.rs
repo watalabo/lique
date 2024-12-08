@@ -1,3 +1,5 @@
+use std::process::ExitCode;
+
 use ariadne::{ColorGenerator, Label, Report, ReportKind, Source};
 use clap::Parser;
 use lique_core::run_lints;
@@ -9,7 +11,7 @@ struct Command {
     file: String,
 }
 
-fn main() {
+fn main() -> ExitCode {
     let command = Command::parse();
 
     let path = command.file;
@@ -17,7 +19,9 @@ fn main() {
     let source_text = result.syntax_result().syntax_ast().tree().to_string();
     let mut colors = ColorGenerator::new();
     let color = colors.next();
-    for diag in run_lints(result) {
+    let diagnostics = run_lints(result);
+    let is_diagnostics_empty = diagnostics.is_empty();
+    for diag in diagnostics {
         Report::build(
             ReportKind::Warning,
             (&path, diag.range_zero_indexed.clone()),
@@ -31,5 +35,11 @@ fn main() {
         .finish()
         .print((&path, Source::from(&source_text)))
         .unwrap();
+    }
+
+    if is_diagnostics_empty {
+        ExitCode::SUCCESS
+    } else {
+        ExitCode::from(1)
     }
 }
