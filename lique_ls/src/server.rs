@@ -1,4 +1,4 @@
-use lique_core::run_lints;
+use lique_core::{rule::Rule, run_lints};
 use lsp_types::{
     notification::{DidChangeTextDocument, DidOpenTextDocument, Notification},
     Diagnostic, DiagnosticRelatedInformation, DiagnosticSeverity, DidChangeTextDocumentParams,
@@ -58,7 +58,8 @@ impl Server {
     fn on_update(&self, uri: Uri, source: String) {
         let locator = Locator::read_string(&source);
         let parsed = syntax_to_semantics::parse_source_string(source, None, None::<&[String]>);
-        let diagnostics = run_lints(parsed)
+        let rules = Rule::all();
+        let diagnostics = run_lints(parsed, &rules)
             .into_iter()
             .map(|diag| self.convert_diagnostic(diag, &uri, &locator))
             .collect::<Vec<_>>();
