@@ -84,6 +84,7 @@ if __name__ == "__main__":
 
     dataset_cases = []
     for case in lintq_results:
-        dataset_cases.append(DatasetCase(case.rule_id, case.label_resolution == "TP", case.file))
+        rule_id = case.rule_id if case.label_resolution == "TP" else None
+        dataset_cases.append(DatasetCase(rule_id, case.file))
     with open(f"{dataset_dir}/dataset.json", "w") as f:
-        json.dump([asdict(c) for c in dataset_cases], f)
+        json.dump([asdict(c) for c in dataset_cases], f, indent=4)

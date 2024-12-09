@@ -9,9 +9,7 @@ use oq3_source_file::SourceTrait;
 #[derive(Parser)]
 struct Command {
     file: String,
-    #[arg(long, help = "Eanble all lint rules")]
-    all: bool,
-    #[arg(long, value_parser = clap::value_parser!(Rule), value_delimiter = ',', help = "Enable specific lint rules. Prioritized over --all")]
+    #[arg(long, value_parser = clap::value_parser!(Rule), value_delimiter = ',', help = "Enable specific lint rules")]
     enabled_rules: Vec<Rule>,
 }
 

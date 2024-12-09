@@ -39,9 +39,15 @@ class Measurement(Instruction):
 
 @dataclass
 class SourceMap:
-    source_lineno: list[int]
-    generated_lineno: list[int]
+    source_positions: list[int]
+    generated_positions: list[int]
     generated_file_name: str = field(init=False, default="")
+
+
+@dataclass
+class Position:
+    lineno: int
+    col_offset: int
 
 
 class QuantumCircuit:
@@ -57,7 +63,9 @@ class QuantumCircuit:
         self.source_lineno = []
 
     def h(self, qubit: int):
-        lineno = inspect.stack()[1].lineno
+        caller_frame = inspect.stack()[1]
+        lineno = caller_frame.lineno
+        print(caller_frame.positions.col_offset, caller_frame.positions.
         self.source_lineno.append(lineno)
         self.gates.append(H(self.qubits[qubit]))
 

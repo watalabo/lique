@@ -1,4 +1,4 @@
-pub mod measurement_twice;
+pub mod double_measurement;
 pub mod op_after_measurement;
 
 use oq3_syntax::ast::{Expr, GateOperand, Identifier, IndexKind, IndexedIdentifier, LiteralKind};

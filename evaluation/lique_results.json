@@ -1,152 +1,302 @@
 [
     {
-        "rule_id": "ql-double-measurement",
-        "expected_label": true,
-        "actual_label": true,
-        "file": "measurement_postulate_single_qubit_f_fb7a34"
-    },
-    {
-        "rule_id": "ql-double-measurement",
-        "expected_label": true,
-        "actual_label": true,
-        "file": "qubits_d78ad0"
-    },
-    {
-        "rule_id": "ql-double-measurement",
-        "expected_label": true,
-        "actual_label": true,
-        "file": "qubits_intro_974f92"
-    },
-    {
-        "rule_id": "ql-double-measurement",
-        "expected_label": true,
-        "actual_label": true,
-        "file": "rsa_breaker_4_bit_0f27ff"
-    },
-    {
-        "rule_id": "ql-double-measurement",
-        "expected_label": true,
-        "actual_label": true,
-        "file": "sandbox_e52934"
-    },
-    {
-        "rule_id": "ql-double-measurement",
-        "expected_label": true,
-        "actual_label": true,
+        "expected_rule_id": "ql-double-measurement",
+        "executed_rule_id": "ql-double-measurement",
+        "found": true,
         "file": "test_circuit_to_dag_5333cb"
     },
     {
-        "rule_id": "ql-double-measurement",
-        "expected_label": true,
-        "actual_label": true,
-        "file": "test_qasm_simulator_edd048"
+        "expected_rule_id": "ql-double-measurement",
+        "executed_rule_id": "ql-double-measurement",
+        "found": true,
+        "file": "qubits_intro_974f92"
     },
     {
-        "rule_id": "ql-double-measurement",
-        "expected_label": false,
-        "actual_label": false,
+        "expected_rule_id": "ql-double-measurement",
+        "executed_rule_id": "ql-double-measurement",
+        "found": true,
+        "file": "measurement_postulate_single_qubit_f_fb7a34"
+    },
+    {
+        "expected_rule_id": null,
+        "executed_rule_id": "ql-double-measurement",
+        "found": false,
         "file": "test_structure_aaba85"
     },
     {
-        "rule_id": "ql-operation-after-measurement",
-        "expected_label": true,
-        "actual_label": true,
-        "file": "_12_quantum_key_distribution_checkpoint_4165fd"
+        "expected_rule_id": "ql-double-measurement",
+        "executed_rule_id": "ql-double-measurement",
+        "found": true,
+        "file": "qubits_d78ad0"
     },
     {
-        "rule_id": "ql-operation-after-measurement",
-        "expected_label": true,
-        "actual_label": true,
-        "file": "ch_3_28325b"
+        "expected_rule_id": "ql-double-measurement",
+        "executed_rule_id": "ql-double-measurement",
+        "found": true,
+        "file": "test_qasm_simulator_edd048"
     },
     {
-        "rule_id": "ql-operation-after-measurement",
-        "expected_label": true,
-        "actual_label": true,
+        "expected_rule_id": "ql-double-measurement",
+        "executed_rule_id": "ql-double-measurement",
+        "found": true,
+        "file": "sandbox_e52934"
+    },
+    {
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-double-measurement",
+        "found": false,
         "file": "demo3_quantum_teleportation_5b8be6"
     },
     {
-        "rule_id": "ql-operation-after-measurement",
-        "expected_label": true,
-        "actual_label": true,
-        "file": "hardware_3936ea"
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-double-measurement",
+        "found": false,
+        "file": "ch_3_28325b"
     },
     {
-        "rule_id": "ql-operation-after-measurement",
-        "expected_label": true,
-        "actual_label": true,
-        "file": "one_qubit_fb6117"
-    },
-    {
-        "rule_id": "ql-operation-after-measurement",
-        "expected_label": true,
-        "actual_label": true,
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-double-measurement",
+        "found": false,
         "file": "python_quantum_number_generator_1_6_multi_qasm_76fe84"
     },
     {
-        "rule_id": "ql-operation-after-measurement",
-        "expected_label": true,
-        "actual_label": true,
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-double-measurement",
+        "found": false,
         "file": "q02_417981"
     },
     {
-        "rule_id": "ql-operation-after-measurement",
-        "expected_label": true,
-        "actual_label": true,
-        "file": "q04_qiskit_installation_and_test_7d0f02"
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-double-measurement",
+        "found": true,
+        "file": "_12_quantum_key_distribution_checkpoint_4165fd"
     },
     {
-        "rule_id": "ql-operation-after-measurement",
-        "expected_label": true,
-        "actual_label": true,
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-double-measurement",
+        "found": false,
+        "file": "one_qubit_fb6117"
+    },
+    {
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-double-measurement",
+        "found": true,
+        "file": "hardware_3936ea"
+    },
+    {
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-double-measurement",
+        "found": false,
         "file": "quantum_pixel_generator_multi_qasm_fractional_variable_d8275b"
     },
     {
-        "rule_id": "ql-operation-after-measurement",
-        "expected_label": true,
-        "actual_label": true,
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-double-measurement",
+        "found": false,
+        "file": "q04_qiskit_installation_and_test_7d0f02"
+    },
+    {
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-double-measurement",
+        "found": false,
         "file": "quantum_teleportation_1881c2"
     },
     {
-        "rule_id": "ql-operation-after-measurement",
-        "expected_label": true,
-        "actual_label": true,
-        "file": "quantumdice_bc7351"
-    },
-    {
-        "rule_id": "ql-operation-after-measurement",
-        "expected_label": true,
-        "actual_label": true,
-        "file": "quantumteleportation_2823d6"
-    },
-    {
-        "rule_id": "ql-operation-after-measurement",
-        "expected_label": true,
-        "actual_label": true,
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-double-measurement",
+        "found": true,
         "file": "quntum_204_dec_2005_202020_206_2042_20am_16e278"
     },
     {
-        "rule_id": "ql-operation-after-measurement",
-        "expected_label": true,
-        "actual_label": true,
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-double-measurement",
+        "found": true,
+        "file": "quantumdice_bc7351"
+    },
+    {
+        "expected_rule_id": "ql-double-measurement",
+        "executed_rule_id": "ql-double-measurement",
+        "found": true,
+        "file": "rsa_breaker_4_bit_0f27ff"
+    },
+    {
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-double-measurement",
+        "found": false,
+        "file": "quantumteleportation_2823d6"
+    },
+    {
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-double-measurement",
+        "found": true,
         "file": "task_2_4f46b2"
     },
     {
-        "rule_id": "ql-operation-after-measurement",
-        "expected_label": true,
-        "actual_label": true,
-        "file": "teleportation_8f1eaf"
-    },
-    {
-        "rule_id": "ql-operation-after-measurement",
-        "expected_label": true,
-        "actual_label": true,
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-double-measurement",
+        "found": false,
         "file": "teleportation_practice_4ae2ea"
     },
     {
-        "rule_id": "ql-operation-after-measurement",
-        "expected_label": true,
-        "actual_label": true,
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-double-measurement",
+        "found": false,
         "file": "two_qubit_4cff15"
+    },
+    {
+        "expected_rule_id": "ql-double-measurement",
+        "executed_rule_id": "ql-operation-after-measurement",
+        "found": true,
+        "file": "measurement_postulate_single_qubit_f_fb7a34"
+    },
+    {
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-double-measurement",
+        "found": true,
+        "file": "teleportation_8f1eaf"
+    },
+    {
+        "expected_rule_id": "ql-double-measurement",
+        "executed_rule_id": "ql-operation-after-measurement",
+        "found": true,
+        "file": "qubits_intro_974f92"
+    },
+    {
+        "expected_rule_id": "ql-double-measurement",
+        "executed_rule_id": "ql-operation-after-measurement",
+        "found": true,
+        "file": "qubits_d78ad0"
+    },
+    {
+        "expected_rule_id": "ql-double-measurement",
+        "executed_rule_id": "ql-operation-after-measurement",
+        "found": false,
+        "file": "test_circuit_to_dag_5333cb"
+    },
+    {
+        "expected_rule_id": "ql-double-measurement",
+        "executed_rule_id": "ql-operation-after-measurement",
+        "found": false,
+        "file": "test_qasm_simulator_edd048"
+    },
+    {
+        "expected_rule_id": null,
+        "executed_rule_id": "ql-operation-after-measurement",
+        "found": false,
+        "file": "test_structure_aaba85"
+    },
+    {
+        "expected_rule_id": "ql-double-measurement",
+        "executed_rule_id": "ql-operation-after-measurement",
+        "found": true,
+        "file": "sandbox_e52934"
+    },
+    {
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-operation-after-measurement",
+        "found": true,
+        "file": "_12_quantum_key_distribution_checkpoint_4165fd"
+    },
+    {
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-operation-after-measurement",
+        "found": true,
+        "file": "demo3_quantum_teleportation_5b8be6"
+    },
+    {
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-operation-after-measurement",
+        "found": true,
+        "file": "hardware_3936ea"
+    },
+    {
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-operation-after-measurement",
+        "found": true,
+        "file": "ch_3_28325b"
+    },
+    {
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-operation-after-measurement",
+        "found": true,
+        "file": "one_qubit_fb6117"
+    },
+    {
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-operation-after-measurement",
+        "found": true,
+        "file": "q02_417981"
+    },
+    {
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-operation-after-measurement",
+        "found": true,
+        "file": "quantum_pixel_generator_multi_qasm_fractional_variable_d8275b"
+    },
+    {
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-operation-after-measurement",
+        "found": true,
+        "file": "quantum_teleportation_1881c2"
+    },
+    {
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-operation-after-measurement",
+        "found": true,
+        "file": "quantumdice_bc7351"
+    },
+    {
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-operation-after-measurement",
+        "found": true,
+        "file": "quantumteleportation_2823d6"
+    },
+    {
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-operation-after-measurement",
+        "found": true,
+        "file": "python_quantum_number_generator_1_6_multi_qasm_76fe84"
+    },
+    {
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-operation-after-measurement",
+        "found": true,
+        "file": "quntum_204_dec_2005_202020_206_2042_20am_16e278"
+    },
+    {
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-operation-after-measurement",
+        "found": true,
+        "file": "q04_qiskit_installation_and_test_7d0f02"
+    },
+    {
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-operation-after-measurement",
+        "found": true,
+        "file": "task_2_4f46b2"
+    },
+    {
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-operation-after-measurement",
+        "found": true,
+        "file": "two_qubit_4cff15"
+    },
+    {
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-operation-after-measurement",
+        "found": true,
+        "file": "teleportation_practice_4ae2ea"
+    },
+    {
+        "expected_rule_id": "ql-operation-after-measurement",
+        "executed_rule_id": "ql-operation-after-measurement",
+        "found": true,
+        "file": "teleportation_8f1eaf"
+    },
+    {
+        "expected_rule_id": "ql-double-measurement",
+        "executed_rule_id": "ql-operation-after-measurement",
+        "found": true,
+        "file": "rsa_breaker_4_bit_0f27ff"
     }
 ]
