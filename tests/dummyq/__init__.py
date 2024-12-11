@@ -55,7 +55,7 @@ class Range:
 @dataclass
 class SourceMap:
     source_ranges: list[Range]
-    generated_line_numbers: list[int]
+    generated_line_byte_offset: list[int]
     generated_file_name: str = field(init=False, default="")
 
 
@@ -88,14 +88,14 @@ class QuantumCircuit:
         qasm += 'include "stdgates.inc";\n'
         qasm += f"qubit[{len(self.qubits)}] q;\n"
         qasm += f"bit[{len(self.cbits)}] c;\n"
-        qasm_lineno = 4
-        generated_line_numbers = []
+        qasm_bytes = len(qasm.encode("utf-8"))
+        generated_line_byte_offset = []
         for i, gate in enumerate(self.gates):
             instruction = gate.to_openqasm()
-            qasm_lineno += instruction.count("\n")
-            generated_line_numbers.append(qasm_lineno)
+            qasm_bytes += len(instruction.encode("utf-8"))
+            generated_line_byte_offset.append(qasm_bytes)
             qasm += gate.to_openqasm()
-        source_map = SourceMap(self.source_lineno, generated_line_numbers)
+        source_map = SourceMap(self.source_lineno, generated_line_byte_offset)
         return qasm, source_map
 
     def _get_caller_range(caller_frame: inspect.FrameInfo) -> Range:

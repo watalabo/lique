@@ -5,6 +5,8 @@ use std::{
 
 use thiserror::Error;
 
+use crate::source_map::Position;
+
 #[derive(Error, Debug)]
 pub enum ByteOffsetError {
     #[error("IO error")]
@@ -19,7 +21,7 @@ pub enum ByteOffsetError {
 pub struct ByteOffsetLocator {
     /// i-th element is the byte offset of the start of the i-th line.
     line_offsets: Vec<usize>,
-    contents: String,
+    pub contents: String,
 }
 
 impl ByteOffsetLocator {
@@ -57,26 +59,22 @@ impl ByteOffsetLocator {
         Ok(())
     }
 
-    pub fn locate(
-        &self,
-        line_number: usize,
-        column_number: usize,
-    ) -> Result<usize, ByteOffsetError> {
-        if line_number >= self.line_offsets.len() {
-            return Err(ByteOffsetError::InvalidLineNumber(line_number));
+    pub fn locate(&self, position: &Position) -> Result<usize, ByteOffsetError> {
+        if position.line >= self.line_offsets.len() {
+            return Err(ByteOffsetError::InvalidLineNumber(position.line));
         }
-        if column_number
-            > self.contents[self.line_offsets[line_number]..]
+        if position.column
+            > self.contents[self.line_offsets[position.line]..]
                 .lines()
                 .next()
                 .unwrap_or("")
                 .len()
         {
-            return Err(ByteOffsetError::InvalidColumnNumber(column_number));
+            return Err(ByteOffsetError::InvalidColumnNumber(position.column));
         }
 
-        let line_start_offset = self.line_offsets[line_number];
-        Ok(line_start_offset + column_number)
+        let line_start_offset = self.line_offsets[position.line];
+        Ok(line_start_offset + position.column)
     }
 }
 
@@ -88,29 +86,34 @@ mod tests {
     fn test_normal_case() {
         let content = "Hello\nWorld\nThis is a test.";
         let locator = ByteOffsetLocator::read_from_string(content);
-        assert_eq!(locator.locate(1, 3).unwrap(), 9); // "l" in "World"
+        // "l" in "World"
+        assert_eq!(locator.locate(&Position { line: 1, column: 3 }).unwrap(), 9);
     }
 
     #[test]
     fn test_one_line() {
         let content = "Hello World";
         let locator = ByteOffsetLocator::read_from_string(content);
-        assert_eq!(locator.locate(0, 4).unwrap(), 4); // "o" in "Hello"
+        // "o" in "Hello"
+        assert_eq!(locator.locate(&Position { line: 0, column: 4 }).unwrap(), 4);
     }
 
     #[test]
     fn test_including_empty_line() {
         let content = "Hello\n\nWorld";
         let locator = ByteOffsetLocator::read_from_string(content);
-        assert_eq!(locator.locate(1, 0).unwrap(), 6); // start of the empty line
-        assert_eq!(locator.locate(2, 1).unwrap(), 8); // "o" in "World"
+        // start of the empty line
+        assert_eq!(locator.locate(&Position { line: 1, column: 0 }).unwrap(), 6);
+        // "o" in "World"
+        assert_eq!(locator.locate(&Position { line: 2, column: 1 }).unwrap(), 8);
     }
 
     #[test]
     fn test_end_of_line() {
         let content = "Hello\nWorld";
         let locator = ByteOffsetLocator::read_from_string(content);
-        assert_eq!(locator.locate(0, 5).unwrap(), 5); // end of "Hello"
+        // end of "Hello"
+        assert_eq!(locator.locate(&Position { line: 0, column: 5 }).unwrap(), 5);
     }
 
     #[test]
@@ -118,7 +121,7 @@ mod tests {
         let content = "";
         let locator = ByteOffsetLocator::read_from_string(content);
         assert!(matches!(
-            locator.locate(1, 0),
+            locator.locate(&Position { line: 1, column: 0 }),
             Err(ByteOffsetError::InvalidLineNumber(1))
         ));
     }
@@ -128,7 +131,7 @@ mod tests {
         let content = "Hello\nWorld";
         let locator = ByteOffsetLocator::read_from_string(content);
         assert!(matches!(
-            locator.locate(2, 0),
+            locator.locate(&Position { line: 2, column: 0 }),
             Err(ByteOffsetError::InvalidLineNumber(2))
         ));
     }
@@ -138,7 +141,10 @@ mod tests {
         let content = "Hello\nWorld";
         let locator = ByteOffsetLocator::read_from_string(content);
         assert!(matches!(
-            locator.locate(1, 10),
+            locator.locate(&Position {
+                line: 1,
+                column: 10
+            }),
             Err(ByteOffsetError::InvalidColumnNumber(10))
         ));
     }
