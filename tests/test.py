@@ -11,6 +11,6 @@ def create_circuit():
 
 if __name__ == "__main__":
     qc = create_circuit()
-    with open("test.qasm", "w") as fq:
-        with open("test.qasm.map.json", "w") as fm:
+    with open("./tests/test.qasm", "w") as fq:
+        with open("./tests/test.qasm.map.json", "w") as fm:
             dump(qc, fq, fm)

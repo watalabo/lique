@@ -65,4 +65,6 @@ if __name__ == "__main__":
             results.append(result)
 
     with open(f"{base_dir}/lique_results.json", "w") as f:
+        # Sort results by `file`
+        results = sorted(results, key=lambda x: x.file)
         json.dump([result.__dict__ for result in results], f, indent=4)
