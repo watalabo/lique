@@ -1,5 +1,6 @@
 #![feature(let_chains)]
 
+pub mod byte_offset;
 pub mod lints;
 pub mod rule;
 
