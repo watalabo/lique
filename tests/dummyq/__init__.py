@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 from dataclasses import asdict, dataclass, field
 import inspect
+import json
 from typing import IO
 
 
@@ -38,23 +39,31 @@ class Measurement(Instruction):
 
 
 @dataclass
-class SourceMap:
-    source_positions: list[int]
-    generated_positions: list[int]
-    generated_file_name: str = field(init=False, default="")
+class Position:
+    """line and column are 0-indexed"""
+
+    line: int
+    column: int
 
 
 @dataclass
-class Position:
-    lineno: int
-    col_offset: int
+class Range:
+    start: Position
+    end: Position
+
+
+@dataclass
+class SourceMap:
+    source_ranges: list[Range]
+    generated_line_numbers: list[int]
+    generated_file_name: str = field(init=False, default="")
 
 
 class QuantumCircuit:
     qubits: list[Qubit]
     cbits: list[ClassicalBit]
     gates: list[Instruction]
-    source_lineno: list[int]
+    source_ranges: list[Range]
 
     def __init__(self, n_qubits: int, n_cbits: int):
         self.qubits = [Qubit(i) for i in range(n_qubits)]
@@ -64,14 +73,14 @@ class QuantumCircuit:
 
     def h(self, qubit: int):
         caller_frame = inspect.stack()[1]
-        lineno = caller_frame.lineno
-        print(caller_frame.positions.col_offset, caller_frame.positions.
-        self.source_lineno.append(lineno)
+        source_range = QuantumCircuit._get_caller_range(caller_frame)
+        self.source_lineno.append(source_range)
         self.gates.append(H(self.qubits[qubit]))
 
     def measure(self, qubit, clbit):
-        lineno = inspect.stack()[1].lineno
-        self.source_lineno.append(lineno)
+        caller_frame = inspect.stack()[1]
+        source_range = QuantumCircuit._get_caller_range(caller_frame)
+        self.source_lineno.append(source_range)
         self.gates.append(Measurement(self.qubits[qubit], self.cbits[clbit]))
 
     def to_openqasm(self) -> tuple[str, SourceMap]:
@@ -80,14 +89,21 @@ class QuantumCircuit:
         qasm += f"qubit[{len(self.qubits)}] q;\n"
         qasm += f"bit[{len(self.cbits)}] c;\n"
         qasm_lineno = 4
-        generated_lineno = []
+        generated_line_numbers = []
         for i, gate in enumerate(self.gates):
             instruction = gate.to_openqasm()
             qasm_lineno += instruction.count("\n")
-            generated_lineno.append(qasm_lineno)
+            generated_line_numbers.append(qasm_lineno)
             qasm += gate.to_openqasm()
-        source_map = SourceMap(self.source_lineno, generated_lineno)
+        source_map = SourceMap(self.source_lineno, generated_line_numbers)
         return qasm, source_map
+
+    def _get_caller_range(caller_frame: inspect.FrameInfo) -> Range:
+        # Decrement line number by 1 because `caller_frame.lineno` is 1-indexed
+        line = caller_frame.lineno - 1
+        column_start = caller_frame.positions.col_offset
+        column_end = caller_frame.positions.end_col_offset
+        return Range(Position(line, column_start), Position(line, column_end))
 
 
 def dump(circuit: QuantumCircuit, qasm_file: IO[str], source_map_file: IO[str]):
@@ -95,4 +111,4 @@ def dump(circuit: QuantumCircuit, qasm_file: IO[str], source_map_file: IO[str]):
     source_map.file_name = qasm_file.name
     source_map.generated_file_name = qasm_file.name
     qasm_file.write(qasm)
-    source_map_file.write(str(asdict(source_map)))
+    json.dump(asdict(source_map), source_map_file, indent=4)
