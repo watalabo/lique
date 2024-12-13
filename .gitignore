@@ -25,3 +25,5 @@ Cargo.lock
 !.vscode/tasks.json
 
 __pycache__/
+
+codeql_db
