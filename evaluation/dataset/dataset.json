@@ -58,12 +58,6 @@
     },
     {
         "rule_id": [
-            "ql-operation-after-measurement"
-        ],
-        "file_name": "demo3_quantum_teleportation_5b8be6"
-    },
-    {
-        "rule_id": [
             "ql-double-measurement",
             "ql-operation-after-measurement"
         ],

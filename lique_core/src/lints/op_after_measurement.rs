@@ -4,7 +4,7 @@ use oq3_syntax::{
 };
 
 use super::contains_or_equal;
-use crate::{Diagnostic, RelatedInformation};
+use crate::{rule::Rule, Diagnostic, RelatedInformation};
 
 pub fn lint_op_after_measurement(stmts: AstChildren<Stmt>) -> Vec<Diagnostic> {
     let mut diags = Vec::new();
@@ -31,6 +31,7 @@ pub fn lint_op_after_measurement(stmts: AstChildren<Stmt>) -> Vec<Diagnostic> {
                             .find(|o| contains_or_equal(o, &operand))
                         {
                             let diag = Diagnostic {
+                                rule_id: Rule::OpAfterMeasurement.into(),
                                 message: "Operation after measurement of the same qubit"
                                     .to_string(),
                                 range_zero_indexed: expr_stmt.syntax().text_range().into(),

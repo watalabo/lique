@@ -6,7 +6,6 @@ from qiskit.qasm3 import dump
 import tqdm
 
 from common import DatasetCase
-import python.double_measurement
 import python.measurement_postulate_single_qubit_f_fb7a34
 import python.qubits_d78ad0
 import python.rsa_breaker_4_bit_0f27ff
@@ -16,7 +15,6 @@ import python.test_qasm_simulator_edd048
 import python.test_structure_aaba85
 import python._12_quantum_key_distribution_checkpoint_4165fd
 import python.ch_3_28325b
-import python.demo3_quantum_teleportation_5b8be6
 import python.hardware_3936ea
 import python.one_qubit_fb6117
 import python.python_quantum_number_generator_1_6_multi_qasm_76fe84
@@ -43,8 +41,12 @@ class LintqResult:
 
 if __name__ == "__main__":
     dataset_dir = "./evaluation/dataset"
-    if not os.path.exists(f"{dataset_dir}/qasm"):
-        os.makedirs(f"{dataset_dir}/qasm")
+    qasm_dir = f"{dataset_dir}/qasm"
+    if not os.path.exists(qasm_dir):
+        os.makedirs(qasm_dir)
+    source_map_dir = f"{dataset_dir}/source_map"
+    if not os.path.exists(source_map_dir):
+        os.makedirs(source_map_dir)
 
     lintq_results = [
         # ql-double-measurement
@@ -58,7 +60,6 @@ if __name__ == "__main__":
         # ql-operation-after-measurement
         LintqResult(["ql-double-measurement", "ql-operation-after-measurement"], "TP", "_12_quantum_key_distribution_checkpoint_4165fd", python._12_quantum_key_distribution_checkpoint_4165fd.create_circuit),
         LintqResult(["ql-operation-after-measurement"], "TP", "ch_3_28325b", python.ch_3_28325b.create_circuit),
-        LintqResult(["ql-operation-after-measurement"], "TP", "demo3_quantum_teleportation_5b8be6", python.demo3_quantum_teleportation_5b8be6.create_circuit),
         LintqResult(["ql-double-measurement", "ql-operation-after-measurement"], "TP", "hardware_3936ea", python.hardware_3936ea.create_circuit),
         LintqResult(["ql-operation-after-measurement"], "TP", "one_qubit_fb6117", python.one_qubit_fb6117.create_circuit),
         LintqResult(["ql-operation-after-measurement"], "TP", "python_quantum_number_generator_1_6_multi_qasm_76fe84", python.python_quantum_number_generator_1_6_multi_qasm_76fe84.create_circuit),
@@ -76,9 +77,10 @@ if __name__ == "__main__":
     ]
 
     for case in tqdm.tqdm(lintq_results):
-        with open(f"{dataset_dir}/qasm/{case.file}.qasm", "w") as f:
-            circuit = case.factory()
-            dump(circuit, f)
+        with open(f"{qasm_dir}/{case.file}.qasm", "w") as qasm_f:
+            with open(f"{source_map_dir}/{case.file}.json", "w") as source_map_f:
+                circuit = case.factory()
+                dump(circuit, qasm_f, source_map_f)
 
     dataset_cases = []
     for case in lintq_results:

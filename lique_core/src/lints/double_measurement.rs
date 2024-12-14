@@ -1,9 +1,11 @@
+use core::convert::Into;
+
 use oq3_syntax::{
     ast::{AstChildren, Expr, GateOperand, Stmt},
     AstNode,
 };
 
-use crate::{Diagnostic, RelatedInformation};
+use crate::{rule::Rule, Diagnostic, RelatedInformation};
 
 use super::contains_or_equal;
 
@@ -21,6 +23,7 @@ pub fn lint_double_measurement(stmts: AstChildren<Stmt>) -> Vec<Diagnostic> {
                 .find(|o| contains_or_equal(o, &operand))
             {
                 let diag = Diagnostic {
+                    rule_id: Rule::DoubleMeasurement.into(),
                     message: "Measurement of the same qubit twice".to_string(),
                     range_zero_indexed: assignment.syntax().text_range().into(),
                     related_informations: vec![

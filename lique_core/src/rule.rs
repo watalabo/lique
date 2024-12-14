@@ -18,6 +18,15 @@ impl From<&str> for Rule {
     }
 }
 
+impl From<Rule> for String {
+    fn from(rule: Rule) -> String {
+        match rule {
+            Rule::DoubleMeasurement => "double-measurement".to_string(),
+            Rule::OpAfterMeasurement => "operation-after-measurement".to_string(),
+        }
+    }
+}
+
 impl Rule {
     pub fn all() -> Vec<Self> {
         vec![Rule::DoubleMeasurement, Rule::OpAfterMeasurement]

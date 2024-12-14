@@ -9,5 +9,6 @@ clap = { version = "4.5.21", features = ["derive"] }
 lique_core = { path = "../lique_core" }
 oq3_semantics = { workspace = true }
 oq3_source_file = { workspace = true }
+serde = { version = "1.0.216", features = ["derive"] }
 serde_json = "1.0.133"
 
