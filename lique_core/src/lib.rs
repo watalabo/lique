@@ -27,19 +27,15 @@ pub fn locate_in_source_file(
 ) -> Result<Range<usize>, ByteOffsetError> {
     let instruction_index = source_map
         .generated_line_byte_offset
-        .binary_search(&qasm_range.start)
         // We need to find the diagnostic line's byte offset of the start of the line
         // Each element of `generated_line_byte_offset` is the byte offset of the start of the line.
         // If there is the exact match, it returns the index of the element.
         // Otherwise, it means the diagnostic starts in the middle of the line.
         // In this case, we get `index - 1` since binary_search returns the index of the next element.
+        .binary_search(&qasm_range.start)
         .unwrap_or_else(|index| index - 1);
-    let start_byte_offset =
-        source_file_locator.locate(&source_map.source_ranges[instruction_index].start)?;
-    let end_byte_offset =
-        source_file_locator.locate(&source_map.source_ranges[instruction_index].end)?;
-    let converted_range = start_byte_offset..end_byte_offset;
-    Ok(converted_range)
+    let source_range = &source_map.source_ranges[instruction_index];
+    source_file_locator.locate_line(source_range.line)
 }
 
 #[derive(Debug)]

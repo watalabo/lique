@@ -1,8 +1,8 @@
 use ariadne::{ColorGenerator, Label, Report, ReportKind, Source};
 use clap::Parser;
 use lique_core::byte_offset::{ByteOffsetError, ByteOffsetLocator};
-use lique_core::locate_in_source_file;
 use lique_core::source_map::SourceMap;
+use lique_core::{locate_in_source_file, Diagnostic};
 use lique_core::{rule::Rule, run_lints};
 use oq3_semantics::syntax_to_semantics;
 use oq3_source_file::SourceTrait;
@@ -44,54 +44,17 @@ fn main() -> Result<ExitCode, Box<dyn std::error::Error>> {
     let command = Command::parse();
 
     let path = &command.file;
-    let result = syntax_to_semantics::parse_source_file(path, None::<&[String]>);
-    let qasm_source_text = result.syntax_result().syntax_ast().tree().to_string();
+    let parsed_qasm = syntax_to_semantics::parse_source_file(path, None::<&[String]>);
+    let qasm_source_text = parsed_qasm.syntax_result().syntax_ast().tree().to_string();
     let mut colors = ColorGenerator::new();
     let color = colors.next();
     let rules = enumerate_rules(&command);
 
-    let diagnostics = run_lints(result, &rules);
+    let diagnostics = run_lints(parsed_qasm, &rules);
     let is_diagnostics_empty = diagnostics.is_empty();
     match (command.source_map, command.source_file) {
         (Some(source_map_path), Some(source_file_path)) => {
-            let mut source_map_file = File::open(source_map_path)?;
-            let mut source_map_content = String::new();
-            source_map_file.read_to_string(&mut source_map_content)?;
-            let source_map: SourceMap = serde_json::from_str(&source_map_content)?;
-
-            let source_file_locator = ByteOffsetLocator::read_from_file(&source_file_path)?;
-
-            for diag in diagnostics {
-                let converted_range = locate_in_source_file(
-                    &diag.range_zero_indexed,
-                    &source_map,
-                    &source_file_locator,
-                )?;
-
-                let labels = diag
-                    .related_informations
-                    .iter()
-                    .map(|info| {
-                        let converted_range = locate_in_source_file(
-                            &info.range_zero_indexed,
-                            &source_map,
-                            &source_file_locator,
-                        )?;
-                        Ok(Label::new((&source_file_path, converted_range))
-                            .with_message(info.message.clone())
-                            .with_color(color))
-                    })
-                    .collect::<Result<Vec<_>, ByteOffsetError>>()?;
-                Report::build(ReportKind::Warning, (&source_file_path, converted_range))
-                    .with_message(diag.message)
-                    .with_labels(labels)
-                    .finish()
-                    .print((
-                        &source_file_path,
-                        Source::from(&source_file_locator.contents),
-                    ))
-                    .unwrap();
-            }
+            print_diagnostics_by_source_map(&source_map_path, &source_file_path, diagnostics)?;
         }
         (None, None) => {
             for diag in diagnostics {
@@ -118,4 +81,50 @@ fn main() -> Result<ExitCode, Box<dyn std::error::Error>> {
     } else {
         Ok(ExitCode::FAILURE)
     }
+}
+
+fn print_diagnostics_by_source_map(
+    source_map_path: &str,
+    source_file_path: &str,
+    diagnostics: Vec<Diagnostic>,
+) -> Result<(), Box<dyn std::error::Error>> {
+    let mut source_map_file = File::open(source_map_path)?;
+    let mut source_map_content = String::new();
+    source_map_file.read_to_string(&mut source_map_content)?;
+    let source_map: SourceMap = serde_json::from_str(&source_map_content)?;
+
+    let source_file_locator = ByteOffsetLocator::read_from_file(source_file_path)?;
+
+    let mut colors = ColorGenerator::new();
+    let color = colors.next();
+
+    for diag in diagnostics {
+        let converted_range =
+            locate_in_source_file(&diag.range_zero_indexed, &source_map, &source_file_locator)?;
+
+        let labels = diag
+            .related_informations
+            .iter()
+            .map(|info| {
+                let converted_range = locate_in_source_file(
+                    &info.range_zero_indexed,
+                    &source_map,
+                    &source_file_locator,
+                )?;
+                Ok(Label::new((&source_file_path, converted_range))
+                    .with_message(info.message.clone())
+                    .with_color(color))
+            })
+            .collect::<Result<Vec<_>, ByteOffsetError>>()?;
+        Report::build(ReportKind::Warning, (&source_file_path, converted_range))
+            .with_message(diag.message)
+            .with_labels(labels)
+            .finish()
+            .print((
+                &source_file_path,
+                Source::from(&source_file_locator.contents_lines.concat()),
+            ))
+            .unwrap();
+    }
+    Ok(())
 }

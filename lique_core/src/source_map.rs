@@ -8,12 +8,5 @@ pub struct SourceMap {
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct SourceRange {
-    pub start: Position,
-    pub end: Position,
-}
-
-#[derive(Clone, Debug, Deserialize)]
-pub struct Position {
     pub line: usize,
-    pub column: usize,
 }
