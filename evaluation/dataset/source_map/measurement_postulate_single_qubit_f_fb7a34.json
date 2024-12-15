@@ -1,17 +1,9 @@
 {
     "source_ranges": [
-        {
-            "line": 7
-        },
-        {
-            "line": 8
-        },
-        {
-            "line": 9
-        },
-        {
-            "line": 10
-        }
+        7,
+        8,
+        9,
+        10
     ],
     "generated_line_byte_offset": [
         60,

@@ -10,7 +10,15 @@ use std::ops::Range;
 use oq3_semantics::syntax_to_semantics::ParseResult;
 use oq3_source_file::SourceTrait;
 use rule::Rule;
-use source_map::{SourceMap, SourceRange};
+use serde::Serialize;
+use source_map::{SourceMap, SourceMapError};
+
+#[derive(Clone, Debug, Serialize)]
+pub struct LintReport {
+    pub rule_id: String,
+    pub line_number: usize,
+    pub file_name: String,
+}
 
 #[derive(Debug)]
 pub struct Diagnostic {
@@ -33,10 +41,10 @@ pub fn run_lints<T: SourceTrait>(parsed: ParseResult<T>, rules: &[Rule]) -> Vec<
         .collect()
 }
 
-pub fn resolve_qasm_range<'a>(
+pub fn resolve_qasm_range(
     qasm_range: &Range<usize>,
-    source_map: &'a SourceMap,
-) -> &'a SourceRange {
+    source_map: &SourceMap,
+) -> Result<usize, SourceMapError> {
     let instruction_index = source_map
         .generated_line_byte_offset
         // We need to find the diagnostic line's byte offset of the start of the line
@@ -46,5 +54,5 @@ pub fn resolve_qasm_range<'a>(
         // In this case, we get `index - 1` since binary_search returns the index of the next element.
         .binary_search(&qasm_range.start)
         .unwrap_or_else(|index| index - 1);
-    &source_map.source_ranges[instruction_index]
+    source_map.source_ranges[instruction_index].ok_or(SourceMapError::LineNumberIsNull)
 }

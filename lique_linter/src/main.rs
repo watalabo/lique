@@ -1,15 +1,15 @@
+use std::fs::File;
+use std::io::Read;
+use std::process::ExitCode;
+
 use ariadne::{ColorGenerator, Label, Report, ReportKind, Source};
 use clap::Parser;
-use lique_core::byte_offset::{ByteOffsetError, ByteOffsetLocator};
+use lique_core::byte_offset::ByteOffsetLocator;
 use lique_core::source_map::SourceMap;
 use lique_core::{resolve_qasm_range, Diagnostic};
 use lique_core::{rule::Rule, run_lints};
 use oq3_semantics::syntax_to_semantics;
 use oq3_source_file::SourceTrait;
-use serde::Serialize;
-use std::fs::File;
-use std::io::Read;
-use std::process::ExitCode;
 
 #[derive(Parser)]
 struct Command {
@@ -47,14 +47,7 @@ fn enumerate_rules(command: &Command) -> Vec<Rule> {
     }
 }
 
-#[derive(Clone, Debug, Serialize)]
-struct LintReport {
-    rule_id: String,
-    line_number: usize,
-    file_name: String,
-}
-
-fn main() -> Result<ExitCode, Box<dyn std::error::Error>> {
+fn main() -> anyhow::Result<ExitCode> {
     let command = Command::parse();
 
     let path = &command.file;
@@ -69,26 +62,26 @@ fn main() -> Result<ExitCode, Box<dyn std::error::Error>> {
     match (command.source_map, command.source_file) {
         (Some(source_map_path), Some(source_file_path)) => {
             if let Some(json_path) = command.json {
-                let mut source_map_file = File::open(source_map_path)?;
-                let mut source_map_content = String::new();
-                source_map_file.read_to_string(&mut source_map_content)?;
-                let source_map: SourceMap = serde_json::from_str(&source_map_content)?;
+                // let mut source_map_file = File::open(source_map_path)?;
+                // let mut source_map_content = String::new();
+                // source_map_file.read_to_string(&mut source_map_content)?;
+                // let source_map: SourceMap = serde_json::from_str(&source_map_content)?;
 
-                let reports = diagnostics
-                    .iter()
-                    .map(|diag| {
-                        let source_range =
-                            resolve_qasm_range(&diag.range_zero_indexed, &source_map);
-                        LintReport {
-                            rule_id: diag.rule_id.clone(),
-                            line_number: source_range.line,
-                            file_name: source_file_path.clone(),
-                        }
-                    })
-                    .collect::<Vec<_>>();
+                // let reports = diagnostics
+                //     .iter()
+                //     .map(|diag| {
+                //         let source_range =
+                //             resolve_qasm_range(&diag.range_zero_indexed, &source_map);
+                //         LintReport {
+                //             rule_id: diag.rule_id.clone(),
+                //             line_number: source_range,
+                //             file_name: source_file_path.clone(),
+                //         }
+                //     })
+                //     .collect::<Vec<_>>();
 
-                let json_file = File::create(json_path)?;
-                serde_json::to_writer_pretty(json_file, &reports)?;
+                // let json_file = File::create(json_path)?;
+                // serde_json::to_writer_pretty(json_file, &reports)?;
             } else {
                 print_diagnostics_by_source_map(&source_map_path, &source_file_path, diagnostics)?;
             }
@@ -124,7 +117,7 @@ fn print_diagnostics_by_source_map(
     source_map_path: &str,
     source_file_path: &str,
     diagnostics: Vec<Diagnostic>,
-) -> Result<(), Box<dyn std::error::Error>> {
+) -> anyhow::Result<()> {
     let mut source_map_file = File::open(source_map_path)?;
     let mut source_map_content = String::new();
     source_map_file.read_to_string(&mut source_map_content)?;
@@ -140,16 +133,16 @@ fn print_diagnostics_by_source_map(
             .related_informations
             .iter()
             .map(|info| {
-                let source_range = resolve_qasm_range(&info.range_zero_indexed, &source_map);
-                let source_file_range = source_file_locator.locate_line(source_range.line)?;
+                let source_range = resolve_qasm_range(&info.range_zero_indexed, &source_map)?;
+                let source_file_range = source_file_locator.locate_line(source_range)?;
                 Ok(Label::new((&source_file_path, source_file_range))
                     .with_message(info.message.clone())
                     .with_color(color))
             })
-            .collect::<Result<Vec<_>, ByteOffsetError>>()?;
+            .collect::<anyhow::Result<Vec<_>>>()?;
 
-        let source_range = resolve_qasm_range(&diag.range_zero_indexed, &source_map);
-        let source_range_bytes = source_file_locator.locate_line(source_range.line)?;
+        let source_range = resolve_qasm_range(&diag.range_zero_indexed, &source_map)?;
+        let source_range_bytes = source_file_locator.locate_line(source_range)?;
         Report::build(ReportKind::Warning, (&source_file_path, source_range_bytes))
             .with_message(diag.message)
             .with_labels(labels)
