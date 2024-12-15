@@ -13,11 +13,11 @@ use rule::Rule;
 use serde::Serialize;
 use source_map::{SourceMap, SourceMapError};
 
-#[derive(Clone, Debug, Serialize)]
+#[derive(Clone, Debug, Serialize, PartialEq, Eq, Hash)]
 pub struct LintReport {
-    pub rule_id: String,
-    pub line_number: usize,
     pub file_name: String,
+    pub line_number: usize,
+    pub rule_id: String,
 }
 
 #[derive(Debug)]
