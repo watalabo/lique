@@ -6,7 +6,7 @@ use std::{
 use lique_core::{LintReport, resolve_qasm_range, rule::Rule, run_lints, source_map::SourceMap};
 use oq3_semantics::syntax_to_semantics;
 
-pub fn run_lintq() -> anyhow::Result<()> {
+pub fn run_lique() -> anyhow::Result<()> {
     let evaluation_dir = Path::new("./evaluation");
     let dataset_dir = evaluation_dir.join("dataset");
     let qasm_dir = dataset_dir.join("qasm");

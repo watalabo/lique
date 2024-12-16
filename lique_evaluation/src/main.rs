@@ -1,5 +1,5 @@
 mod calculate_metrics;
-mod run_lintq;
+mod run_lique;
 
 use clap::Parser;
 
@@ -14,7 +14,7 @@ struct Cli {
 fn main() -> anyhow::Result<()> {
     let args = Cli::parse();
     if args.lique {
-        run_lintq::run_lintq()?;
+        run_lique::run_lique()?;
     }
     if args.metrics {
         calculate_metrics::calculate_metrics_lique();
