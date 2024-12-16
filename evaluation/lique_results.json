@@ -1,402 +1,387 @@
 [
-    {
-        "expected_rule_id": [
-            "ql-double-measurement",
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-double-measurement",
-        "found": true,
-        "file": "_12_quantum_key_distribution_checkpoint_4165fd"
-    },
-    {
-        "expected_rule_id": [
-            "ql-double-measurement",
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-operation-after-measurement",
-        "found": true,
-        "file": "_12_quantum_key_distribution_checkpoint_4165fd"
-    },
-    {
-        "expected_rule_id": [
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-double-measurement",
-        "found": false,
-        "file": "ch_3_28325b"
-    },
-    {
-        "expected_rule_id": [
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-operation-after-measurement",
-        "found": true,
-        "file": "ch_3_28325b"
-    },
-    {
-        "expected_rule_id": [
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-double-measurement",
-        "found": false,
-        "file": "demo3_quantum_teleportation_5b8be6"
-    },
-    {
-        "expected_rule_id": [
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-operation-after-measurement",
-        "found": true,
-        "file": "demo3_quantum_teleportation_5b8be6"
-    },
-    {
-        "expected_rule_id": [
-            "ql-double-measurement",
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-double-measurement",
-        "found": true,
-        "file": "hardware_3936ea"
-    },
-    {
-        "expected_rule_id": [
-            "ql-double-measurement",
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-operation-after-measurement",
-        "found": true,
-        "file": "hardware_3936ea"
-    },
-    {
-        "expected_rule_id": [
-            "ql-double-measurement",
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-double-measurement",
-        "found": true,
-        "file": "measurement_postulate_single_qubit_f_fb7a34"
-    },
-    {
-        "expected_rule_id": [
-            "ql-double-measurement",
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-operation-after-measurement",
-        "found": true,
-        "file": "measurement_postulate_single_qubit_f_fb7a34"
-    },
-    {
-        "expected_rule_id": [
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-double-measurement",
-        "found": false,
-        "file": "one_qubit_fb6117"
-    },
-    {
-        "expected_rule_id": [
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-operation-after-measurement",
-        "found": true,
-        "file": "one_qubit_fb6117"
-    },
-    {
-        "expected_rule_id": [
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-double-measurement",
-        "found": false,
-        "file": "python_quantum_number_generator_1_6_multi_qasm_76fe84"
-    },
-    {
-        "expected_rule_id": [
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-operation-after-measurement",
-        "found": true,
-        "file": "python_quantum_number_generator_1_6_multi_qasm_76fe84"
-    },
-    {
-        "expected_rule_id": [
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-double-measurement",
-        "found": false,
-        "file": "q02_417981"
-    },
-    {
-        "expected_rule_id": [
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-operation-after-measurement",
-        "found": true,
-        "file": "q02_417981"
-    },
-    {
-        "expected_rule_id": [
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-double-measurement",
-        "found": false,
-        "file": "q04_qiskit_installation_and_test_7d0f02"
-    },
-    {
-        "expected_rule_id": [
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-operation-after-measurement",
-        "found": true,
-        "file": "q04_qiskit_installation_and_test_7d0f02"
-    },
-    {
-        "expected_rule_id": [
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-double-measurement",
-        "found": false,
-        "file": "quantum_pixel_generator_multi_qasm_fractional_variable_d8275b"
-    },
-    {
-        "expected_rule_id": [
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-operation-after-measurement",
-        "found": true,
-        "file": "quantum_pixel_generator_multi_qasm_fractional_variable_d8275b"
-    },
-    {
-        "expected_rule_id": [
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-double-measurement",
-        "found": false,
-        "file": "quantum_teleportation_1881c2"
-    },
-    {
-        "expected_rule_id": [
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-operation-after-measurement",
-        "found": true,
-        "file": "quantum_teleportation_1881c2"
-    },
-    {
-        "expected_rule_id": [
-            "ql-double-measurement",
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-double-measurement",
-        "found": true,
-        "file": "quantumdice_bc7351"
-    },
-    {
-        "expected_rule_id": [
-            "ql-double-measurement",
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-operation-after-measurement",
-        "found": true,
-        "file": "quantumdice_bc7351"
-    },
-    {
-        "expected_rule_id": [
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-double-measurement",
-        "found": false,
-        "file": "quantumteleportation_2823d6"
-    },
-    {
-        "expected_rule_id": [
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-operation-after-measurement",
-        "found": true,
-        "file": "quantumteleportation_2823d6"
-    },
-    {
-        "expected_rule_id": [
-            "ql-double-measurement",
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-double-measurement",
-        "found": true,
-        "file": "qubits_d78ad0"
-    },
-    {
-        "expected_rule_id": [
-            "ql-double-measurement",
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-operation-after-measurement",
-        "found": true,
-        "file": "qubits_d78ad0"
-    },
-    {
-        "expected_rule_id": [
-            "ql-double-measurement",
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-double-measurement",
-        "found": true,
-        "file": "quntum_204_dec_2005_202020_206_2042_20am_16e278"
-    },
-    {
-        "expected_rule_id": [
-            "ql-double-measurement",
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-operation-after-measurement",
-        "found": true,
-        "file": "quntum_204_dec_2005_202020_206_2042_20am_16e278"
-    },
-    {
-        "expected_rule_id": [
-            "ql-double-measurement",
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-double-measurement",
-        "found": true,
-        "file": "rsa_breaker_4_bit_0f27ff"
-    },
-    {
-        "expected_rule_id": [
-            "ql-double-measurement",
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-operation-after-measurement",
-        "found": true,
-        "file": "rsa_breaker_4_bit_0f27ff"
-    },
-    {
-        "expected_rule_id": [
-            "ql-double-measurement",
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-double-measurement",
-        "found": true,
-        "file": "sandbox_e52934"
-    },
-    {
-        "expected_rule_id": [
-            "ql-double-measurement",
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-operation-after-measurement",
-        "found": true,
-        "file": "sandbox_e52934"
-    },
-    {
-        "expected_rule_id": [
-            "ql-double-measurement",
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-double-measurement",
-        "found": true,
-        "file": "task_2_4f46b2"
-    },
-    {
-        "expected_rule_id": [
-            "ql-double-measurement",
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-operation-after-measurement",
-        "found": true,
-        "file": "task_2_4f46b2"
-    },
-    {
-        "expected_rule_id": [
-            "ql-double-measurement",
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-double-measurement",
-        "found": true,
-        "file": "teleportation_8f1eaf"
-    },
-    {
-        "expected_rule_id": [
-            "ql-double-measurement",
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-operation-after-measurement",
-        "found": true,
-        "file": "teleportation_8f1eaf"
-    },
-    {
-        "expected_rule_id": [
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-double-measurement",
-        "found": false,
-        "file": "teleportation_practice_4ae2ea"
-    },
-    {
-        "expected_rule_id": [
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-operation-after-measurement",
-        "found": true,
-        "file": "teleportation_practice_4ae2ea"
-    },
-    {
-        "expected_rule_id": [
-            "ql-double-measurement"
-        ],
-        "executed_rule_id": "ql-double-measurement",
-        "found": true,
-        "file": "test_circuit_to_dag_5333cb"
-    },
-    {
-        "expected_rule_id": [
-            "ql-double-measurement"
-        ],
-        "executed_rule_id": "ql-operation-after-measurement",
-        "found": false,
-        "file": "test_circuit_to_dag_5333cb"
-    },
-    {
-        "expected_rule_id": [
-            "ql-double-measurement"
-        ],
-        "executed_rule_id": "ql-double-measurement",
-        "found": true,
-        "file": "test_qasm_simulator_edd048"
-    },
-    {
-        "expected_rule_id": [
-            "ql-double-measurement"
-        ],
-        "executed_rule_id": "ql-operation-after-measurement",
-        "found": false,
-        "file": "test_qasm_simulator_edd048"
-    },
-    {
-        "expected_rule_id": null,
-        "executed_rule_id": "ql-double-measurement",
-        "found": false,
-        "file": "test_structure_aaba85"
-    },
-    {
-        "expected_rule_id": null,
-        "executed_rule_id": "ql-operation-after-measurement",
-        "found": false,
-        "file": "test_structure_aaba85"
-    },
-    {
-        "expected_rule_id": [
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-double-measurement",
-        "found": false,
-        "file": "two_qubit_4cff15"
-    },
-    {
-        "expected_rule_id": [
-            "ql-operation-after-measurement"
-        ],
-        "executed_rule_id": "ql-operation-after-measurement",
-        "found": true,
-        "file": "two_qubit_4cff15"
-    }
+  {
+    "file_name": "_12_quantum_key_distribution_checkpoint_4165fd",
+    "line_number": 9,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "_12_quantum_key_distribution_checkpoint_4165fd",
+    "line_number": 10,
+    "rule_id": "ql-double-measurement"
+  },
+  {
+    "file_name": "ch_3_28325b",
+    "line_number": 12,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "ch_3_28325b",
+    "line_number": 13,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "hardware_3936ea",
+    "line_number": 12,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "hardware_3936ea",
+    "line_number": 13,
+    "rule_id": "ql-double-measurement"
+  },
+  {
+    "file_name": "measurement_postulate_single_qubit_f_fb7a34",
+    "line_number": 8,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "measurement_postulate_single_qubit_f_fb7a34",
+    "line_number": 9,
+    "rule_id": "ql-double-measurement"
+  },
+  {
+    "file_name": "measurement_postulate_single_qubit_f_fb7a34",
+    "line_number": 10,
+    "rule_id": "ql-double-measurement"
+  },
+  {
+    "file_name": "one_qubit_fb6117",
+    "line_number": 14,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "one_qubit_fb6117",
+    "line_number": 15,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "python_quantum_number_generator_1_6_multi_qasm_76fe84",
+    "line_number": 21,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "python_quantum_number_generator_1_6_multi_qasm_76fe84",
+    "line_number": 24,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "python_quantum_number_generator_1_6_multi_qasm_76fe84",
+    "line_number": 27,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "q02_417981",
+    "line_number": 25,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "q02_417981",
+    "line_number": 26,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "q04_qiskit_installation_and_test_7d0f02",
+    "line_number": 104,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "q04_qiskit_installation_and_test_7d0f02",
+    "line_number": 110,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "q04_qiskit_installation_and_test_7d0f02",
+    "line_number": 112,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "q04_qiskit_installation_and_test_7d0f02",
+    "line_number": 118,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "q04_qiskit_installation_and_test_7d0f02",
+    "line_number": 120,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "q04_qiskit_installation_and_test_7d0f02",
+    "line_number": 124,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "quantum_pixel_generator_multi_qasm_fractional_variable_d8275b",
+    "line_number": 19,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "quantum_teleportation_1881c2",
+    "line_number": 22,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "quantum_teleportation_1881c2",
+    "line_number": 23,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "quantumdice_bc7351",
+    "line_number": 8,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "quantumdice_bc7351",
+    "line_number": 9,
+    "rule_id": "ql-double-measurement"
+  },
+  {
+    "file_name": "quantumdice_bc7351",
+    "line_number": 10,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "quantumdice_bc7351",
+    "line_number": 11,
+    "rule_id": "ql-double-measurement"
+  },
+  {
+    "file_name": "quantumteleportation_2823d6",
+    "line_number": 12,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "quantumteleportation_2823d6",
+    "line_number": 13,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "qubits_d78ad0",
+    "line_number": 6,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "qubits_d78ad0",
+    "line_number": 7,
+    "rule_id": "ql-double-measurement"
+  },
+  {
+    "file_name": "qubits_d78ad0",
+    "line_number": 8,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "qubits_d78ad0",
+    "line_number": 9,
+    "rule_id": "ql-double-measurement"
+  },
+  {
+    "file_name": "quntum_204_dec_2005_202020_206_2042_20am_16e278",
+    "line_number": 17,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "quntum_204_dec_2005_202020_206_2042_20am_16e278",
+    "line_number": 20,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "quntum_204_dec_2005_202020_206_2042_20am_16e278",
+    "line_number": 22,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "quntum_204_dec_2005_202020_206_2042_20am_16e278",
+    "line_number": 25,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "quntum_204_dec_2005_202020_206_2042_20am_16e278",
+    "line_number": 26,
+    "rule_id": "ql-double-measurement"
+  },
+  {
+    "file_name": "rsa_breaker_4_bit_0f27ff",
+    "line_number": 30,
+    "rule_id": "ql-double-measurement"
+  },
+  {
+    "file_name": "rsa_breaker_4_bit_0f27ff",
+    "line_number": 31,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "rsa_breaker_4_bit_0f27ff",
+    "line_number": 32,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "rsa_breaker_4_bit_0f27ff",
+    "line_number": 33,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "rsa_breaker_4_bit_0f27ff",
+    "line_number": 34,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "rsa_breaker_4_bit_0f27ff",
+    "line_number": 35,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "rsa_breaker_4_bit_0f27ff",
+    "line_number": 36,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "rsa_breaker_4_bit_0f27ff",
+    "line_number": 37,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "rsa_breaker_4_bit_0f27ff",
+    "line_number": 38,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "rsa_breaker_4_bit_0f27ff",
+    "line_number": 39,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "rsa_breaker_4_bit_0f27ff",
+    "line_number": 40,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "rsa_breaker_4_bit_0f27ff",
+    "line_number": 41,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "rsa_breaker_4_bit_0f27ff",
+    "line_number": 42,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "sandbox_e52934",
+    "line_number": 11,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "sandbox_e52934",
+    "line_number": 12,
+    "rule_id": "ql-double-measurement"
+  },
+  {
+    "file_name": "sandbox_e52934",
+    "line_number": 13,
+    "rule_id": "ql-double-measurement"
+  },
+  {
+    "file_name": "sandbox_e52934",
+    "line_number": 14,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "sandbox_e52934",
+    "line_number": 15,
+    "rule_id": "ql-double-measurement"
+  },
+  {
+    "file_name": "sandbox_e52934",
+    "line_number": 16,
+    "rule_id": "ql-double-measurement"
+  },
+  {
+    "file_name": "sandbox_e52934",
+    "line_number": 17,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "sandbox_e52934",
+    "line_number": 18,
+    "rule_id": "ql-double-measurement"
+  },
+  {
+    "file_name": "sandbox_e52934",
+    "line_number": 19,
+    "rule_id": "ql-double-measurement"
+  },
+  {
+    "file_name": "task_2_4f46b2",
+    "line_number": 15,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "task_2_4f46b2",
+    "line_number": 20,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "task_2_4f46b2",
+    "line_number": 22,
+    "rule_id": "ql-double-measurement"
+  },
+  {
+    "file_name": "teleportation_8f1eaf",
+    "line_number": 41,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "teleportation_8f1eaf",
+    "line_number": 51,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "teleportation_8f1eaf",
+    "line_number": 60,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "teleportation_8f1eaf",
+    "line_number": 61,
+    "rule_id": "ql-double-measurement"
+  },
+  {
+    "file_name": "teleportation_practice_4ae2ea",
+    "line_number": 43,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "teleportation_practice_4ae2ea",
+    "line_number": 44,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "test_circuit_to_dag_5333cb",
+    "line_number": 14,
+    "rule_id": "ql-double-measurement"
+  },
+  {
+    "file_name": "test_circuit_to_dag_5333cb",
+    "line_number": 15,
+    "rule_id": "ql-double-measurement"
+  },
+  {
+    "file_name": "two_qubit_4cff15",
+    "line_number": 47,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "two_qubit_4cff15",
+    "line_number": 48,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "two_qubit_4cff15",
+    "line_number": 49,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "two_qubit_4cff15",
+    "line_number": 50,
+    "rule_id": "ql-operation-after-measurement"
+  }
 ]

@@ -79,10 +79,3 @@ if __name__ == "__main__":
             with open(f"{source_map_dir}/{case.file}.json", "w") as source_map_f:
                 circuit = case.factory()
                 dump(circuit, qasm_f, source_map_f)
-
-    dataset_cases = []
-    for case in lintq_results:
-        rule_id = case.rule_ids if case.label_resolution == "TP" else None
-        dataset_cases.append(DatasetCase(rule_id, case.file))
-    with open(f"{dataset_dir}/dataset.json", "w") as f:
-        json.dump([asdict(c) for c in dataset_cases], f, indent=4)

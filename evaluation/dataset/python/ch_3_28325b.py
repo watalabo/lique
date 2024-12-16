@@ -10,7 +10,7 @@ def create_circuit():
     circuit.cx(0,1)
     circuit.h(0)
     circuit.measure([0, 1], [0, 1])
-    circuit.cx(1, 2) # ql-operaton-after-measurement
-    circuit.cz(0, 2) # ql-operaton-after-measurement
+    circuit.cx(1, 2) # ql-operation-after-measurement
+    circuit.cz(0, 2) # ql-operation-after-measurement
     circuit.measure([2], [2])
     return circuit

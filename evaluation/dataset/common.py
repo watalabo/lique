@@ -3,5 +3,6 @@ from dataclasses import dataclass
 
 @dataclass
 class DatasetCase:
-    rule_id: str | None
     file_name: str
+    line_number: int
+    rule_id: str

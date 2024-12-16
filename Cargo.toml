@@ -6,3 +6,4 @@ resolver = "2"
 anyhow = "1.0.93"
 oq3_semantics = "0.7.0"
 oq3_source_file = "0.7.0"
+serde = { version = "1.0.214", features = ["derive"] }
