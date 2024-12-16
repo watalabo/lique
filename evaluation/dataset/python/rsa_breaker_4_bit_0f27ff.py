@@ -28,17 +28,17 @@ def create_circuit():
 
     while np.logical_or(x != x0, r <= 0):
         r+=1
-        qc.measure(qr, cr) 
-        qc.x(qr[0])
-        qc.x(qr[1])
-        qc.x(qr[2])
-        qc.cx(qr[2],qr[1])
-        qc.cx(qr[1],qr[2])
-        qc.cx(qr[2],qr[1])
-        qc.cx(qr[1],qr[0])
-        qc.cx(qr[0],qr[1])
-        qc.cx(qr[1],qr[0])
-        qc.cx(qr[3],qr[0])
-        qc.cx(qr[0],qr[1])
-        qc.cx(qr[1],qr[0])
+        qc.measure(qr, cr) # ql-double-measurement
+        qc.x(qr[0]) # ql-operation-after-measurement
+        qc.x(qr[1]) # ql-operation-after-measurement
+        qc.x(qr[2]) # ql-operation-after-measurement
+        qc.cx(qr[2],qr[1]) # ql-operation-after-measurement
+        qc.cx(qr[1],qr[2]) # ql-operation-after-measurement
+        qc.cx(qr[2],qr[1]) # ql-operation-after-measurement
+        qc.cx(qr[1],qr[0]) # ql-operation-after-measurement
+        qc.cx(qr[0],qr[1]) # ql-operation-after-measurement
+        qc.cx(qr[1],qr[0]) # ql-operation-after-measurement
+        qc.cx(qr[3],qr[0]) # ql-operation-after-measurement
+        qc.cx(qr[0],qr[1]) # ql-operation-after-measurement
+        qc.cx(qr[1],qr[0]) # ql-operation-after-measurement
     return qc

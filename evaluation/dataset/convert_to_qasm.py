@@ -11,7 +11,6 @@ import python.qubits_d78ad0
 import python.rsa_breaker_4_bit_0f27ff
 import python.sandbox_e52934
 import python.test_circuit_to_dag_5333cb
-import python.test_qasm_simulator_edd048
 import python.test_structure_aaba85
 import python._12_quantum_key_distribution_checkpoint_4165fd
 import python.ch_3_28325b
@@ -55,7 +54,6 @@ if __name__ == "__main__":
         LintqResult(["ql-double-measurement", "ql-operation-after-measurement"], "TP", "rsa_breaker_4_bit_0f27ff", python.rsa_breaker_4_bit_0f27ff.create_circuit),
         LintqResult(["ql-double-measurement", "ql-operation-after-measurement"], "TP", "sandbox_e52934", python.sandbox_e52934.create_circuit),
         LintqResult(["ql-double-measurement"], "TP", "test_circuit_to_dag_5333cb", python.test_circuit_to_dag_5333cb.create_circuit),
-        LintqResult(["ql-double-measurement"], "TP", "test_qasm_simulator_edd048", python.test_qasm_simulator_edd048.create_circuit),
         LintqResult(["ql-double-measurement"], "FP", "test_structure_aaba85", python.test_structure_aaba85.create_circuit),
         # ql-operation-after-measurement
         LintqResult(["ql-double-measurement", "ql-operation-after-measurement"], "TP", "_12_quantum_key_distribution_checkpoint_4165fd", python._12_quantum_key_distribution_checkpoint_4165fd.create_circuit),

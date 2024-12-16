@@ -15,16 +15,16 @@ def create_circuit():
     circuit.h(qreg_q[0])
     circuit.measure(qreg_q[1], creg_c[1])
     circuit.h(qreg_q[0])
-    circuit.x(qreg_q[1])
+    circuit.x(qreg_q[1]) # ql-operation-after-measurement
     circuit.measure(qreg_q[2], creg_c[2])
     circuit.h(qreg_q[0])
-    circuit.h(qreg_q[1])
+    circuit.h(qreg_q[1]) # ql-operation-after-measurement
     circuit.measure(qreg_q[3], creg_c[3])
-    circuit.crz(pi/2, qreg_q[2], qreg_q[0])
+    circuit.crz(pi/2, qreg_q[2], qreg_q[0]) # ql-operation-after-measurement
     circuit.reset(qreg_q[3])
     circuit.s(qreg_q[0])
-    circuit.cx(qreg_q[1], qreg_q[2])
-    circuit.measure(qreg_q[3], creg_c[3])
+    circuit.cx(qreg_q[1], qreg_q[2]) # ql-operation-after-measurement
+    circuit.measure(qreg_q[3], creg_c[3]) # ql-double-measurement
     circuit.sxdg(qreg_q[0])
     circuit.measure(qreg_q[0], creg_c[0])
     return circuit

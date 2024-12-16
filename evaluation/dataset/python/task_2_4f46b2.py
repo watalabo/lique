@@ -13,12 +13,12 @@ def create_circuit():
     circuit.h(q[1])
     circuit.measure(q[0], c[0])
     circuit.measure(q[1], c[1])
-    circuit.ch(q[1], q[0])
+    circuit.ch(q[1], q[0]) # ql-operation-after-measurement
     circuit.barrier()
 
     circuit.h(q[2])
     circuit.measure(q[2], c[2])
-    circuit.ch(q[2], q[0])
+    circuit.ch(q[2], q[0]) # ql-operation-after-measurement
 
-    circuit.measure(q[0], c[3])
+    circuit.measure(q[0], c[3]) # ql-double-measurement
     return circuit

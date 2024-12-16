@@ -39,7 +39,7 @@ def create_circuit():
         qc.z(q[1])
 
     # 큐비트 0에 대해 단일 유니타리 연산으로 초기 상태를 준비합니다.
-    qc.p(0.5, q[0])
+    qc.p(0.5, q[0]) # ql-operation-after-measurement
 
     # 큐비트 1과 큐비트 2를 사용해 얽힌 상태를 만듭니다.
     qc.h(q[1])
@@ -49,7 +49,7 @@ def create_circuit():
     qc.barrier(q)
 
     # CNOT 연산을 큐비트 0과 큐비트 1에 적용합니다.
-    qc.cx(q[0], q[1])
+    qc.cx(q[0], q[1]) # ql-operation-after-measurement
 
     # 큐비트 1을 계산기저에서 측정합니다.
     qc.measure(q[1], c[1])
@@ -58,8 +58,8 @@ def create_circuit():
         qc.x(q[2])
 
     # 큐비트 0을 |+>와 |-> 기저로 측정합니다.
-    qc.h(q[0])
-    qc.measure(q[0], c[0])
+    qc.h(q[0]) # ql-operation-after-measurement
+    qc.measure(q[0], c[0]) # ql-double-measurement
     # 필요하다면 큐비트 2에 대해 위상 보정(phase correction)을 수행합니다.
     if c[0] == 1:
         qc.z(q[2])

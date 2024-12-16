@@ -9,13 +9,13 @@ def create_circuit():
     c.x(qr[1])
     c.measure(qr[0],(i:=i+1))
     c.measure(qr[1],(i:=i+1))
-    c.z(qr[0])
-    c.measure(qr[0],(i:=i+1))
-    c.measure(qr[1],(i:=i+1))
-    c.cy(qr[0],qr[1])
-    c.measure(qr[0],(i:=i+1))
-    c.measure(qr[1],(i:=i+1))
-    c.z(qr[0])
-    c.measure(qr[0],(i:=i+1))
-    c.measure(qr[1],(i:=i+1))
+    c.z(qr[0]) # ql-operation-after-measurement
+    c.measure(qr[0],(i:=i+1)) # ql-double-measurement
+    c.measure(qr[1],(i:=i+1)) # ql-double-measurement
+    c.cy(qr[0],qr[1]) # ql-operation-after-measurement
+    c.measure(qr[0],(i:=i+1)) # ql-double-measurement
+    c.measure(qr[1],(i:=i+1)) # ql-double-measurement
+    c.z(qr[0]) # ql-operation-after-measurement
+    c.measure(qr[0],(i:=i+1)) # ql-double-measurement
+    c.measure(qr[1],(i:=i+1)) # ql-double-measurement
     return c

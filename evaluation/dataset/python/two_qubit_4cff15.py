@@ -45,10 +45,10 @@ def create_circuit():
     circuit.measure([0, 1, 2, 3], [0, 1, 2, 3])
 
     # Operate on Bob's qubit given result
-    circuit.cx(3, 4)
-    circuit.cz(0, 4)
-    circuit.cx(2, 5)
-    circuit.cz(1, 5)
+    circuit.cx(3, 4) # ql-operation-after-measurement
+    circuit.cz(0, 4) # ql-operation-after-measurement
+    circuit.cx(2, 5) # ql-operation-after-measurement
+    circuit.cz(1, 5) # ql-operation-after-measurement
     circuit.barrier()
 
     # Do the reverse things on Bob's qubit

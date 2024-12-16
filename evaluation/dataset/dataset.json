@@ -34,12 +34,6 @@
         "file_name": "test_circuit_to_dag_5333cb"
     },
     {
-        "rule_id": [
-            "ql-double-measurement"
-        ],
-        "file_name": "test_qasm_simulator_edd048"
-    },
-    {
         "rule_id": null,
         "file_name": "test_structure_aaba85"
     },
