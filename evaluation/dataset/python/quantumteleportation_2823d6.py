@@ -4,13 +4,13 @@ from qiskit import QuantumCircuit
 
 def create_circuit():
     teleport = QuantumCircuit(3, 3)
-    teleport.x(0)  # initialize q0=|1> for teleportation
-    teleport.h(1)  # entangle qubits q1 and q2
+    teleport.x(0)
+    teleport.h(1)
     teleport.cx(1, 2)
     teleport.cx(0, 1)
     teleport.h(0)
     teleport.measure([0, 1], [0, 1])
-    teleport.cx(1, 2)
-    teleport.cz(0, 2)
+    teleport.cx(1, 2) # ql-operation-after-measurement
+    teleport.cz(0, 2) # ql-operation-after-measurement
     teleport.measure(2, 2)
     return teleport

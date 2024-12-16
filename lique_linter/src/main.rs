@@ -61,30 +61,7 @@ fn main() -> anyhow::Result<ExitCode> {
     let is_diagnostics_empty = diagnostics.is_empty();
     match (command.source_map, command.source_file) {
         (Some(source_map_path), Some(source_file_path)) => {
-            if let Some(json_path) = command.json {
-                // let mut source_map_file = File::open(source_map_path)?;
-                // let mut source_map_content = String::new();
-                // source_map_file.read_to_string(&mut source_map_content)?;
-                // let source_map: SourceMap = serde_json::from_str(&source_map_content)?;
-
-                // let reports = diagnostics
-                //     .iter()
-                //     .map(|diag| {
-                //         let source_range =
-                //             resolve_qasm_range(&diag.range_zero_indexed, &source_map);
-                //         LintReport {
-                //             rule_id: diag.rule_id.clone(),
-                //             line_number: source_range,
-                //             file_name: source_file_path.clone(),
-                //         }
-                //     })
-                //     .collect::<Vec<_>>();
-
-                // let json_file = File::create(json_path)?;
-                // serde_json::to_writer_pretty(json_file, &reports)?;
-            } else {
-                print_diagnostics_by_source_map(&source_map_path, &source_file_path, diagnostics)?;
-            }
+            print_diagnostics_by_source_map(&source_map_path, &source_file_path, diagnostics)?;
         }
         (None, None) => {
             for diag in diagnostics {

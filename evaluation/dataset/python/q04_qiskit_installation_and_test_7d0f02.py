@@ -60,41 +60,41 @@ from math import pi
 
 
 def create_circuit():
-    q = QuantumRegister(5, "q")  # this quantum register has 5 qubits
-    c = ClassicalRegister(5, "c")  # this classical register has 5 classical bits
+    q = QuantumRegister(5, "q")  
+    c = ClassicalRegister(5, "c")  
     qc = QuantumCircuit(
         q, c
-    )  # a quantum circuit with quantum and classical registers q and c
+    )  
 
-    qc.x(q[2])  # apply x-gate to the qubit "q[2]" of the quantum circuit "qc"
-    qc.z(q[4])  # apply z-gate to the qubit "q[4]" of the quantum circuit "qc"
-    qc.h(q[1])  # apply h-gate to the qubit "q[1]" of the quantum circuit "qc"
+    qc.x(q[2])  
+    qc.z(q[4])  
+    qc.h(q[1])  
 
     a = pi / 7
     qc.ry(
         2 * a, q[3]
-    )  # apply ry-gate with the specified angle to the qubit "q[3]" of the quantum circuit "qc"
+    )  
 
     qc.cx(
         q[1], q[0]
-    )  # apply cx-gate to the qubits "q[1]" and "q[0]" of the quantum circuit "qc"
+    )  
 
     qc.cu(
         2 * a, 0, 0, 0, q[1], q[0]
-    )  # apply controlled rotation operator with the specified angle
-    #  to the qubits "q[1]" and "q[0]" of the quantum circuit "qc"
+    )  
+    
 
     qc.ccx(
         q[2], q[1], q[0]
-    )  # apply ccx-gate to the qubits "q[2]", "q[1]", and "q[0]" of the quantum circuit "qc"
+    )  
 
     qc.barrier()
 
-    qc.measure(q[0], c[3])  # measure q[0] and write the output on c[3]
-    qc.measure(q[1], c[1])  # measure q[1] and write the output on c[1]
-    qc.measure(q[2], c[4])  # measure q[2] and write the output on c[4]
-    qc.measure(q[3], c[0])  # measure q[3] and write the output on c[0]
-    qc.measure(q[4], c[2])  # measure q[4] and write the output on c[2]
+    qc.measure(q[0], c[3])  
+    qc.measure(q[1], c[1])  
+    qc.measure(q[2], c[4])  
+    qc.measure(q[3], c[0])  
+    qc.measure(q[4], c[2])  
 
     qc.barrier()
 
@@ -102,25 +102,25 @@ def create_circuit():
     qc.x(q[0]).c_if(c, 3)
     qc.z(q[0]).c_if(c, 1)
     if 0 % 2 == 0:
-        qc.h(q[0])
+        qc.h(q[0]) # ql-operation-after-measurement
     else:
         qc.x(q[0])
     if 1 % 2 == 0:
         qc.h(q[1])
     else:
-        qc.x(q[1])
+        qc.x(q[1]) # ql-operation-after-measurement
     if 2 % 2 == 0:
-        qc.h(q[2])
+        qc.h(q[2]) # ql-operation-after-measurement
     else:
         qc.x(q[2])
     if 3 % 2 == 0:
         qc.h(q[3])
     else:
-        qc.x(q[3])
+        qc.x(q[3]) # ql-operation-after-measurement
     if 4 % 2 == 0:
-        qc.h(q[4])
+        qc.h(q[4]) # ql-operation-after-measurement
     else:
         qc.x(q[4])
     b = 3 * pi / 11
-    qc.cu(2 * b, 0, 0, 0, q[1], q[0])
+    qc.cu(2 * b, 0, 0, 0, q[1], q[0]) # ql-operation-after-measurement
     return qc

@@ -6,8 +6,8 @@ def create_circuit():
     qd=QuantumCircuit(3,3)
     qd.h(0)
     qd.measure(0,0)
-    qd.h(0)
-    qd.measure(0,1)
-    qd.h(0)
-    qd.measure(0,2)
+    qd.h(0) # ql-operation-after-measurement
+    qd.measure(0,1) # ql-double-measurement
+    qd.h(0) # ql-operation-after-measurement
+    qd.measure(0,2) # ql-double-measurement
     return qd

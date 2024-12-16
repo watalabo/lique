@@ -21,8 +21,8 @@ impl From<&str> for Rule {
 impl From<Rule> for String {
     fn from(rule: Rule) -> String {
         match rule {
-            Rule::DoubleMeasurement => "double-measurement".to_string(),
-            Rule::OpAfterMeasurement => "operation-after-measurement".to_string(),
+            Rule::DoubleMeasurement => "ql-double-measurement".to_string(),
+            Rule::OpAfterMeasurement => "ql-operation-after-measurement".to_string(),
         }
     }
 }

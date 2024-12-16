@@ -23,8 +23,8 @@ def create_circuit():
     circuit.measure([0,1], [0,1])
     circuit.barrier()
 
-    circuit.cx(1, 2)
-    circuit.cz(0, 2)
+    circuit.cx(1, 2) # ql-operation-after-measurement
+    circuit.cz(0, 2) # ql-operation-after-measurement
 
     circuit.measure(2,2)
     return circuit

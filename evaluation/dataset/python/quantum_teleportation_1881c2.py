@@ -20,8 +20,8 @@ def create_circuit():
     circ.measure(1, 1)
     circ.barrier()
 
-    circ.cx(1, 3)
-    circ.cz(0, 3)
+    circ.cx(1, 3) # ql-operation-after-measurement
+    circ.cz(0, 3) # ql-operation-after-measurement
     circ.barrier()
 
     circ.measure(2, 2)

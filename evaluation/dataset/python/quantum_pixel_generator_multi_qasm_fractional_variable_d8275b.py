@@ -5,24 +5,24 @@ from math import pi
 
 
 def create_circuit():
-    # Intializes Quantum Circuit with 2 Qubits and 1 Classical Bit
+    
     qc = QuantumCircuit(2, 1)
 
-    # Sets 1st Qubit into superposition(|+> basis) using controlled x gate and phase shift s gate
-    qc.rx(pi / 2, 1)  # Set to |-i>
-    qc.s(1)  # Set to |+>
+    
+    qc.rx(pi / 2, 1)  
+    qc.s(1)  
 
-    # Collapses superposition of 1st Qubit and assigns value to corrosponding Classical bit
+    
     qc.measure(1, 0)
 
-    # sets 2nd Qubit into superposition(|+> or |-> basis) based on if Qubits 3-6 were measured as |0> or |1>
-    qc.ry(pi / 2, 0)  # Set to |+>
-    qc.cz(1, 0)  # Set to |-> if control qubit is |1>,else stays at |+>
-    qc.ry(-pi, 0)  # Set to |+> if qubit was at |->,else shifts to |->
+    
+    qc.ry(pi / 2, 0)  
+    qc.cz(1, 0) # ql-operation-after-measurement  
+    qc.ry(-pi, 0)  
 
-    # Creates barrier between gates and measurements for qc.draw() and optimization level
+    
     qc.barrier()
 
-    # Collapses superposition of 2nd Qubit and assigns value to corrosponding Classical bit
+    
     qc.measure(0, 0)
     return qc
