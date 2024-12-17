@@ -1,5 +1,6 @@
 mod calculate_metrics;
 mod run_lique;
+mod types;
 
 use std::path::Path;
 

@@ -1,33 +1,38 @@
 [
     {
         "file_name": "_12_quantum_key_distribution_checkpoint_4165fd",
-        "line_number": 10,
-        "rule_id": "ql-operation-after-measurement"
-    },
-    {
-        "file_name": "ch_3_28325b",
-        "line_number": 13,
-        "rule_id": "ql-operation-after-measurement"
-    },
-    {
-        "file_name": "ch_3_28325b",
-        "line_number": 14,
-        "rule_id": "ql-operation-after-measurement"
-    },
-    {
-        "file_name": "hardware_3936ea",
-        "line_number": 13,
-        "rule_id": "ql-operation-after-measurement"
-    },
-    {
-        "file_name": "measurement_postulate_single_qubit_f_fb7a34",
         "line_number": 9,
         "rule_id": "ql-operation-after-measurement"
     },
     {
+        "file_name": "ch_3_28325b",
+        "line_number": 12,
+        "rule_id": "ql-operation-after-measurement"
+    },
+    {
+        "file_name": "ch_3_28325b",
+        "line_number": 13,
+        "rule_id": "ql-operation-after-measurement"
+    },
+    {
+        "file_name": "hardware_3936ea",
+        "line_number": 12,
+        "rule_id": "ql-operation-after-measurement"
+    },
+    {
         "file_name": "measurement_postulate_single_qubit_f_fb7a34",
-        "line_number": 11,
+        "line_number": 8,
+        "rule_id": "ql-operation-after-measurement"
+    },
+    {
+        "file_name": "measurement_postulate_single_qubit_f_fb7a34",
+        "line_number": 10,
         "rule_id": "ql-double-measurement"
+    },
+    {
+        "file_name": "one_qubit_fb6117",
+        "line_number": 14,
+        "rule_id": "ql-operation-after-measurement"
     },
     {
         "file_name": "one_qubit_fb6117",
@@ -35,23 +40,23 @@
         "rule_id": "ql-operation-after-measurement"
     },
     {
-        "file_name": "one_qubit_fb6117",
-        "line_number": 16,
+        "file_name": "python_quantum_number_generator_1_6_multi_qasm_76fe84",
+        "line_number": 21,
         "rule_id": "ql-operation-after-measurement"
     },
     {
         "file_name": "python_quantum_number_generator_1_6_multi_qasm_76fe84",
-        "line_number": 22,
+        "line_number": 24,
         "rule_id": "ql-operation-after-measurement"
     },
     {
         "file_name": "python_quantum_number_generator_1_6_multi_qasm_76fe84",
+        "line_number": 27,
+        "rule_id": "ql-operation-after-measurement"
+    },
+    {
+        "file_name": "q02_417981",
         "line_number": 25,
-        "rule_id": "ql-operation-after-measurement"
-    },
-    {
-        "file_name": "python_quantum_number_generator_1_6_multi_qasm_76fe84",
-        "line_number": 28,
         "rule_id": "ql-operation-after-measurement"
     },
     {
@@ -60,13 +65,13 @@
         "rule_id": "ql-operation-after-measurement"
     },
     {
-        "file_name": "q02_417981",
-        "line_number": 27,
+        "file_name": "quantum_pixel_generator_multi_qasm_fractional_variable_d8275b",
+        "line_number": 19,
         "rule_id": "ql-operation-after-measurement"
     },
     {
-        "file_name": "quantum_pixel_generator_multi_qasm_fractional_variable_d8275b",
-        "line_number": 20,
+        "file_name": "quantum_teleportation_1881c2",
+        "line_number": 22,
         "rule_id": "ql-operation-after-measurement"
     },
     {
@@ -75,18 +80,18 @@
         "rule_id": "ql-operation-after-measurement"
     },
     {
-        "file_name": "quantum_teleportation_1881c2",
-        "line_number": 24,
+        "file_name": "quantumdice_bc7351",
+        "line_number": 8,
         "rule_id": "ql-operation-after-measurement"
     },
     {
         "file_name": "quantumdice_bc7351",
-        "line_number": 9,
+        "line_number": 10,
         "rule_id": "ql-operation-after-measurement"
     },
     {
-        "file_name": "quantumdice_bc7351",
-        "line_number": 11,
+        "file_name": "quantumteleportation_2823d6",
+        "line_number": 12,
         "rule_id": "ql-operation-after-measurement"
     },
     {
@@ -95,29 +100,29 @@
         "rule_id": "ql-operation-after-measurement"
     },
     {
-        "file_name": "quantumteleportation_2823d6",
-        "line_number": 14,
+        "file_name": "qubits_d78ad0",
+        "line_number": 6,
         "rule_id": "ql-operation-after-measurement"
     },
     {
         "file_name": "qubits_d78ad0",
         "line_number": 7,
-        "rule_id": "ql-operation-after-measurement"
+        "rule_id": "ql-double-measurement"
     },
     {
         "file_name": "qubits_d78ad0",
         "line_number": 8,
-        "rule_id": "ql-double-measurement"
-    },
-    {
-        "file_name": "qubits_d78ad0",
-        "line_number": 9,
         "rule_id": "ql-operation-after-measurement"
     },
     {
         "file_name": "rsa_breaker_4_bit_0f27ff",
-        "line_number": 31,
+        "line_number": 30,
         "rule_id": "ql-double-measurement"
+    },
+    {
+        "file_name": "teleportation_practice_4ae2ea",
+        "line_number": 43,
+        "rule_id": "ql-operation-after-measurement"
     },
     {
         "file_name": "teleportation_practice_4ae2ea",
@@ -125,14 +130,14 @@
         "rule_id": "ql-operation-after-measurement"
     },
     {
-        "file_name": "teleportation_practice_4ae2ea",
-        "line_number": 45,
-        "rule_id": "ql-operation-after-measurement"
+        "file_name": "test_structure_aaba85",
+        "line_number": 7,
+        "rule_id": "ql-double-measurement"
     },
     {
-        "file_name": "test_structure_aaba85",
-        "line_number": 8,
-        "rule_id": "ql-double-measurement"
+        "file_name": "two_qubit_4cff15",
+        "line_number": 47,
+        "rule_id": "ql-operation-after-measurement"
     },
     {
         "file_name": "two_qubit_4cff15",
@@ -147,11 +152,6 @@
     {
         "file_name": "two_qubit_4cff15",
         "line_number": 50,
-        "rule_id": "ql-operation-after-measurement"
-    },
-    {
-        "file_name": "two_qubit_4cff15",
-        "line_number": 51,
         "rule_id": "ql-operation-after-measurement"
     }
 ]

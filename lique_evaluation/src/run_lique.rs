@@ -3,8 +3,10 @@ use std::{
     path::Path,
 };
 
-use lique_core::{LintReport, resolve_qasm_range, rule::Rule, run_lints, source_map::SourceMap};
+use lique_core::{resolve_qasm_range, rule::Rule, run_lints, source_map::SourceMap};
 use oq3_semantics::syntax_to_semantics;
+
+use crate::types::DatasetCase;
 
 pub fn run_lique() -> anyhow::Result<()> {
     let evaluation_dir = Path::new("./evaluation");
@@ -65,7 +67,7 @@ fn run_lint<P: AsRef<Path>>(
     qasm_path: P,
     source_map_path: P,
     base_file_name: String,
-) -> impl Iterator<Item = anyhow::Result<LintReport>> {
+) -> impl Iterator<Item = anyhow::Result<DatasetCase>> {
     let parsed_qasm = syntax_to_semantics::parse_source_file(qasm_path.as_ref(), None::<&[String]>);
     let rules = vec![rule];
     let diagnostics = run_lints(parsed_qasm, &rules);
@@ -74,7 +76,7 @@ fn run_lint<P: AsRef<Path>>(
     let source_map: SourceMap = serde_json::from_reader(source_map_file).unwrap();
     diagnostics.into_iter().map(move |diagnostic| {
         let source_range = resolve_qasm_range(&diagnostic.range_zero_indexed, &source_map)?;
-        Ok(LintReport {
+        Ok(DatasetCase {
             file_name: base_file_name.clone(),
             line_number: source_range,
             rule_id: diagnostic.rule_id.clone(),

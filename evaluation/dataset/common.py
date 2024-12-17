@@ -8,4 +8,7 @@ class DatasetCase:
     rule_id: str
 
 
+Dataset = dict[str, list[DatasetCase]]
+
+
 rules_all = ["ql-double-measurement", "ql-operation-after-measurement"]

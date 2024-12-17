@@ -1,0 +1,6 @@
+- qlpack: mattepalte/qlint
+- include:
+    tags contain: LintQ
+    id:
+      - ql-double-measurement
+      - ql-operation-after-measurement

@@ -5,7 +5,7 @@ dataset:
 
 .PHONY: metrics
 metrics:
-	@python evaluation/unify_lintq_results.py
+	@python evaluation/extract_lintq_results.py
 	@cargo run -p lique_evaluation -- --metrics
 
 .PHONY: lique
