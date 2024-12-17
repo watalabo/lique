@@ -1,20 +1,20 @@
 import argparse
 import os
 import subprocess
-import shutil
 
-from dataset.common import DatasetCase
+from dataset.common import rules_all
 
 
 def create_database(rule: str) -> int:
     current_dir = os.getcwd()
-    process = subprocess.run([
+    args = [
         "docker", "run", 
         "-v", f"{current_dir}/evaluation/:/home/codeql/project/data", 
         "-it", "--rm", "lintq", 
         "codeql", "database", "create", f"data/lintq/{rule}/codeql_db", 
-        "--language=python", "--source-root", "data/dataset/python"
-    ])
+        "--language=python", "--source-root", "data/dataset/python", "--overwrite"
+    ]
+    process = subprocess.run(args)
     return process.returncode
 
 
@@ -44,7 +44,8 @@ def run_lintq(rule: str) -> int:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--skip-database", action="store_true")
+    parser.add_argument("--overwrite-db", action="store_true")
+    parser.add_argument("--rules", type=str)
 
     args = parser.parse_args()
 
@@ -53,9 +54,15 @@ if __name__ == "__main__":
     codeql_db_dir = f"{dataset_dir}/codeql_db"
     python_dir = f"{dataset_dir}/python"
 
-    rules = ["ql-double-measurement"]
+    if args.rules is not None:
+        rules = [s.strip() for s in args.rules.split(",")]
+        if not all(rule in rules_all for rule in rules):
+            print(f"Invalid rules: {rules}")
+            exit(1)
+    else:
+        rules = rules_all
     for rule in rules:
-        if not args.skip_database:
+        if args.overwrite_db:
             if code := create_database(rule):
                 print(f"Failed to create database for rule {rule}")
                 exit(code)

@@ -24,28 +24,25 @@ struct DatasetCasesClassified {
     pub fn_cases: Vec<DatasetCase>,
 }
 
-pub fn calculate_metrics_lique() {
-    let evaluation_dir = Path::new("./evaluation");
-    let dataset = load_dataset(evaluation_dir.join("dataset.json"));
-    let lique_results = load_lique_result(evaluation_dir.join("lique_results.json"));
-    let cases = calculate_metrics(dataset, lique_results);
-    let json_file = File::create(evaluation_dir.join("lique_metrics.json")).unwrap();
+pub fn calculate_metrics<P: AsRef<Path>>(
+    dataset_file_path: P,
+    results_file_path: P,
+    metrics_file_path: P,
+) {
+    let dataset = load_dataset(dataset_file_path);
+    let lique_results = load_dataset(results_file_path);
+    let cases = calculate_metrics_inner(dataset, lique_results);
+    let json_file = File::create(metrics_file_path).unwrap();
     serde_json::to_writer_pretty(json_file, &cases).unwrap();
 }
 
-fn load_dataset<P: AsRef<Path>>(dataset_file_path: P) -> Vec<DatasetCase> {
-    let file = File::open(dataset_file_path).expect("Unable to open file");
+fn load_dataset<P: AsRef<Path>>(file_path: P) -> Vec<DatasetCase> {
+    let file = File::open(file_path).expect("Unable to open file");
     let reader = BufReader::new(file);
     serde_json::from_reader(reader).expect("Unable to parse JSON")
 }
 
-fn load_lique_result<P: AsRef<Path>>(lique_result_file_path: P) -> Vec<DatasetCase> {
-    let file = File::open(lique_result_file_path).expect("Unable to open file");
-    let reader = BufReader::new(file);
-    serde_json::from_reader(reader).expect("Unable to parse JSON")
-}
-
-fn calculate_metrics(
+fn calculate_metrics_inner(
     dataset: Vec<DatasetCase>,
     lique_results: Vec<DatasetCase>,
 ) -> DatasetCasesClassified {
