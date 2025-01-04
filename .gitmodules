@@ -4,3 +4,6 @@
 [submodule "qiskit"]
 	path = qiskit
 	url = https://github.com/watalabo/qiskit
+[submodule "cirq"]
+	path = cirq
+	url = https://github.com/watalabo/cirq

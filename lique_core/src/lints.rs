@@ -1,5 +1,6 @@
 pub mod double_measurement;
 pub mod op_after_measurement;
+pub mod unmeasurable_qubits;
 
 use oq3_syntax::ast::{Expr, GateOperand, Identifier, IndexKind, IndexedIdentifier, LiteralKind};
 
