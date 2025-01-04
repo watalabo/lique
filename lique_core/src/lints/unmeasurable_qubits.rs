@@ -37,7 +37,7 @@ pub fn lint_unmeasurable_qubits(stmts: AstChildren<Stmt>) -> Vec<Diagnostic> {
     }
     if classical_registers < quantum_registers {
         let diag = Diagnostic {
-                    rule_id: Rule::UnMeasurableQubits.into(),
+                    rule_id: Rule::UnmeasurableQubits.into(),
                     message: format!("Number of classical registers({}) is fewer than the number of quantum registers({})", classical_registers, quantum_registers),
                     range_zero_indexed: last_classical_registers_range,
                     related_informations: vec![],
