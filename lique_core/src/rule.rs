@@ -7,6 +7,7 @@ pub enum Rule {
     DoubleMeasurement,
     OpAfterMeasurement,
     UnMeasurableQubits,
+    ConditionalWithoutMeasurement,
 }
 
 impl From<&str> for Rule {
@@ -15,6 +16,7 @@ impl From<&str> for Rule {
             "double-measurement" => Rule::DoubleMeasurement,
             "operation-after-measurement" => Rule::OpAfterMeasurement,
             "unmeasurable-qubits" => Rule::UnMeasurableQubits,
+            "conditional-without-measurement" => Rule::ConditionalWithoutMeasurement,
             _ => panic!("Unknown rule: {}", s),
         }
     }
@@ -26,6 +28,7 @@ impl From<Rule> for String {
             Rule::DoubleMeasurement => "ql-double-measurement".to_string(),
             Rule::OpAfterMeasurement => "ql-operation-after-measurement".to_string(),
             Rule::UnMeasurableQubits => "ql-unmeasurable-qubits".to_string(),
+            Rule::ConditionalWithoutMeasurement => "ql-conditional-without-measurement".to_string(),
         }
     }
 }
@@ -36,6 +39,7 @@ impl Rule {
             Rule::DoubleMeasurement,
             Rule::OpAfterMeasurement,
             Rule::UnMeasurableQubits,
+            Rule::ConditionalWithoutMeasurement,
         ]
     }
 
@@ -46,6 +50,9 @@ impl Rule {
                 lints::op_after_measurement::lint_op_after_measurement(stmts)
             }
             Rule::UnMeasurableQubits => lints::unmeasurable_qubits::lint_unmeasurable_qubits(stmts),
+            Rule::ConditionalWithoutMeasurement => {
+                lints::conditional_without_measurement::lint_conditional_without_measurement(stmts)
+            }
         }
     }
 }

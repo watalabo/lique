@@ -23,6 +23,7 @@ pub fn lint_unmeasurable_qubits(stmts: AstChildren<Stmt>) -> Vec<Diagnostic> {
         }
     }
 
+    let mut last_classical_registers_range = 0..0;
     for stmt in stmts {
         if let Stmt::ClassicalDeclarationStatement(declaration) = stmt.clone()
             && let Some(qubit) = declaration.scalar_type()
@@ -31,16 +32,17 @@ pub fn lint_unmeasurable_qubits(stmts: AstChildren<Stmt>) -> Vec<Diagnostic> {
             && let Expr::Literal(bits) = expr
         {
             classical_registers += bits.to_string().parse::<usize>().unwrap();
-            if classical_registers < quantum_registers {
-                let diag = Diagnostic {
+            last_classical_registers_range = stmt.syntax().text_range().into();
+        }
+    }
+    if classical_registers < quantum_registers {
+        let diag = Diagnostic {
                     rule_id: Rule::UnMeasurableQubits.into(),
                     message: format!("Number of classical registers({}) is fewer than the number of quantum registers({})", classical_registers, quantum_registers),
-                    range_zero_indexed: stmt.syntax().text_range().into(),
+                    range_zero_indexed: last_classical_registers_range,
                     related_informations: vec![],
                 };
-                diags.push(diag);
-            }
-        }
+        diags.push(diag);
     }
 
     diags
@@ -67,6 +69,7 @@ cx q[1], q[2];"#;
         let stmts = result.syntax_result().syntax_ast().tree().statements();
         let diags = lint_unmeasurable_qubits(stmts);
 
+        assert_eq!(diags.len(), 1);
         let range = &diags[0].range_zero_indexed;
         assert_eq!(range.start, 38);
         assert_eq!(range.end, 47);
@@ -77,6 +80,24 @@ cx q[1], q[2];"#;
         let source = r#"OPENQASM 3.0;
 include "stdgates.inc";
 bit[3] c;
+qubit[3] q;
+h q[0];
+cx q[0], q[1];
+cx q[1], q[2];"#;
+        let result =
+            syntax_to_semantics::parse_source_string(source, Some("test.qasm"), None::<&[String]>);
+        let stmts = result.syntax_result().syntax_ast().tree().statements();
+        let diags = lint_unmeasurable_qubits(stmts);
+
+        assert_eq!(diags.len(), 0);
+    }
+
+    #[test]
+    fn test_sufficient_multiple_classical_registers() {
+        let source = r#"OPENQASM 3.0;
+include "stdgates.inc";
+bit[1] c0;
+bit[2] c1;
 qubit[3] q;
 h q[0];
 cx q[0], q[1];

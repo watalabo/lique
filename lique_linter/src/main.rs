@@ -53,8 +53,6 @@ fn main() -> anyhow::Result<ExitCode> {
     let path = &command.file;
     let parsed_qasm = syntax_to_semantics::parse_source_file(path, None::<&[String]>);
     let qasm_source_text = parsed_qasm.syntax_result().syntax_ast().tree().to_string();
-    let mut colors = ColorGenerator::new();
-    let color = colors.next();
     let rules = enumerate_rules(&command);
 
     let diagnostics = run_lints(parsed_qasm, &rules);
@@ -65,6 +63,8 @@ fn main() -> anyhow::Result<ExitCode> {
         }
         (None, None) => {
             for diag in diagnostics {
+                let mut colors = ColorGenerator::new();
+                let color = colors.next();
                 Report::build(
                     ReportKind::Warning,
                     (&path, diag.range_zero_indexed.clone()),
