@@ -1,10 +1,18 @@
 pub mod conditional_without_measurement;
 pub mod double_measurement;
 pub mod op_after_measurement;
+pub mod oversized_circuit;
 pub mod unmanipulated_qubits;
 pub mod unmeasurable_qubits;
 
-use oq3_syntax::ast::{Expr, GateOperand, Identifier, IndexKind, IndexedIdentifier, LiteralKind};
+use core::ops::Range;
+
+use oq3_syntax::{
+    ast::{
+        AstChildren, Expr, GateOperand, Identifier, IndexKind, IndexedIdentifier, LiteralKind, Stmt,
+    },
+    AstNode,
+};
 
 pub(crate) fn contains_or_equal(operand: &GateOperand, other_operand: &GateOperand) -> bool {
     fn contains(identifier: &Identifier, indexed_identifier: &IndexedIdentifier) -> bool {
@@ -47,4 +55,50 @@ pub(crate) fn contains_or_equal(operand: &GateOperand, other_operand: &GateOpera
         }
         _ => false,
     }
+}
+
+/// Returns the number of qubits declared in the given statements and the byte range of the declaration in the QASM file.
+pub(crate) fn count_qubits(stmts: AstChildren<Stmt>) -> (usize, Range<usize>) {
+    let mut num_qubits = 0;
+    let mut qubit_range: Range<usize> = 0..0;
+    for stmt in stmts.clone() {
+        if let Stmt::QuantumDeclarationStatement(declaration) = stmt.clone()
+            && let Some(qubit) = declaration.qubit_type()
+            && let Some(designator) = qubit.designator()
+            && let Some(expr) = designator.expr()
+            && let Expr::Literal(bits) = expr
+        {
+            num_qubits += bits.to_string().parse::<usize>().unwrap();
+            qubit_range = stmt.syntax().text_range().into();
+        }
+    }
+    (num_qubits, qubit_range)
+}
+
+/// Returns a mask where each bit represents a qubit that is manipulated by the operand.
+/// The mask is little-endian, i.e. the least significant bit represents the first qubit.
+pub(crate) fn manipulated_qubits(operand: &GateOperand, num_qubits: usize) -> usize {
+    let mut manipulated_mask = 0;
+    match operand.clone() {
+        GateOperand::IndexedIdentifier(indexed_identifier) => {
+            for operator in indexed_identifier.index_operators() {
+                if let Some(kind) = operator.index_kind()
+                    && let IndexKind::ExpressionList(list) = kind
+                {
+                    for expr in list.exprs() {
+                        if let Expr::Literal(literal) = expr {
+                            let qubit_index =
+                                literal.syntax().to_string().parse::<usize>().unwrap();
+                            manipulated_mask |= 1 << qubit_index;
+                        }
+                    }
+                }
+            }
+        }
+        GateOperand::Identifier(_) => {
+            manipulated_mask = (1 << num_qubits) - 1;
+        }
+        _ => {}
+    }
+    manipulated_mask
 }

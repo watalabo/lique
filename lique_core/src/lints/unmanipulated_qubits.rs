@@ -1,5 +1,3 @@
-use core::ops::Range;
-
 use crate::{rule::Rule, Diagnostic};
 
 use oq3_syntax::{
@@ -7,25 +5,14 @@ use oq3_syntax::{
     AstNode,
 };
 
+use super::{count_qubits, manipulated_qubits};
+
 pub fn lint_unmanipulated_qubits(stmts: AstChildren<Stmt>) -> Vec<Diagnostic> {
-    let mut num_qubits = 0;
-    let mut qubit_range: Range<usize> = 0..0;
-    for stmt in stmts.clone() {
-        if let Stmt::QuantumDeclarationStatement(declaration) = stmt.clone()
-            && let Some(qubit) = declaration.qubit_type()
-            && let Some(designator) = qubit.designator()
-            && let Some(expr) = designator.expr()
-            && let Expr::Literal(bits) = expr
-        {
-            num_qubits += bits.to_string().parse::<usize>().unwrap();
-            qubit_range = stmt.syntax().text_range().into();
-        }
-    }
+    let (num_qubits, qubit_range) = count_qubits(stmts.clone());
 
     let mut diags = Vec::new();
     let mut manipulated_mask = 0;
     for stmt in stmts {
-        dbg!(manipulated_mask);
         match stmt {
             Stmt::ExprStmt(expr_stmt) => {
                 if let Some(expr) = expr_stmt.expr()
@@ -33,30 +20,7 @@ pub fn lint_unmanipulated_qubits(stmts: AstChildren<Stmt>) -> Vec<Diagnostic> {
                     && let Some(qubit_list) = gate_call.qubit_list()
                 {
                     for operand in qubit_list.gate_operands() {
-                        match operand.clone() {
-                            GateOperand::IndexedIdentifier(indexed_identifier) => {
-                                for operator in indexed_identifier.index_operators() {
-                                    if let Some(kind) = operator.index_kind()
-                                        && let IndexKind::ExpressionList(list) = kind
-                                    {
-                                        for expr in list.exprs() {
-                                            if let Expr::Literal(literal) = expr {
-                                                let qubit_index = literal
-                                                    .syntax()
-                                                    .to_string()
-                                                    .parse::<usize>()
-                                                    .unwrap();
-                                                manipulated_mask |= 1 << qubit_index;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                            GateOperand::Identifier(_) => {
-                                manipulated_mask = (1 << num_qubits) - 1;
-                            }
-                            _ => {}
-                        }
+                        manipulated_mask |= manipulated_qubits(&operand, num_qubits);
                     }
                 }
             }
