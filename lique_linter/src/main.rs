@@ -39,21 +39,17 @@ struct Command {
     json: Option<String>,
 }
 
-fn enumerate_rules(command: &Command) -> Vec<Rule> {
-    if !command.enabled_rules.is_empty() {
-        command.enabled_rules.clone()
-    } else {
-        Rule::all()
-    }
-}
-
 fn main() -> anyhow::Result<ExitCode> {
     let command = Command::parse();
 
     let path = &command.file;
     let parsed_qasm = syntax_to_semantics::parse_source_file(path, None::<&[String]>);
     let qasm_source_text = parsed_qasm.syntax_result().syntax_ast().tree().to_string();
-    let rules = enumerate_rules(&command);
+    let rules = if !command.enabled_rules.is_empty() {
+        command.enabled_rules.clone()
+    } else {
+        Rule::all()
+    };
 
     let diagnostics = run_lints(parsed_qasm, &rules);
     let is_diagnostics_empty = diagnostics.is_empty();
