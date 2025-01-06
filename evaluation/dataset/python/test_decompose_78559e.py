@@ -8,7 +8,7 @@
 
 """Test the decompose pass"""
 
-from sympy import pi
+from math import pi
 
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
 
@@ -19,6 +19,6 @@ def create_circuit():
     qr = QuantumRegister(1, 'qr')
     cr = ClassicalRegister(1, 'cr')
     ref_circuit = QuantumCircuit(qr, cr)
-    ref_circuit.u2(0, pi, qr[0]).c_if(cr, 1) # ql-conditional-without-measurement
+    ref_circuit.ry(pi, qr[0]).c_if(cr, 1) # ql-conditional-without-measurement
     ref_circuit.x(qr).c_if(cr, 1) # ql-conditional-without-measurement
     return ref_circuit

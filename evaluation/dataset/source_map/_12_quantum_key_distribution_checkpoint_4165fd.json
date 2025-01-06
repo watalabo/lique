@@ -1,5 +1,7 @@
 {
     "source_ranges": [
+        5,
+        5,
         6,
         7,
         null,
@@ -7,6 +9,8 @@
         10
     ],
     "generated_line_byte_offset": [
+        38,
+        48,
         60,
         68,
         89,

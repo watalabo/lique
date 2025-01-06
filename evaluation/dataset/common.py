@@ -11,4 +11,4 @@ class DatasetCase:
 Dataset = dict[str, list[DatasetCase]]
 
 
-rules_all = ["ql-double-measurement", "ql-operation-after-measurement"]
+rules_all = ["ql-double-measurement", "ql-operation-after-measurement", "ql-conditional-without-measurement", "ql-constant-classic-bit"]

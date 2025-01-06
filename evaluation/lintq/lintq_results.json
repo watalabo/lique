@@ -8,6 +8,28 @@
         "organization" : "GitHub",
         "semanticVersion" : "2.11.2",
         "rules" : [ {
+          "id" : "ql-conditional-without-measurement",
+          "name" : "ql-conditional-without-measurement",
+          "shortDescription" : {
+            "text" : "Conditional gate without preceeding measurement."
+          },
+          "fullDescription" : {
+            "text" : "when a conditional gate is applied on a qubit, there must be a preceeding measurement on that qubit."
+          },
+          "defaultConfiguration" : {
+            "enabled" : true,
+            "level" : "warning"
+          },
+          "properties" : {
+            "tags" : [ "correctness", "reliability", "qiskit", "LintQ" ],
+            "description" : "when a conditional gate is applied on a qubit, there must be a preceeding measurement on that qubit.",
+            "id" : "ql-conditional-without-measurement",
+            "kind" : "problem",
+            "name" : "Conditional gate without preceeding measurement.",
+            "precision" : "high",
+            "problem.severity" : "warning"
+          }
+        }, {
           "id" : "ql-double-measurement",
           "name" : "ql-double-measurement",
           "shortDescription" : {
@@ -49,6 +71,28 @@
             "kind" : "problem",
             "name" : "Operation after measurement.",
             "precision" : "high",
+            "problem.severity" : "warning"
+          }
+        }, {
+          "id" : "ql-constant-classic-bit",
+          "name" : "ql-constant-classic-bit",
+          "shortDescription" : {
+            "text" : "Constant Classic Bit"
+          },
+          "fullDescription" : {
+            "text" : "Finds circuits where qubits are never used but measured, leading to a constant classic bit."
+          },
+          "defaultConfiguration" : {
+            "enabled" : true,
+            "level" : "warning"
+          },
+          "properties" : {
+            "tags" : [ "maintainability", "efficiency", "qiskit", "LintQ" ],
+            "description" : "Finds circuits where qubits are never used but measured, leading to a constant classic bit.",
+            "id" : "ql-constant-classic-bit",
+            "kind" : "problem",
+            "name" : "Constant Classic Bit",
+            "precision" : "medium",
             "problem.severity" : "warning"
           }
         } ]
@@ -211,107 +255,239 @@
     },
     "artifacts" : [ {
       "location" : {
-        "uri" : "measurement_postulate_single_qubit_f_fb7a34.py",
+        "uri" : "ahmed154_73ece9.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 0
       }
     }, {
       "location" : {
-        "uri" : "qubits_d78ad0.py",
+        "uri" : "measurement_postulate_single_qubit_f_fb7a34%20copy.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 1
       }
     }, {
       "location" : {
-        "uri" : "rsa_breaker_4_bit_0f27ff.py",
+        "uri" : "measurement_postulate_single_qubit_f_fb7a34.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 2
       }
     }, {
       "location" : {
-        "uri" : "test_structure_aaba85.py",
+        "uri" : "qubits_d78ad0.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 3
       }
     }, {
       "location" : {
-        "uri" : "_12_quantum_key_distribution_checkpoint_4165fd.py",
+        "uri" : "rsa_breaker_4_bit_0f27ff.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 4
       }
     }, {
       "location" : {
-        "uri" : "ch_3_28325b.py",
+        "uri" : "test_structure_aaba85.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 5
       }
     }, {
       "location" : {
-        "uri" : "hardware_3936ea.py",
+        "uri" : "_12_quantum_key_distribution_checkpoint_4165fd.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 6
       }
     }, {
       "location" : {
-        "uri" : "one_qubit_fb6117.py",
+        "uri" : "ch_3_28325b.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 7
       }
     }, {
       "location" : {
-        "uri" : "python_quantum_number_generator_1_6_multi_qasm_76fe84.py",
+        "uri" : "hardware_3936ea.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 8
       }
     }, {
       "location" : {
-        "uri" : "q02_417981.py",
+        "uri" : "one_qubit_fb6117.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 9
       }
     }, {
       "location" : {
-        "uri" : "quantum_pixel_generator_multi_qasm_fractional_variable_d8275b.py",
+        "uri" : "python_quantum_number_generator_1_6_multi_qasm_76fe84.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 10
       }
     }, {
       "location" : {
-        "uri" : "quantum_teleportation_1881c2.py",
+        "uri" : "q02_417981.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 11
       }
     }, {
       "location" : {
-        "uri" : "quantumdice_bc7351.py",
+        "uri" : "quantum_pixel_generator_multi_qasm_fractional_variable_d8275b.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 12
       }
     }, {
       "location" : {
-        "uri" : "quantumteleportation_2823d6.py",
+        "uri" : "quantum_teleportation_1881c2.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 13
       }
     }, {
       "location" : {
-        "uri" : "teleportation_practice_4ae2ea.py",
+        "uri" : "quantumdice_bc7351.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 14
       }
     }, {
       "location" : {
-        "uri" : "two_qubit_4cff15.py",
+        "uri" : "quantumteleportation_2823d6.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 15
+      }
+    }, {
+      "location" : {
+        "uri" : "teleportation_practice_4ae2ea.py",
+        "uriBaseId" : "%SRCROOT%",
+        "index" : 16
+      }
+    }, {
+      "location" : {
+        "uri" : "two_qubit_4cff15.py",
+        "uriBaseId" : "%SRCROOT%",
+        "index" : 17
+      }
+    }, {
+      "location" : {
+        "uri" : "aatoms_of_computation_ed6fac.py",
+        "uriBaseId" : "%SRCROOT%",
+        "index" : 18
+      }
+    }, {
+      "location" : {
+        "uri" : "balanceada_3_11881b.py",
+        "uriBaseId" : "%SRCROOT%",
+        "index" : 19
+      }
+    }, {
+      "location" : {
+        "uri" : "deutsch_jozsa_s_20functions_b84a95.py",
+        "uriBaseId" : "%SRCROOT%",
+        "index" : 20
+      }
+    }, {
+      "location" : {
+        "uri" : "hello_b14c35.py",
+        "uriBaseId" : "%SRCROOT%",
+        "index" : 21
+      }
+    }, {
+      "location" : {
+        "uri" : "herrtestcomptimetiffoli_cf1dac.py",
+        "uriBaseId" : "%SRCROOT%",
+        "index" : 22
+      }
+    }, {
+      "location" : {
+        "uri" : "quantum_encoding_5a7eeb.py",
+        "uriBaseId" : "%SRCROOT%",
+        "index" : 23
       }
     } ],
     "results" : [ {
       "ruleId" : "ql-double-measurement",
-      "ruleIndex" : 0,
+      "ruleIndex" : 1,
       "rule" : {
         "id" : "ql-double-measurement",
-        "index" : 0
+        "index" : 1
+      },
+      "message" : {
+        "text" : "Two consecutive measurements on qubit '0' at locations: (13, 5) and (15, 5)"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "ahmed154_73ece9.py",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 0
+          },
+          "region" : {
+            "startLine" : 15,
+            "startColumn" : 5,
+            "endColumn" : 20
+          }
+        }
+      } ],
+      "partialFingerprints" : {
+        "primaryLocationLineHash" : "ab60a25906267da0:1",
+        "primaryLocationStartColumnFingerprint" : "0"
+      }
+    }, {
+      "ruleId" : "ql-double-measurement",
+      "ruleIndex" : 1,
+      "rule" : {
+        "id" : "ql-double-measurement",
+        "index" : 1
+      },
+      "message" : {
+        "text" : "Two consecutive measurements on qubit '0' at locations: (15, 5) and (17, 5)"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "ahmed154_73ece9.py",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 0
+          },
+          "region" : {
+            "startLine" : 17,
+            "startColumn" : 5,
+            "endColumn" : 20
+          }
+        }
+      } ],
+      "partialFingerprints" : {
+        "primaryLocationLineHash" : "3a820c28f2164370:1",
+        "primaryLocationStartColumnFingerprint" : "0"
+      }
+    }, {
+      "ruleId" : "ql-double-measurement",
+      "ruleIndex" : 1,
+      "rule" : {
+        "id" : "ql-double-measurement",
+        "index" : 1
+      },
+      "message" : {
+        "text" : "Two consecutive measurements on qubit '0' at locations: (70, 5) and (71, 5)"
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "measurement_postulate_single_qubit_f_fb7a34%20copy.py",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 1
+          },
+          "region" : {
+            "startLine" : 71,
+            "startColumn" : 5,
+            "endColumn" : 22
+          }
+        }
+      } ],
+      "partialFingerprints" : {
+        "primaryLocationLineHash" : "274b8d01f48ce5e7:1",
+        "primaryLocationStartColumnFingerprint" : "0"
+      }
+    }, {
+      "ruleId" : "ql-double-measurement",
+      "ruleIndex" : 1,
+      "rule" : {
+        "id" : "ql-double-measurement",
+        "index" : 1
       },
       "message" : {
         "text" : "Two consecutive measurements on qubit '0' at locations: (10, 5) and (11, 5)"
@@ -321,7 +497,7 @@
           "artifactLocation" : {
             "uri" : "measurement_postulate_single_qubit_f_fb7a34.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 0
+            "index" : 2
           },
           "region" : {
             "startLine" : 11,
@@ -336,10 +512,10 @@
       }
     }, {
       "ruleId" : "ql-double-measurement",
-      "ruleIndex" : 0,
+      "ruleIndex" : 1,
       "rule" : {
         "id" : "ql-double-measurement",
-        "index" : 0
+        "index" : 1
       },
       "message" : {
         "text" : "Two consecutive measurements on qubit '1' at locations: (6, 5) and (8, 5)"
@@ -349,7 +525,7 @@
           "artifactLocation" : {
             "uri" : "qubits_d78ad0.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 1
+            "index" : 3
           },
           "region" : {
             "startLine" : 8,
@@ -364,10 +540,10 @@
       }
     }, {
       "ruleId" : "ql-double-measurement",
-      "ruleIndex" : 0,
+      "ruleIndex" : 1,
       "rule" : {
         "id" : "ql-double-measurement",
-        "index" : 0
+        "index" : 1
       },
       "message" : {
         "text" : "Two consecutive measurements on qubit '0' at locations: (31, 9) and (31, 9)\nTwo consecutive measurements on qubit '1' at locations: (31, 9) and (31, 9)\nTwo consecutive measurements on qubit '2' at locations: (31, 9) and (31, 9)\nTwo consecutive measurements on qubit '3' at locations: (31, 9) and (31, 9)\nTwo consecutive measurements on qubit '4' at locations: (31, 9) and (31, 9)\nTwo consecutive measurements on qubit '5' at locations: (31, 9) and (31, 9)\nTwo consecutive measurements on qubit '6' at locations: (31, 9) and (31, 9)\nTwo consecutive measurements on qubit '7' at locations: (31, 9) and (31, 9)\nTwo consecutive measurements on qubit '8' at locations: (31, 9) and (31, 9)\nTwo consecutive measurements on qubit '9' at locations: (31, 9) and (31, 9)\nTwo consecutive measurements on qubit '10' at locations: (31, 9) and (31, 9)\nTwo consecutive measurements on qubit '11' at locations: (31, 9) and (31, 9)\nTwo consecutive measurements on qubit '12' at locations: (31, 9) and (31, 9)\nTwo consecutive measurements on qubit '13' at locations: (31, 9) and (31, 9)\nTwo consecutive measurements on qubit '14' at locations: (31, 9) and (31, 9)\nTwo consecutive measurements on qubit '15' at locations: (31, 9) and (31, 9)"
@@ -377,7 +553,7 @@
           "artifactLocation" : {
             "uri" : "rsa_breaker_4_bit_0f27ff.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 2
+            "index" : 4
           },
           "region" : {
             "startLine" : 31,
@@ -392,10 +568,10 @@
       }
     }, {
       "ruleId" : "ql-double-measurement",
-      "ruleIndex" : 0,
+      "ruleIndex" : 1,
       "rule" : {
         "id" : "ql-double-measurement",
-        "index" : 0
+        "index" : 1
       },
       "message" : {
         "text" : "Two consecutive measurements on qubit '0' at locations: (7, 5) and (8, 5)"
@@ -405,7 +581,7 @@
           "artifactLocation" : {
             "uri" : "test_structure_aaba85.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 3
+            "index" : 5
           },
           "region" : {
             "startLine" : 8,
@@ -420,10 +596,10 @@
       }
     }, {
       "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 1,
+      "ruleIndex" : 2,
       "rule" : {
         "id" : "ql-operation-after-measurement",
-        "index" : 1
+        "index" : 2
       },
       "message" : {
         "text" : "Operation 'h' on qubit 0 after measurement at location: (8, 5)."
@@ -433,7 +609,7 @@
           "artifactLocation" : {
             "uri" : "_12_quantum_key_distribution_checkpoint_4165fd.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 4
+            "index" : 6
           },
           "region" : {
             "startLine" : 10,
@@ -448,10 +624,10 @@
       }
     }, {
       "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 1,
+      "ruleIndex" : 2,
       "rule" : {
         "id" : "ql-operation-after-measurement",
-        "index" : 1
+        "index" : 2
       },
       "message" : {
         "text" : "Operation 'cx' on qubit 1 after measurement at location: (12, 5)."
@@ -461,7 +637,7 @@
           "artifactLocation" : {
             "uri" : "ch_3_28325b.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 5
+            "index" : 7
           },
           "region" : {
             "startLine" : 13,
@@ -476,10 +652,10 @@
       }
     }, {
       "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 1,
+      "ruleIndex" : 2,
       "rule" : {
         "id" : "ql-operation-after-measurement",
-        "index" : 1
+        "index" : 2
       },
       "message" : {
         "text" : "Operation 'cz' on qubit 0 after measurement at location: (12, 5)."
@@ -489,7 +665,7 @@
           "artifactLocation" : {
             "uri" : "ch_3_28325b.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 5
+            "index" : 7
           },
           "region" : {
             "startLine" : 14,
@@ -504,10 +680,10 @@
       }
     }, {
       "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 1,
+      "ruleIndex" : 2,
       "rule" : {
         "id" : "ql-operation-after-measurement",
-        "index" : 1
+        "index" : 2
       },
       "message" : {
         "text" : "Operation 'cx' on qubit 1 after measurement at location: (11, 5).\nOperation 'cx' on qubit 3 after measurement at location: (11, 5)."
@@ -517,7 +693,7 @@
           "artifactLocation" : {
             "uri" : "hardware_3936ea.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 6
+            "index" : 8
           },
           "region" : {
             "startLine" : 13,
@@ -532,10 +708,38 @@
       }
     }, {
       "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 1,
+      "ruleIndex" : 2,
       "rule" : {
         "id" : "ql-operation-after-measurement",
-        "index" : 1
+        "index" : 2
+      },
+      "message" : {
+        "text" : "Operation 'ry' on qubit 0 after measurement at location: (68, 5)."
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "measurement_postulate_single_qubit_f_fb7a34%20copy.py",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 1
+          },
+          "region" : {
+            "startLine" : 69,
+            "startColumn" : 5,
+            "endColumn" : 20
+          }
+        }
+      } ],
+      "partialFingerprints" : {
+        "primaryLocationLineHash" : "95b20fdffee4a834:1",
+        "primaryLocationStartColumnFingerprint" : "0"
+      }
+    }, {
+      "ruleId" : "ql-operation-after-measurement",
+      "ruleIndex" : 2,
+      "rule" : {
+        "id" : "ql-operation-after-measurement",
+        "index" : 2
       },
       "message" : {
         "text" : "Operation 'ry' on qubit 0 after measurement at location: (8, 5)."
@@ -545,7 +749,7 @@
           "artifactLocation" : {
             "uri" : "measurement_postulate_single_qubit_f_fb7a34.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 0
+            "index" : 2
           },
           "region" : {
             "startLine" : 9,
@@ -560,10 +764,10 @@
       }
     }, {
       "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 1,
+      "ruleIndex" : 2,
       "rule" : {
         "id" : "ql-operation-after-measurement",
-        "index" : 1
+        "index" : 2
       },
       "message" : {
         "text" : "Operation 'cx' on qubit 0 after measurement at location: (13, 5)."
@@ -573,7 +777,7 @@
           "artifactLocation" : {
             "uri" : "one_qubit_fb6117.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 7
+            "index" : 9
           },
           "region" : {
             "startLine" : 15,
@@ -588,10 +792,10 @@
       }
     }, {
       "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 1,
+      "ruleIndex" : 2,
       "rule" : {
         "id" : "ql-operation-after-measurement",
-        "index" : 1
+        "index" : 2
       },
       "message" : {
         "text" : "Operation 'cz' on qubit 1 after measurement at location: (14, 5)."
@@ -601,7 +805,7 @@
           "artifactLocation" : {
             "uri" : "one_qubit_fb6117.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 7
+            "index" : 9
           },
           "region" : {
             "startLine" : 16,
@@ -616,10 +820,10 @@
       }
     }, {
       "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 1,
+      "ruleIndex" : 2,
       "rule" : {
         "id" : "ql-operation-after-measurement",
-        "index" : 1
+        "index" : 2
       },
       "message" : {
         "text" : "Operation 'cz' on qubit 3 after measurement at location: (10, 5)."
@@ -629,7 +833,7 @@
           "artifactLocation" : {
             "uri" : "python_quantum_number_generator_1_6_multi_qasm_76fe84.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 8
+            "index" : 10
           },
           "region" : {
             "startLine" : 22,
@@ -644,10 +848,10 @@
       }
     }, {
       "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 1,
+      "ruleIndex" : 2,
       "rule" : {
         "id" : "ql-operation-after-measurement",
-        "index" : 1
+        "index" : 2
       },
       "message" : {
         "text" : "Operation 'cz' on qubit 4 after measurement at location: (14, 5)."
@@ -657,7 +861,7 @@
           "artifactLocation" : {
             "uri" : "python_quantum_number_generator_1_6_multi_qasm_76fe84.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 8
+            "index" : 10
           },
           "region" : {
             "startLine" : 25,
@@ -672,10 +876,10 @@
       }
     }, {
       "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 1,
+      "ruleIndex" : 2,
       "rule" : {
         "id" : "ql-operation-after-measurement",
-        "index" : 1
+        "index" : 2
       },
       "message" : {
         "text" : "Operation 'cz' on qubit 5 after measurement at location: (18, 5)."
@@ -685,7 +889,7 @@
           "artifactLocation" : {
             "uri" : "python_quantum_number_generator_1_6_multi_qasm_76fe84.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 8
+            "index" : 10
           },
           "region" : {
             "startLine" : 28,
@@ -700,10 +904,10 @@
       }
     }, {
       "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 1,
+      "ruleIndex" : 2,
       "rule" : {
         "id" : "ql-operation-after-measurement",
-        "index" : 1
+        "index" : 2
       },
       "message" : {
         "text" : "Operation 'cx' on qubit 1 after measurement at location: (23, 5)."
@@ -713,7 +917,7 @@
           "artifactLocation" : {
             "uri" : "q02_417981.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 9
+            "index" : 11
           },
           "region" : {
             "startLine" : 26,
@@ -728,10 +932,10 @@
       }
     }, {
       "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 1,
+      "ruleIndex" : 2,
       "rule" : {
         "id" : "ql-operation-after-measurement",
-        "index" : 1
+        "index" : 2
       },
       "message" : {
         "text" : "Operation 'cz' on qubit 0 after measurement at location: (23, 5)."
@@ -741,7 +945,7 @@
           "artifactLocation" : {
             "uri" : "q02_417981.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 9
+            "index" : 11
           },
           "region" : {
             "startLine" : 27,
@@ -756,10 +960,10 @@
       }
     }, {
       "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 1,
+      "ruleIndex" : 2,
       "rule" : {
         "id" : "ql-operation-after-measurement",
-        "index" : 1
+        "index" : 2
       },
       "message" : {
         "text" : "Operation 'cz' on qubit 1 after measurement at location: (16, 5)."
@@ -769,7 +973,7 @@
           "artifactLocation" : {
             "uri" : "quantum_pixel_generator_multi_qasm_fractional_variable_d8275b.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 10
+            "index" : 12
           },
           "region" : {
             "startLine" : 20,
@@ -784,10 +988,10 @@
       }
     }, {
       "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 1,
+      "ruleIndex" : 2,
       "rule" : {
         "id" : "ql-operation-after-measurement",
-        "index" : 1
+        "index" : 2
       },
       "message" : {
         "text" : "Operation 'cx' on qubit 1 after measurement at location: (20, 5)."
@@ -797,7 +1001,7 @@
           "artifactLocation" : {
             "uri" : "quantum_teleportation_1881c2.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 11
+            "index" : 13
           },
           "region" : {
             "startLine" : 23,
@@ -812,10 +1016,10 @@
       }
     }, {
       "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 1,
+      "ruleIndex" : 2,
       "rule" : {
         "id" : "ql-operation-after-measurement",
-        "index" : 1
+        "index" : 2
       },
       "message" : {
         "text" : "Operation 'cz' on qubit 0 after measurement at location: (19, 5)."
@@ -825,7 +1029,7 @@
           "artifactLocation" : {
             "uri" : "quantum_teleportation_1881c2.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 11
+            "index" : 13
           },
           "region" : {
             "startLine" : 24,
@@ -840,10 +1044,10 @@
       }
     }, {
       "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 1,
+      "ruleIndex" : 2,
       "rule" : {
         "id" : "ql-operation-after-measurement",
-        "index" : 1
+        "index" : 2
       },
       "message" : {
         "text" : "Operation 'h' on qubit 0 after measurement at location: (8, 5)."
@@ -853,7 +1057,7 @@
           "artifactLocation" : {
             "uri" : "quantumdice_bc7351.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 12
+            "index" : 14
           },
           "region" : {
             "startLine" : 9,
@@ -868,10 +1072,10 @@
       }
     }, {
       "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 1,
+      "ruleIndex" : 2,
       "rule" : {
         "id" : "ql-operation-after-measurement",
-        "index" : 1
+        "index" : 2
       },
       "message" : {
         "text" : "Operation 'h' on qubit 0 after measurement at location: (10, 5)."
@@ -881,7 +1085,7 @@
           "artifactLocation" : {
             "uri" : "quantumdice_bc7351.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 12
+            "index" : 14
           },
           "region" : {
             "startLine" : 11,
@@ -896,10 +1100,10 @@
       }
     }, {
       "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 1,
+      "ruleIndex" : 2,
       "rule" : {
         "id" : "ql-operation-after-measurement",
-        "index" : 1
+        "index" : 2
       },
       "message" : {
         "text" : "Operation 'cx' on qubit 1 after measurement at location: (12, 5)."
@@ -909,7 +1113,7 @@
           "artifactLocation" : {
             "uri" : "quantumteleportation_2823d6.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 13
+            "index" : 15
           },
           "region" : {
             "startLine" : 13,
@@ -924,10 +1128,10 @@
       }
     }, {
       "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 1,
+      "ruleIndex" : 2,
       "rule" : {
         "id" : "ql-operation-after-measurement",
-        "index" : 1
+        "index" : 2
       },
       "message" : {
         "text" : "Operation 'cz' on qubit 0 after measurement at location: (12, 5)."
@@ -937,7 +1141,7 @@
           "artifactLocation" : {
             "uri" : "quantumteleportation_2823d6.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 13
+            "index" : 15
           },
           "region" : {
             "startLine" : 14,
@@ -952,10 +1156,10 @@
       }
     }, {
       "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 1,
+      "ruleIndex" : 2,
       "rule" : {
         "id" : "ql-operation-after-measurement",
-        "index" : 1
+        "index" : 2
       },
       "message" : {
         "text" : "Operation 'h' on qubit 0 after measurement at location: (6, 5)."
@@ -965,7 +1169,7 @@
           "artifactLocation" : {
             "uri" : "qubits_d78ad0.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 1
+            "index" : 3
           },
           "region" : {
             "startLine" : 7,
@@ -980,10 +1184,10 @@
       }
     }, {
       "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 1,
+      "ruleIndex" : 2,
       "rule" : {
         "id" : "ql-operation-after-measurement",
-        "index" : 1
+        "index" : 2
       },
       "message" : {
         "text" : "Operation 'cx' on qubit 0 after measurement at location: (8, 5).\nOperation 'cx' on qubit 1 after measurement at location: (8, 5)."
@@ -993,7 +1197,7 @@
           "artifactLocation" : {
             "uri" : "qubits_d78ad0.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 1
+            "index" : 3
           },
           "region" : {
             "startLine" : 9,
@@ -1008,10 +1212,10 @@
       }
     }, {
       "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 1,
+      "ruleIndex" : 2,
       "rule" : {
         "id" : "ql-operation-after-measurement",
-        "index" : 1
+        "index" : 2
       },
       "message" : {
         "text" : "Operation 'cx' on qubit 2 after measurement at location: (41, 5)."
@@ -1021,7 +1225,7 @@
           "artifactLocation" : {
             "uri" : "teleportation_practice_4ae2ea.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 14
+            "index" : 16
           },
           "region" : {
             "startLine" : 44,
@@ -1036,10 +1240,10 @@
       }
     }, {
       "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 1,
+      "ruleIndex" : 2,
       "rule" : {
         "id" : "ql-operation-after-measurement",
-        "index" : 1
+        "index" : 2
       },
       "message" : {
         "text" : "Operation 'cz' on qubit 0 after measurement at location: (41, 5)."
@@ -1049,7 +1253,7 @@
           "artifactLocation" : {
             "uri" : "teleportation_practice_4ae2ea.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 14
+            "index" : 16
           },
           "region" : {
             "startLine" : 45,
@@ -1064,10 +1268,10 @@
       }
     }, {
       "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 1,
+      "ruleIndex" : 2,
       "rule" : {
         "id" : "ql-operation-after-measurement",
-        "index" : 1
+        "index" : 2
       },
       "message" : {
         "text" : "Operation 'cx' on qubit 3 after measurement at location: (45, 5)."
@@ -1077,7 +1281,7 @@
           "artifactLocation" : {
             "uri" : "two_qubit_4cff15.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 15
+            "index" : 17
           },
           "region" : {
             "startLine" : 48,
@@ -1092,10 +1296,10 @@
       }
     }, {
       "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 1,
+      "ruleIndex" : 2,
       "rule" : {
         "id" : "ql-operation-after-measurement",
-        "index" : 1
+        "index" : 2
       },
       "message" : {
         "text" : "Operation 'cz' on qubit 0 after measurement at location: (45, 5)."
@@ -1105,7 +1309,7 @@
           "artifactLocation" : {
             "uri" : "two_qubit_4cff15.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 15
+            "index" : 17
           },
           "region" : {
             "startLine" : 49,
@@ -1120,10 +1324,10 @@
       }
     }, {
       "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 1,
+      "ruleIndex" : 2,
       "rule" : {
         "id" : "ql-operation-after-measurement",
-        "index" : 1
+        "index" : 2
       },
       "message" : {
         "text" : "Operation 'cx' on qubit 2 after measurement at location: (45, 5)."
@@ -1133,7 +1337,7 @@
           "artifactLocation" : {
             "uri" : "two_qubit_4cff15.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 15
+            "index" : 17
           },
           "region" : {
             "startLine" : 50,
@@ -1148,10 +1352,10 @@
       }
     }, {
       "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 1,
+      "ruleIndex" : 2,
       "rule" : {
         "id" : "ql-operation-after-measurement",
-        "index" : 1
+        "index" : 2
       },
       "message" : {
         "text" : "Operation 'cz' on qubit 1 after measurement at location: (45, 5)."
@@ -1161,7 +1365,7 @@
           "artifactLocation" : {
             "uri" : "two_qubit_4cff15.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 15
+            "index" : 17
           },
           "region" : {
             "startLine" : 51,
@@ -1173,6 +1377,286 @@
       "partialFingerprints" : {
         "primaryLocationLineHash" : "9bc9e5f4ad7e6d92:1",
         "primaryLocationStartColumnFingerprint" : "0"
+      }
+    }, {
+      "ruleId" : "ql-constant-classic-bit",
+      "ruleIndex" : 3,
+      "rule" : {
+        "id" : "ql-constant-classic-bit",
+        "index" : 3
+      },
+      "message" : {
+        "text" : "Circuit 'qc' measures qubit '2' but never uses it."
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "aatoms_of_computation_ed6fac.py",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 18
+          },
+          "region" : {
+            "startLine" : 6,
+            "startColumn" : 10,
+            "endColumn" : 30
+          }
+        }
+      } ],
+      "partialFingerprints" : {
+        "primaryLocationLineHash" : "6e33f857077016db:1",
+        "primaryLocationStartColumnFingerprint" : "5"
+      }
+    }, {
+      "ruleId" : "ql-constant-classic-bit",
+      "ruleIndex" : 3,
+      "rule" : {
+        "id" : "ql-constant-classic-bit",
+        "index" : 3
+      },
+      "message" : {
+        "text" : "Circuit 'circuit' measures qubit '0' but never uses it.\nCircuit 'circuit' measures qubit '2' but never uses it."
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "balanceada_3_11881b.py",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 19
+          },
+          "region" : {
+            "startLine" : 6,
+            "startColumn" : 15,
+            "endColumn" : 35
+          }
+        }
+      } ],
+      "partialFingerprints" : {
+        "primaryLocationLineHash" : "eb21d63aaf94c0a2:1",
+        "primaryLocationStartColumnFingerprint" : "10"
+      }
+    }, {
+      "ruleId" : "ql-constant-classic-bit",
+      "ruleIndex" : 3,
+      "rule" : {
+        "id" : "ql-constant-classic-bit",
+        "index" : 3
+      },
+      "message" : {
+        "text" : "Circuit 'circuit' measures qubit '2' but never uses it.\nCircuit 'circuit' measures qubit '1' but never uses it."
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "deutsch_jozsa_s_20functions_b84a95.py",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 20
+          },
+          "region" : {
+            "startLine" : 6,
+            "startColumn" : 15,
+            "endColumn" : 35
+          }
+        }
+      } ],
+      "partialFingerprints" : {
+        "primaryLocationLineHash" : "5a9837e1343b0981:1",
+        "primaryLocationStartColumnFingerprint" : "10"
+      }
+    }, {
+      "ruleId" : "ql-constant-classic-bit",
+      "ruleIndex" : 3,
+      "rule" : {
+        "id" : "ql-constant-classic-bit",
+        "index" : 3
+      },
+      "message" : {
+        "text" : "Circuit 'qc' measures qubit '2' but never uses it.\nCircuit 'qc' measures qubit '1' but never uses it.\nCircuit 'qc' measures qubit '4' but never uses it.\nCircuit 'qc' measures qubit '6' but never uses it.\nCircuit 'qc' measures qubit '7' but never uses it.\nCircuit 'qc' measures qubit '10' but never uses it.\nCircuit 'qc' measures qubit '14' but never uses it.\nCircuit 'qc' measures qubit '15' but never uses it."
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "hello_b14c35.py",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 21
+          },
+          "region" : {
+            "startLine" : 16,
+            "startColumn" : 10,
+            "endColumn" : 30
+          }
+        }
+      } ],
+      "partialFingerprints" : {
+        "primaryLocationLineHash" : "5d7e74509267f508:1",
+        "primaryLocationStartColumnFingerprint" : "5"
+      }
+    }, {
+      "ruleId" : "ql-constant-classic-bit",
+      "ruleIndex" : 3,
+      "rule" : {
+        "id" : "ql-constant-classic-bit",
+        "index" : 3
+      },
+      "message" : {
+        "text" : "Circuit 'qcHERR' measures qubit '3' but never uses it."
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "herrtestcomptimetiffoli_cf1dac.py",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 22
+          },
+          "region" : {
+            "startLine" : 6,
+            "startColumn" : 14,
+            "endColumn" : 31
+          }
+        }
+      } ],
+      "partialFingerprints" : {
+        "primaryLocationLineHash" : "23c47c7e23e1213e:1",
+        "primaryLocationStartColumnFingerprint" : "9"
+      }
+    }, {
+      "ruleId" : "ql-constant-classic-bit",
+      "ruleIndex" : 3,
+      "rule" : {
+        "id" : "ql-constant-classic-bit",
+        "index" : 3
+      },
+      "message" : {
+        "text" : "Circuit 'circ' measures qubit '0' but never uses it."
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "measurement_postulate_single_qubit_f_fb7a34%20copy.py",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 1
+          },
+          "region" : {
+            "startLine" : 67,
+            "startColumn" : 12,
+            "endColumn" : 31
+          }
+        }
+      } ],
+      "partialFingerprints" : {
+        "primaryLocationLineHash" : "a3c52efb904e1179:1",
+        "primaryLocationStartColumnFingerprint" : "7"
+      }
+    }, {
+      "ruleId" : "ql-constant-classic-bit",
+      "ruleIndex" : 3,
+      "rule" : {
+        "id" : "ql-constant-classic-bit",
+        "index" : 3
+      },
+      "message" : {
+        "text" : "Circuit 'circ' measures qubit '0' but never uses it."
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "measurement_postulate_single_qubit_f_fb7a34.py",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 2
+          },
+          "region" : {
+            "startLine" : 7,
+            "startColumn" : 12,
+            "endColumn" : 31
+          }
+        }
+      } ],
+      "partialFingerprints" : {
+        "primaryLocationLineHash" : "5f999e383bf14f8:1",
+        "primaryLocationStartColumnFingerprint" : "7"
+      }
+    }, {
+      "ruleId" : "ql-constant-classic-bit",
+      "ruleIndex" : 3,
+      "rule" : {
+        "id" : "ql-constant-classic-bit",
+        "index" : 3
+      },
+      "message" : {
+        "text" : "Circuit 'qc2' measures qubit '2' but never uses it."
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "quantum_encoding_5a7eeb.py",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 23
+          },
+          "region" : {
+            "startLine" : 7,
+            "startColumn" : 11,
+            "endColumn" : 30
+          }
+        }
+      } ],
+      "partialFingerprints" : {
+        "primaryLocationLineHash" : "621f8aac934bd7c7:1",
+        "primaryLocationStartColumnFingerprint" : "6"
+      }
+    }, {
+      "ruleId" : "ql-constant-classic-bit",
+      "ruleIndex" : 3,
+      "rule" : {
+        "id" : "ql-constant-classic-bit",
+        "index" : 3
+      },
+      "message" : {
+        "text" : "Circuit 'qc' measures qubit '1' but never uses it.\nCircuit 'qc' measures qubit '0' but never uses it."
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "qubits_d78ad0.py",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 3
+          },
+          "region" : {
+            "startLine" : 5,
+            "startColumn" : 10,
+            "endColumn" : 27
+          }
+        }
+      } ],
+      "partialFingerprints" : {
+        "primaryLocationLineHash" : "5516404f2300dbba:1",
+        "primaryLocationStartColumnFingerprint" : "5"
+      }
+    }, {
+      "ruleId" : "ql-constant-classic-bit",
+      "ruleIndex" : 3,
+      "rule" : {
+        "id" : "ql-constant-classic-bit",
+        "index" : 3
+      },
+      "message" : {
+        "text" : "Circuit 'qc' measures qubit '1' but never uses it.\nCircuit 'qc' measures qubit '0' but never uses it."
+      },
+      "locations" : [ {
+        "physicalLocation" : {
+          "artifactLocation" : {
+            "uri" : "test_structure_aaba85.py",
+            "uriBaseId" : "%SRCROOT%",
+            "index" : 5
+          },
+          "region" : {
+            "startLine" : 6,
+            "startColumn" : 10,
+            "endColumn" : 82
+          }
+        }
+      } ],
+      "partialFingerprints" : {
+        "primaryLocationLineHash" : "47443f6f04dcacfd:1",
+        "primaryLocationStartColumnFingerprint" : "5"
       }
     } ],
     "columnKind" : "unicodeCodePoints",

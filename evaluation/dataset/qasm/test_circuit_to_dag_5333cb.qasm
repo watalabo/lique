@@ -1,14 +1,14 @@
 OPENQASM 3.0;
 include "stdgates.inc";
-bit[3] c4;
-qubit[3] q2;
-h q2[0];
-h q2[1];
-c4[0] = measure q2[0];
-c4[1] = measure q2[1];
-if (c4 == 3) {
-  x q2[0];
+bit[3] c9;
+qubit[3] q8;
+h q8[0];
+h q8[1];
+c9[0] = measure q8[0];
+c9[1] = measure q8[1];
+if (c9 == 3) {
+  x q8[0];
 }
-c4[0] = measure q2[0];
-c4[1] = measure q2[1];
-c4[2] = measure q2[2];
+c9[0] = measure q8[0];
+c9[1] = measure q8[1];
+c9[2] = measure q8[2];
