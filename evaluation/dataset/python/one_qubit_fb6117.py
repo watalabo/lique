@@ -4,7 +4,7 @@ from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
 def create_circuit():
     q = QuantumRegister(3)
     c = ClassicalRegister(2)
-    circuit = QuantumCircuit(q,c)
+    circuit = QuantumCircuit(q,c) # ql-unmeasurable-qubits
     circuit.h(1)
     circuit.cx(1, 2)
     circuit.barrier()

@@ -6,7 +6,7 @@ Quantum Teleportation
 q0 ---> q2 using q1
 '''
 
-from qiskit import *
+from qiskit import QuantumCircuit
 
 
 def create_circuit():

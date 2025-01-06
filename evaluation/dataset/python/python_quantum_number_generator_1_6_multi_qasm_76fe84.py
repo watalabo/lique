@@ -3,7 +3,7 @@ from math import pi
 
 
 def create_circuit():
-    qc=QuantumCircuit(6,3)
+    qc=QuantumCircuit(6,3) # ql-unmeasurable-qubits
     qc.rx(pi/2,3)
     qc.s(3)
 

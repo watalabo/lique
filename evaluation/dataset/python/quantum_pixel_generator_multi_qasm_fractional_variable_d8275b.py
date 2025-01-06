@@ -6,7 +6,7 @@ from math import pi
 
 def create_circuit():
     
-    qc = QuantumCircuit(2, 1)
+    qc = QuantumCircuit(2, 1) # ql-unmeasurable-qubits
 
     
     qc.rx(pi / 2, 1)  

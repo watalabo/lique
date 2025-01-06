@@ -7,39 +7,18 @@ use oq3_syntax::{
 
 use crate::{rule::Rule, Diagnostic};
 
+use super::{count_clbits, count_qubits};
+
 pub fn lint_unmeasurable_qubits(stmts: AstChildren<Stmt>) -> Vec<Diagnostic> {
     let mut diags = Vec::new();
-    let mut classical_registers = 0;
-    let mut quantum_registers = 0;
+    let (num_qubits, _) = count_qubits(stmts.clone());
+    let (num_clbits, last_clbits_range) = count_clbits(stmts.clone());
 
-    for stmt in stmts.clone() {
-        if let Stmt::QuantumDeclarationStatement(declaration) = stmt
-            && let Some(qubit) = declaration.qubit_type()
-            && let Some(designator) = qubit.designator()
-            && let Some(expr) = designator.expr()
-            && let Expr::Literal(bits) = expr
-        {
-            quantum_registers += bits.to_string().parse::<usize>().unwrap();
-        }
-    }
-
-    let mut last_classical_registers_range = 0..0;
-    for stmt in stmts {
-        if let Stmt::ClassicalDeclarationStatement(declaration) = stmt.clone()
-            && let Some(qubit) = declaration.scalar_type()
-            && let Some(designator) = qubit.designator()
-            && let Some(expr) = designator.expr()
-            && let Expr::Literal(bits) = expr
-        {
-            classical_registers += bits.to_string().parse::<usize>().unwrap();
-            last_classical_registers_range = stmt.syntax().text_range().into();
-        }
-    }
-    if classical_registers < quantum_registers {
+    if num_clbits < num_qubits {
         let diag = Diagnostic {
                     rule_id: Rule::UnmeasurableQubits.into(),
-                    message: format!("Number of classical registers({}) is fewer than the number of quantum registers({})", classical_registers, quantum_registers),
-                    range_zero_indexed: last_classical_registers_range,
+                    message: format!("Number of classical registers({}) is fewer than the number of quantum registers({})", num_clbits, num_qubits),
+                    range_zero_indexed: last_clbits_range,
                     related_informations: vec![],
                 };
         diags.push(diag);

@@ -7,7 +7,7 @@ def create_circuit():
     q = QuantumRegister(3, "q")
     c = ClassicalRegister(4, "c")
 
-    circuit = QuantumCircuit(q, c)
+    circuit = QuantumCircuit(q, c) # ql-unmeasurable-qubits
 
     circuit.h(q[0])
     circuit.h(q[1])

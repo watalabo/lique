@@ -4,7 +4,7 @@ from qiskit import QuantumCircuit
 
 
 def create_circuit():
-    qc2 = QuantumCircuit(3,3) # ql-double-measurement
+    qc2 = QuantumCircuit(3,3) # ql-constant-classic-bit
     qc2.x([0,1])
     qc2.measure([0,1,2], [0,1,2])
     return qc2
