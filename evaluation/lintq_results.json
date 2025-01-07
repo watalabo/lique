@@ -20,9 +20,29 @@
         "rule_id": "ql-double-measurement"
     },
     {
+        "file_name": "ahmed154_73ece9_2",
+        "line_number": 13,
+        "rule_id": "ql-double-measurement"
+    },
+    {
+        "file_name": "ahmed154_73ece9_2",
+        "line_number": 15,
+        "rule_id": "ql-double-measurement"
+    },
+    {
         "file_name": "balanceada_3_11881b",
         "line_number": 5,
         "rule_id": "ql-constant-classic-bit"
+    },
+    {
+        "file_name": "bernaz_035353",
+        "line_number": 6,
+        "rule_id": "ql-constant-classic-bit"
+    },
+    {
+        "file_name": "c3x_build_f7ba3d",
+        "line_number": 8,
+        "rule_id": "ql-oversized-circuit"
     },
     {
         "file_name": "ch_3_28325b",
@@ -37,6 +57,11 @@
     {
         "file_name": "deutsch_jozsa_s_20functions_b84a95",
         "line_number": 5,
+        "rule_id": "ql-constant-classic-bit"
+    },
+    {
+        "file_name": "ex_1qubit_1randombit_206edf",
+        "line_number": 10,
         "rule_id": "ql-constant-classic-bit"
     },
     {
@@ -70,17 +95,17 @@
         "rule_id": "ql-double-measurement"
     },
     {
-        "file_name": "measurement_postulate_single_qubit_f_fb7a34%20copy",
+        "file_name": "measurement_postulate_single_qubit_f_fb7a34_2",
         "line_number": 66,
         "rule_id": "ql-constant-classic-bit"
     },
     {
-        "file_name": "measurement_postulate_single_qubit_f_fb7a34%20copy",
+        "file_name": "measurement_postulate_single_qubit_f_fb7a34_2",
         "line_number": 68,
         "rule_id": "ql-operation-after-measurement"
     },
     {
-        "file_name": "measurement_postulate_single_qubit_f_fb7a34%20copy",
+        "file_name": "measurement_postulate_single_qubit_f_fb7a34_2",
         "line_number": 70,
         "rule_id": "ql-double-measurement"
     },
@@ -193,6 +218,11 @@
         "file_name": "teleportation_practice_4ae2ea",
         "line_number": 44,
         "rule_id": "ql-operation-after-measurement"
+    },
+    {
+        "file_name": "test_mcx_gate_065857",
+        "line_number": 22,
+        "rule_id": "ql-oversized-circuit"
     },
     {
         "file_name": "test_structure_aaba85",

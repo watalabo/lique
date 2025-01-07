@@ -1,9 +1,6 @@
 use core::convert::Into;
 
-use oq3_syntax::{
-    ast::{AstChildren, Expr, Stmt},
-    AstNode,
-};
+use oq3_syntax::ast::{AstChildren, Stmt};
 
 use crate::{rule::Rule, Diagnostic};
 
@@ -11,14 +8,14 @@ use super::{count_clbits, count_qubits};
 
 pub fn lint_unmeasurable_qubits(stmts: AstChildren<Stmt>) -> Vec<Diagnostic> {
     let mut diags = Vec::new();
-    let (num_qubits, _) = count_qubits(stmts.clone());
-    let (num_clbits, last_clbits_range) = count_clbits(stmts.clone());
+    let (num_qubits, last_qubits_range) = count_qubits(stmts.clone());
+    let (num_clbits, _) = count_clbits(stmts.clone());
 
     if num_clbits < num_qubits {
         let diag = Diagnostic {
                     rule_id: Rule::UnmeasurableQubits.into(),
                     message: format!("Number of classical registers({}) is fewer than the number of quantum registers({})", num_clbits, num_qubits),
-                    range_zero_indexed: last_clbits_range,
+                    range_zero_indexed: last_qubits_range,
                     related_informations: vec![],
                 };
         diags.push(diag);
@@ -50,8 +47,8 @@ cx q[1], q[2];"#;
 
         assert_eq!(diags.len(), 1);
         let range = &diags[0].range_zero_indexed;
-        assert_eq!(range.start, 38);
-        assert_eq!(range.end, 47);
+        assert_eq!(range.start, 48);
+        assert_eq!(range.end, 59);
     }
 
     #[test]

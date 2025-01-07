@@ -60,7 +60,7 @@ pub(crate) fn contains_or_equal(operand: &GateOperand, other_operand: &GateOpera
 /// Returns the number of qubits declared in the given statements and the byte range of the declaration in the QASM file.
 pub(crate) fn count_qubits(stmts: AstChildren<Stmt>) -> (usize, Range<usize>) {
     let mut num_qubits = 0;
-    let mut qubit_range: Range<usize> = 0..0;
+    let mut qubits_range: Range<usize> = 0..0;
     for stmt in stmts.clone() {
         if let Stmt::QuantumDeclarationStatement(declaration) = stmt.clone()
             && let Some(qubit) = declaration.qubit_type()
@@ -69,10 +69,28 @@ pub(crate) fn count_qubits(stmts: AstChildren<Stmt>) -> (usize, Range<usize>) {
             && let Expr::Literal(bits) = expr
         {
             num_qubits += bits.to_string().parse::<usize>().unwrap();
-            qubit_range = stmt.syntax().text_range().into();
+            qubits_range = stmt.syntax().text_range().into();
         }
     }
-    (num_qubits, qubit_range)
+    (num_qubits, qubits_range)
+}
+
+/// Returns the number of classical bits declared in the given statements and the byte range of the declaration in the QASM file.
+pub(crate) fn count_clbits(stmts: AstChildren<Stmt>) -> (usize, Range<usize>) {
+    let mut num_classical_bits = 0;
+    let mut classical_bits_range: Range<usize> = 0..0;
+    for stmt in stmts.clone() {
+        if let Stmt::ClassicalDeclarationStatement(declaration) = stmt.clone()
+            && let Some(qubit) = declaration.scalar_type()
+            && let Some(designator) = qubit.designator()
+            && let Some(expr) = designator.expr()
+            && let Expr::Literal(bits) = expr
+        {
+            num_classical_bits += bits.to_string().parse::<usize>().unwrap();
+            classical_bits_range = stmt.syntax().text_range().into();
+        }
+    }
+    (num_classical_bits, classical_bits_range)
 }
 
 /// Returns a mask where each bit represents a qubit that is manipulated by the operand.

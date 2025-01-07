@@ -6,3 +6,4 @@
       - ql-constant-classic-bit
       - ql-double-measurement
       - ql-operation-after-measurement
+      - ql-oversized-circuit
