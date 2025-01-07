@@ -1,5 +1,10 @@
 [
     {
+        "file_name": "UnmeasureableQubits",
+        "line_number": 6,
+        "rule_id": "ql-unmeasurable-qubits"
+    },
+    {
         "file_name": "_12_quantum_key_distribution_checkpoint_4165fd",
         "line_number": 9,
         "rule_id": "ql-operation-after-measurement"
@@ -13,6 +18,11 @@
         "file_name": "a00_qiskit_introduction_1ba1af",
         "line_number": 9,
         "rule_id": "ql-constant-classic-bit"
+    },
+    {
+        "file_name": "a00_qiskit_introduction_checkpoint_78fe1f",
+        "line_number": 65,
+        "rule_id": "ql-unmeasurable-qubits"
     },
     {
         "file_name": "aatoms_of_computation_ed6fac",
@@ -123,6 +133,16 @@
         "file_name": "measurement_postulate_single_qubit_f_fb7a34_2",
         "line_number": 70,
         "rule_id": "ql-double-measurement"
+    },
+    {
+        "file_name": "multiplier_5c47de",
+        "line_number": 12,
+        "rule_id": "ql-oversized-circuit"
+    },
+    {
+        "file_name": "multiplier_5c47de",
+        "line_number": 12,
+        "rule_id": "ql-unmeasurable-qubits"
     },
     {
         "file_name": "one_qubit_fb6117",
@@ -613,6 +633,11 @@
         "file_name": "test_mapper_217a32",
         "line_number": 22,
         "rule_id": "ql-constant-classic-bit"
+    },
+    {
+        "file_name": "test_qiskit_738074",
+        "line_number": 6,
+        "rule_id": "ql-unmeasurable-qubits"
     },
     {
         "file_name": "test_structure_aaba85_2",

@@ -117,6 +117,28 @@
             "precision" : "medium",
             "problem.severity" : "warning"
           }
+        }, {
+          "id" : "ql-unmeasurable-qubits",
+          "name" : "ql-unmeasurable-qubits",
+          "shortDescription" : {
+            "text" : "Unmeasurable qubits."
+          },
+          "fullDescription" : {
+            "text" : "Finds circuits instantiated with a lower number of classical bits than the number of qubits, meaning that the full quantum state cannot be measured."
+          },
+          "defaultConfiguration" : {
+            "enabled" : true,
+            "level" : "warning"
+          },
+          "properties" : {
+            "tags" : [ "maintainability", "efficiency", "qiskit", "LintQ" ],
+            "description" : "Finds circuits instantiated with a lower number of classical\n bits than the number of qubits, meaning that the full quantum state cannot\n be measured.",
+            "id" : "ql-unmeasurable-qubits",
+            "kind" : "problem",
+            "name" : "Unmeasurable qubits.",
+            "precision" : "medium",
+            "problem.severity" : "warning"
+          }
         } ]
       },
       "extensions" : [ {

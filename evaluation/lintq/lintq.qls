@@ -7,3 +7,4 @@
       - ql-double-measurement
       - ql-operation-after-measurement
       - ql-oversized-circuit
+      - ql-unmeasurable-qubits
