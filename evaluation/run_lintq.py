@@ -94,11 +94,11 @@ def run_lintq_each(rule: str) -> int:
     return process.returncode
 
 
-def run_lintq_perf() -> None:
+def run_lintq_perf(all = False) -> None:
     result = {}
     database_time = timeit.timeit(lambda: create_database(), number=1)
     result["database_time"] = database_time
-    for rule in ["conditional_without_measurement", "constant_classic_bit", "double_measurement", "operation_after_measurement", "oversized_circuit", "unmeasurable_qubits"]:
+    for rule in ["all", "conditional_without_measurement", "constant_classic_bit", "double_measurement", "operation_after_measurement", "oversized_circuit", "unmeasurable_qubits"]:
         compile_time = timeit.timeit(lambda: compile_query_each(rule), number=1)
         query_time = timeit.timeit(lambda: run_lintq_each(rule), number=1)
         result[rule] = {"compile_time": compile_time, "query_time": query_time}

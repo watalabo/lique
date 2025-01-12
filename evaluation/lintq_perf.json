@@ -1,27 +1,31 @@
 {
-    "database_time": 12.538899427047,
+    "database_time": 12.382244226057082,
+    "all": {
+        "compile_time": 45.753262357087806,
+        "query_time": 32.83717685681768
+    },
     "conditional_without_measurement": {
-        "compile_time": 22.307705131126568,
-        "query_time": 19.820425620069727
+        "compile_time": 22.45329600502737,
+        "query_time": 5.018892796942964
     },
     "constant_classic_bit": {
-        "compile_time": 23.093411022098735,
-        "query_time": 6.598378420108929
+        "compile_time": 22.883285676129162,
+        "query_time": 6.6412977310828865
     },
     "double_measurement": {
-        "compile_time": 24.882034102920443,
-        "query_time": 12.099130518967286
+        "compile_time": 24.57551929797046,
+        "query_time": 12.046246929094195
     },
     "operation_after_measurement": {
-        "compile_time": 24.10676404298283,
-        "query_time": 12.169886912917718
+        "compile_time": 24.2025318169035,
+        "query_time": 12.071939331945032
     },
     "oversized_circuit": {
-        "compile_time": 22.547407160978764,
-        "query_time": 6.202817386947572
+        "compile_time": 22.929296710062772,
+        "query_time": 6.215323822107166
     },
     "unmeasurable_qubits": {
-        "compile_time": 21.256811602972448,
-        "query_time": 5.200024056015536
+        "compile_time": 21.98332326184027,
+        "query_time": 5.257973191095516
     }
 }
