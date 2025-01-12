@@ -1,0 +1,27 @@
+{
+    "database_time": 12.538899427047,
+    "conditional_without_measurement": {
+        "compile_time": 22.307705131126568,
+        "query_time": 19.820425620069727
+    },
+    "constant_classic_bit": {
+        "compile_time": 23.093411022098735,
+        "query_time": 6.598378420108929
+    },
+    "double_measurement": {
+        "compile_time": 24.882034102920443,
+        "query_time": 12.099130518967286
+    },
+    "operation_after_measurement": {
+        "compile_time": 24.10676404298283,
+        "query_time": 12.169886912917718
+    },
+    "oversized_circuit": {
+        "compile_time": 22.547407160978764,
+        "query_time": 6.202817386947572
+    },
+    "unmeasurable_qubits": {
+        "compile_time": 21.256811602972448,
+        "query_time": 5.200024056015536
+    }
+}
