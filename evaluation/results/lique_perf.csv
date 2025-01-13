@@ -1,0 +1,8 @@
+rule,query_time,database_time,compile_time
+all,3.8738835661206394,0,0
+conditional_without_measurement,3.869272476993501,0,0
+double_measurement,3.8627667652908713,0,0
+operation_after_measurement,3.8667266005650163,0,0
+oversized_circuit,3.892911185743287,0,0
+unmanipulated_qubits,3.8658962238114327,0,0
+unmeasurable_qubits,3.8522514938376844,0,0

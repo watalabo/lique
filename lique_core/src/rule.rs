@@ -19,7 +19,7 @@ impl From<&str> for Rule {
             "double-measurement" => Rule::DoubleMeasurement,
             "operation-after-measurement" => Rule::OpAfterMeasurement,
             "oversized-circuit" => Rule::OversizedCircuit,
-            "unmanipulated-qubit" => Rule::UnmanipulatedQubit,
+            "unmanipulated-qubits" => Rule::UnmanipulatedQubit,
             "unmeasurable-qubits" => Rule::UnmeasurableQubits,
             _ => panic!("Unknown rule: {}", s),
         }

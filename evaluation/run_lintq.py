@@ -1,4 +1,5 @@
 import argparse
+import csv
 import json
 import os
 import shutil
@@ -85,8 +86,8 @@ def run_lintq_each(rule: str) -> int:
     process = subprocess.run([
         "docker", "run",
         "-v", f"{current_dir}/evaluation/:/home/codeql/project/data",
-        "-it", "--rm", "lintq",
-        "codeql", "database", "analyze", "--rerun", "--format=sarifv2.1.0", "--threads=10",
+        "-it", "--rm", "--cpus", "20", "lintq",
+        "codeql", "database", "analyze", "--rerun", "--format=sarifv2.1.0", "--threads=0",
         f"--output=data/lintq/lintq_perf_results.json",
         "--compilation-cache", f"data/lintq/query_cache",
         "--", f"data/lintq/codeql_db", f"data/lintq/{rule}.qls",
@@ -94,17 +95,20 @@ def run_lintq_each(rule: str) -> int:
     return process.returncode
 
 
-def run_lintq_perf(all = False) -> None:
-    result = {}
+def run_lintq_perf() -> None:
+    result = []
     database_time = timeit.timeit(lambda: create_database(), number=1)
-    result["database_time"] = database_time
     for rule in ["all", "conditional_without_measurement", "constant_classic_bit", "double_measurement", "operation_after_measurement", "oversized_circuit", "unmeasurable_qubits"]:
         compile_time = timeit.timeit(lambda: compile_query_each(rule), number=1)
         query_time = timeit.timeit(lambda: run_lintq_each(rule), number=1)
-        result[rule] = {"compile_time": compile_time, "query_time": query_time}
+        if rule == "constant_classic_bit":
+            rule = "unmanipulated_qubits"
+        result.append([rule, query_time, database_time, compile_time])
 
-    with open("evaluation/lintq_perf.json", "w") as f:
-        json.dump(result, f, indent=4)
+    with open("evaluation/results/lintq_perf.csv", "w") as f:
+        writer = csv.writer(f)
+        writer.writerow(["rule", "query_time", "database_time", "compile_time"])
+        writer.writerows(result)
 
 
 if __name__ == "__main__":

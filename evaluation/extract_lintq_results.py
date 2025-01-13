@@ -25,5 +25,5 @@ if __name__ == "__main__":
     cases = extract_results()
     cases.sort(key=lambda case: (case.file_name, case.line_number, case.rule_id))
     cases = [asdict(case) for case in cases]
-    with open(f"{evaluation_dir}/lintq_results.json", "w") as f:
+    with open(f"{evaluation_dir}/results/lintq_results.json", "w") as f:
         dump(cases, f, indent=4)
