@@ -78,21 +78,25 @@ fn calculate_metrics_per_rule(
     let mut fn_cases = Vec::new();
 
     for dataset_case in dataset {
-        let mut found = false;
+        let mut tp_found = false;
+        let mut candidates = Vec::new();
         for lique_result in &lique_results {
             if dataset_case.rule_id == rule_id
                 && dataset_case.file_name == lique_result.file_name
                 && dataset_case.line_number == lique_result.line_number
             {
-                found = true;
+                tp_found = true;
                 if dataset_case.rule_id == lique_result.rule_id {
                     tp_cases.push(dataset_case.clone());
                 } else {
-                    fp_cases.push(dataset_case.clone());
+                    candidates.push(dataset_case.clone());
                 }
             }
         }
-        if !found && dataset_case.rule_id == rule_id {
+        if !tp_found && !candidates.is_empty() {
+            fp_cases.extend(candidates);
+        }
+        if !tp_found && dataset_case.rule_id == rule_id {
             fn_cases.push(dataset_case.clone());
         }
     }

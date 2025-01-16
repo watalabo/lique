@@ -17,3 +17,7 @@ metrics:
 .PHONY: lique
 lique:
 	@cargo run -p lique_evaluation -- --lique
+
+.PHONY: lintq
+lintq:
+	@python evaluation/run_lintq.py --overwrite-db

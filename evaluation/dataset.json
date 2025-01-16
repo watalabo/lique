@@ -36,8 +36,13 @@
     },
     {
         "file_name": "ahmed154_73ece9_2",
-        "line_number": 6,
-        "rule_id": "ql-oversized-circuit"
+        "line_number": 12,
+        "rule_id": "ql-operation-after-measurement"
+    },
+    {
+        "file_name": "ahmed154_73ece9_2",
+        "line_number": 14,
+        "rule_id": "ql-operation-after-measurement"
     },
     {
         "file_name": "balanceada_3_11881b",

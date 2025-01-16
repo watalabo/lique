@@ -4,7 +4,7 @@ from qiskit import QuantumCircuit
 
 
 def create_circuit():
-    q = QuantumRegister(3, "q")
+    q = QuantumRegister(5, "q")
     c = ClassicalRegister(4, "c")
 
     circuit = QuantumCircuit(q, c) # ql-unmeasurable-qubits

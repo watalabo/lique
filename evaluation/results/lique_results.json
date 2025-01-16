@@ -701,6 +701,16 @@
   },
   {
     "file_name": "task_2_4f46b2",
+    "line_number": 9,
+    "rule_id": "ql-oversized-circuit"
+  },
+  {
+    "file_name": "task_2_4f46b2",
+    "line_number": 9,
+    "rule_id": "ql-unmeasurable-qubits"
+  },
+  {
+    "file_name": "task_2_4f46b2",
     "line_number": 15,
     "rule_id": "ql-operation-after-measurement"
   },
