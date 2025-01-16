@@ -23,8 +23,7 @@ pub struct Metrics {
 
 #[derive(Debug, Serialize)]
 pub struct DatasetCasesClassified {
-    pub metrics_overall: Metrics,
-    pub metrics_per_rule: HashMap<String, Metrics>,
+    pub metrics: HashMap<String, Metrics>,
     pub tp_cases: Dataset,
     pub fp_cases: Dataset,
     pub fn_cases: Dataset,

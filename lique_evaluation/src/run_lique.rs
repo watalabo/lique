@@ -40,7 +40,7 @@ pub fn run_lique() -> anyhow::Result<()> {
     });
     results.dedup();
 
-    let json_file = File::create(evaluation_dir.join("lique_results.json"))?;
+    let json_file = File::create(evaluation_dir.join("results/lique_results.json"))?;
     serde_json::to_writer_pretty(json_file, &results)?;
     Ok(())
 }

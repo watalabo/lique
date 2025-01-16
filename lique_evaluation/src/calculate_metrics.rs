@@ -29,7 +29,7 @@ fn calculate_metrics_inner(
     dataset: Vec<DatasetCase>,
     lique_results: Vec<DatasetCase>,
 ) -> DatasetCasesClassified {
-    let mut metrics_per_rule = HashMap::new();
+    let mut metrics_map = HashMap::new();
     let mut tp_cases = Dataset::new();
     let mut fp_cases = Dataset::new();
     let mut fn_cases = Dataset::new();
@@ -37,14 +37,14 @@ fn calculate_metrics_inner(
         let rule: String = rule.into();
         let (metrics, tp_cases_per_rule, fp_cases_per_rule, fn_cases_per_rule) =
             calculate_metrics_per_rule(dataset.clone(), lique_results.clone(), &rule);
-        metrics_per_rule.insert(rule.clone(), metrics);
+        metrics_map.insert(rule.clone(), metrics);
         tp_cases.insert(rule.clone(), tp_cases_per_rule);
         fp_cases.insert(rule.clone(), fp_cases_per_rule);
         fn_cases.insert(rule.clone(), fn_cases_per_rule);
     }
-    let tp = metrics_per_rule.values().map(|m| m.tp).sum();
-    let fp = metrics_per_rule.values().map(|m| m.fp).sum();
-    let r#fn = metrics_per_rule.values().map(|m| m.r#fn).sum();
+    let tp = metrics_map.values().map(|m| m.tp).sum();
+    let fp = metrics_map.values().map(|m| m.fp).sum();
+    let r#fn = metrics_map.values().map(|m| m.r#fn).sum();
     let metrics_overall = Metrics {
         tp,
         fp,
@@ -53,10 +53,10 @@ fn calculate_metrics_inner(
         recall: tp / (tp + r#fn),
         f1: 2.0 * tp / (2.0 * tp + fp + r#fn),
     };
+    metrics_map.insert("all".to_string(), metrics_overall);
 
     DatasetCasesClassified {
-        metrics_overall,
-        metrics_per_rule,
+        metrics: metrics_map,
         tp_cases,
         fp_cases,
         fn_cases,

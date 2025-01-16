@@ -9,7 +9,7 @@ use super::{count_clbits, count_qubits};
 pub fn lint_unmeasurable_qubits(stmts: AstChildren<Stmt>) -> Vec<Diagnostic> {
     let mut diags = Vec::new();
     let (num_qubits, last_qubits_range) = count_qubits(stmts.clone());
-    let (num_clbits, _) = count_clbits(stmts.clone());
+    let num_clbits = count_clbits(stmts.clone()).values().map(|v| v.0).sum::<usize>();
 
     if num_clbits < num_qubits {
         let diag = Diagnostic {

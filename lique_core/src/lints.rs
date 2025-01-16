@@ -6,10 +6,12 @@ pub mod unmanipulated_qubits;
 pub mod unmeasurable_qubits;
 
 use core::ops::Range;
+use std::collections::HashMap;
 
 use oq3_syntax::{
     ast::{
-        AstChildren, Expr, GateOperand, Identifier, IndexKind, IndexedIdentifier, LiteralKind, Stmt,
+        AstChildren, Expr, GateOperand, HasName, Identifier, IndexKind, IndexedIdentifier,
+        LiteralKind, Stmt,
     },
     AstNode,
 };
@@ -75,22 +77,27 @@ pub(crate) fn count_qubits(stmts: AstChildren<Stmt>) -> (usize, Range<usize>) {
     (num_qubits, qubits_range)
 }
 
-/// Returns the number of classical bits declared in the given statements and the byte range of the declaration in the QASM file.
-pub(crate) fn count_clbits(stmts: AstChildren<Stmt>) -> (usize, Range<usize>) {
-    let mut num_classical_bits = 0;
-    let mut classical_bits_range: Range<usize> = 0..0;
+/// Returns a mapping from classical register name to the number of classical bits declared in the given statements
+/// and the byte range of the declaration in the QASM file.
+pub(crate) fn count_clbits(stmts: AstChildren<Stmt>) -> HashMap<String, (usize, Range<usize>)> {
+    let mut clbits = HashMap::new();
     for stmt in stmts.clone() {
         if let Stmt::ClassicalDeclarationStatement(declaration) = stmt.clone()
             && let Some(qubit) = declaration.scalar_type()
+            && let Some(bits_name) = declaration.name()
             && let Some(designator) = qubit.designator()
             && let Some(expr) = designator.expr()
             && let Expr::Literal(bits) = expr
         {
-            num_classical_bits += bits.to_string().parse::<usize>().unwrap();
-            classical_bits_range = stmt.syntax().text_range().into();
+            let num_classical_bits = bits.to_string().parse::<usize>().unwrap();
+            let classical_bits_range: Range<usize> = stmt.syntax().text_range().into();
+            clbits.insert(
+                bits_name.to_string(),
+                (num_classical_bits, classical_bits_range),
+            );
         }
     }
-    (num_classical_bits, classical_bits_range)
+    clbits
 }
 
 /// Returns a mask where each bit represents a qubit that is manipulated by the operand.

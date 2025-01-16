@@ -2,6 +2,7 @@
 dataset:
 	@python evaluation/dataset/convert_to_qasm.py
 	@python evaluation/dataset/generate_dataset.py
+	@python evaluation/summarize_dataset.py
 
 .PHONY: perf
 perf:

@@ -27,6 +27,7 @@ Cargo.lock
 .venv
 __pycache__/
 
-codeql_db
-query_cache
+codeql_db/
+query_cache/
+unresolved/
 evaluation/lintq/lintq_perf_results.json
