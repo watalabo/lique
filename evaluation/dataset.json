@@ -780,6 +780,21 @@
         "rule_id": "ql-unmeasurable-qubits"
     },
     {
+        "file_name": "test_structure_aaba85",
+        "line_number": 6,
+        "rule_id": "ql-conditional-without-measurement"
+    },
+    {
+        "file_name": "test_structure_aaba85",
+        "line_number": 7,
+        "rule_id": "ql-conditional-without-measurement"
+    },
+    {
+        "file_name": "test_structure_aaba85",
+        "line_number": 8,
+        "rule_id": "ql-conditional-without-measurement"
+    },
+    {
         "file_name": "test_structure_aaba85_2",
         "line_number": 12,
         "rule_id": "ql-unmeasurable-qubits"

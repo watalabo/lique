@@ -171,41 +171,21 @@
   },
   {
     "file_name": "measurement_postulate_single_qubit_f_fb7a34",
-    "line_number": 6,
-    "rule_id": "ql-constant-classic-bit"
-  },
-  {
-    "file_name": "measurement_postulate_single_qubit_f_fb7a34",
-    "line_number": 8,
-    "rule_id": "ql-operation-after-measurement"
-  },
-  {
-    "file_name": "measurement_postulate_single_qubit_f_fb7a34",
-    "line_number": 9,
-    "rule_id": "ql-double-measurement"
-  },
-  {
-    "file_name": "measurement_postulate_single_qubit_f_fb7a34",
-    "line_number": 10,
-    "rule_id": "ql-double-measurement"
-  },
-  {
-    "file_name": "measurement_postulate_single_qubit_f_fb7a34_2",
     "line_number": 66,
     "rule_id": "ql-constant-classic-bit"
   },
   {
-    "file_name": "measurement_postulate_single_qubit_f_fb7a34_2",
+    "file_name": "measurement_postulate_single_qubit_f_fb7a34",
     "line_number": 68,
     "rule_id": "ql-operation-after-measurement"
   },
   {
-    "file_name": "measurement_postulate_single_qubit_f_fb7a34_2",
+    "file_name": "measurement_postulate_single_qubit_f_fb7a34",
     "line_number": 69,
     "rule_id": "ql-double-measurement"
   },
   {
-    "file_name": "measurement_postulate_single_qubit_f_fb7a34_2",
+    "file_name": "measurement_postulate_single_qubit_f_fb7a34",
     "line_number": 70,
     "rule_id": "ql-double-measurement"
   },
