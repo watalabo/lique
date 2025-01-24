@@ -4,7 +4,7 @@ from qiskit import QuantumCircuit
 
 
 def create_circuit():
-    meas = QuantumCircuit(4, 4)
+    meas = QuantumCircuit(4, 4) # ql-constant-classic-bit
     meas.barrier(range(4))
     meas.measure(range(4),range(4))
     return meas

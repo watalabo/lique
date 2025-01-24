@@ -8,7 +8,7 @@ def create_circuit():
     qreg_test = QuantumRegister(8, 'test')
     qreg_a = QuantumRegister(1, 'a')
     creg_c = ClassicalRegister(10, 'c')
-    circuit = QuantumCircuit(qreg_data, qreg_test, qreg_a, creg_c)
+    circuit = QuantumCircuit(qreg_data, qreg_test, qreg_a, creg_c) # ql-unmeasurable-qubits
 
     circuit.u(0.00028395*pi, 0.450122743*pi, 0, qreg_data[0])
     circuit.u(0.069290492*pi, 0.026794555*pi, 0, qreg_data[1])
@@ -432,14 +432,14 @@ def create_circuit():
     circuit.u(0.270908363*pi, 0*pi, 0, qreg_test[6])
     circuit.u(0.202641056*pi, 0*pi, 0, qreg_test[7])
     circuit.reset(qreg_a[0])
-    circuit.h(qreg_a[0])
-    circuit.cswap(qreg_a[0], qreg_test[0], qreg_data[0])
-    circuit.cswap(qreg_a[0], qreg_test[1], qreg_data[1])
-    circuit.cswap(qreg_a[0], qreg_test[2], qreg_data[2])
-    circuit.cswap(qreg_a[0], qreg_test[3], qreg_data[3])
-    circuit.cswap(qreg_a[0], qreg_test[4], qreg_data[4])
-    circuit.cswap(qreg_a[0], qreg_test[5], qreg_data[5])
-    circuit.cswap(qreg_a[0], qreg_test[6], qreg_data[6])
-    circuit.cswap(qreg_a[0], qreg_test[7], qreg_data[7])
-    circuit.h(qreg_a[0])
+    circuit.h(qreg_a[0]) # ql-operation-after-measurement
+    circuit.cswap(qreg_a[0], qreg_test[0], qreg_data[0]) # ql-operation-after-measurement
+    circuit.cswap(qreg_a[0], qreg_test[1], qreg_data[1]) # ql-operation-after-measurement
+    circuit.cswap(qreg_a[0], qreg_test[2], qreg_data[2]) # ql-operation-after-measurement
+    circuit.cswap(qreg_a[0], qreg_test[3], qreg_data[3]) # ql-operation-after-measurement
+    circuit.cswap(qreg_a[0], qreg_test[4], qreg_data[4]) # ql-operation-after-measurement
+    circuit.cswap(qreg_a[0], qreg_test[5], qreg_data[5]) # ql-operation-after-measurement
+    circuit.cswap(qreg_a[0], qreg_test[6], qreg_data[6]) # ql-operation-after-measurement
+    circuit.cswap(qreg_a[0], qreg_test[7], qreg_data[7]) # ql-operation-after-measurement
+    circuit.h(qreg_a[0]) # ql-operation-after-measurement
     return circuit

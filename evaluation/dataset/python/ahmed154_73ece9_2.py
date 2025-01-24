@@ -11,7 +11,7 @@ def create_circuit():
     qc = QuantumCircuit(q,c)
     qc.measure(q,c)
     qc.h(q[0]).c_if(c,0) # ql-operation-after-measurement
-    qc.measure(q,c)
+    qc.measure(q,c) # ql-double-measurement
     qc.h(q[0]).c_if(c,0) # ql-operation-after-measurement
-    qc.measure(q,c)
+    qc.measure(q,c) # ql-double-measurement
     return qc

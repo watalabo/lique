@@ -24,7 +24,6 @@ import python.hardware_3936ea
 import python.hello_b14c35_2
 import python.hello_b14c35
 import python.herrtestcomptimetiffoli_cf1dac
-import python.measurement_postulate_single_qubit_f_fb7a34_2
 import python.measurement_postulate_single_qubit_f_fb7a34
 import python.multiplier_5c47de
 import python.one_qubit_fb6117
@@ -98,7 +97,6 @@ if __name__ == "__main__":
         ("hello_b14c35_2", python.hello_b14c35_2.create_circuit),
         ("hello_b14c35", python.hello_b14c35.create_circuit),
         ("herrtestcomptimetiffoli_cf1dac", python.herrtestcomptimetiffoli_cf1dac.create_circuit),
-        ("measurement_postulate_single_qubit_f_fb7a34_2", python.measurement_postulate_single_qubit_f_fb7a34_2.create_circuit),
         ("measurement_postulate_single_qubit_f_fb7a34", python.measurement_postulate_single_qubit_f_fb7a34.create_circuit),
         ("multiplier_5c47de", python.multiplier_5c47de.create_circuit),
         ("one_qubit_fb6117", python.one_qubit_fb6117.create_circuit),

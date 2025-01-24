@@ -12,7 +12,7 @@ def create_circuit():
     qc.h(q[0]).c_if(c,0) # ql-conditional-without-measurement
     qc.measure(q,c)
     qc.h(q[0]).c_if(c,0)
-    qc.measure(q,c)
+    qc.measure(q,c) # ql-double-measurement
     qc.h(q[0]).c_if(c,0)
-    qc.measure(q,c)
+    qc.measure(q,c) # ql-double-measurement
     return qc

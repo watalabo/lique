@@ -10,7 +10,7 @@ from numpy import pi
 def create_circuit():
     qreg_q = QuantumRegister(4, 'q')
     creg_c = ClassicalRegister(4, 'c')
-    circuit = QuantumCircuit(qreg_q, creg_c)
+    circuit = QuantumCircuit(qreg_q, creg_c) # ql-constant-classic-bit
 
     circuit.h(qreg_q[0])
     circuit.measure(qreg_q[1], creg_c[1])

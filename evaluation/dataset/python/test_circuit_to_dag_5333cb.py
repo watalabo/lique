@@ -6,7 +6,7 @@ def create_circuit():
     """Check convert to dag and back"""
     qr = QuantumRegister(3)
     cr = ClassicalRegister(3)
-    circuit_in = QuantumCircuit(qr, cr)
+    circuit_in = QuantumCircuit(qr, cr) # ql-constant-classic-bit
     circuit_in.h(qr[0])
     circuit_in.h(qr[1])
     circuit_in.measure(qr[0], cr[0])

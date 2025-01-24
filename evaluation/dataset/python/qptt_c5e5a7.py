@@ -11,7 +11,7 @@ def create_circuit():
     input_qubit = QuantumRegister(2, 'input_qubit')
     output_qubit = QuantumRegister(1, 'output_qubit')
     c = ClassicalRegister(1, 'c')
-    qc = QuantumCircuit(input_qubit, output_qubit, c)
+    qc = QuantumCircuit(input_qubit, output_qubit, c) # ql-unmeasurable-qubits
     # Implementation statements
     qc.h(output_qubit)
     qc.cswap(output_qubit, input_qubit[0], input_qubit[1])

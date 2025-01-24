@@ -10,7 +10,7 @@ def create_circuit():
     cond = ClassicalRegister(1, "cond")
     q1 = QuantumRegister(2, "q1")
     q2 = QuantumRegister(2, "q2")
-    qc = QuantumCircuit(q1, q2, cond)
+    qc = QuantumCircuit(q1, q2, cond) # ql-unmeasurable-qubits
     qc.u(0, 0, 0, q1[0]).c_if(cond, 0) # ql-conditional-without-measurement
     qc.u(0, 0, 0, q1[1]).c_if(cond, 0) # ql-conditional-without-measurement
     qc.cx(q1[0], q2[0]).c_if(cond, 1) # ql-conditional-without-measurement

@@ -317,159 +317,153 @@
       }
     }, {
       "location" : {
-        "uri" : "measurement_postulate_single_qubit_f_fb7a34_2.py",
+        "uri" : "qubits_d78ad0.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 3
       }
     }, {
       "location" : {
-        "uri" : "qubits_d78ad0.py",
+        "uri" : "rsa_breaker_4_bit_0f27ff.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 4
       }
     }, {
       "location" : {
-        "uri" : "rsa_breaker_4_bit_0f27ff.py",
+        "uri" : "test_structure_aaba85.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 5
       }
     }, {
       "location" : {
-        "uri" : "test_structure_aaba85.py",
+        "uri" : "_12_quantum_key_distribution_checkpoint_4165fd.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 6
       }
     }, {
       "location" : {
-        "uri" : "_12_quantum_key_distribution_checkpoint_4165fd.py",
+        "uri" : "ch_3_28325b.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 7
       }
     }, {
       "location" : {
-        "uri" : "ch_3_28325b.py",
+        "uri" : "hardware_3936ea.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 8
       }
     }, {
       "location" : {
-        "uri" : "hardware_3936ea.py",
+        "uri" : "one_qubit_fb6117.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 9
       }
     }, {
       "location" : {
-        "uri" : "one_qubit_fb6117.py",
+        "uri" : "python_quantum_number_generator_1_6_multi_qasm_76fe84.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 10
       }
     }, {
       "location" : {
-        "uri" : "python_quantum_number_generator_1_6_multi_qasm_76fe84.py",
+        "uri" : "q02_417981.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 11
       }
     }, {
       "location" : {
-        "uri" : "q02_417981.py",
+        "uri" : "quantum_pixel_generator_multi_qasm_fractional_variable_d8275b.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 12
       }
     }, {
       "location" : {
-        "uri" : "quantum_pixel_generator_multi_qasm_fractional_variable_d8275b.py",
+        "uri" : "quantum_teleportation_1881c2.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 13
       }
     }, {
       "location" : {
-        "uri" : "quantum_teleportation_1881c2.py",
+        "uri" : "quantumdice_bc7351.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 14
       }
     }, {
       "location" : {
-        "uri" : "quantumdice_bc7351.py",
+        "uri" : "quantumteleportation_2823d6.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 15
       }
     }, {
       "location" : {
-        "uri" : "quantumteleportation_2823d6.py",
+        "uri" : "teleportation_practice_4ae2ea.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 16
       }
     }, {
       "location" : {
-        "uri" : "teleportation_practice_4ae2ea.py",
+        "uri" : "two_qubit_4cff15.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 17
       }
     }, {
       "location" : {
-        "uri" : "two_qubit_4cff15.py",
+        "uri" : "aatoms_of_computation_ed6fac.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 18
       }
     }, {
       "location" : {
-        "uri" : "aatoms_of_computation_ed6fac.py",
+        "uri" : "balanceada_3_11881b.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 19
       }
     }, {
       "location" : {
-        "uri" : "balanceada_3_11881b.py",
+        "uri" : "bernaz_035353.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 20
       }
     }, {
       "location" : {
-        "uri" : "bernaz_035353.py",
+        "uri" : "deutsch_jozsa_s_20functions_b84a95.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 21
       }
     }, {
       "location" : {
-        "uri" : "deutsch_jozsa_s_20functions_b84a95.py",
+        "uri" : "ex_1qubit_1randombit_206edf.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 22
       }
     }, {
       "location" : {
-        "uri" : "ex_1qubit_1randombit_206edf.py",
+        "uri" : "hello_b14c35.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 23
       }
     }, {
       "location" : {
-        "uri" : "hello_b14c35.py",
+        "uri" : "herrtestcomptimetiffoli_cf1dac.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 24
       }
     }, {
       "location" : {
-        "uri" : "herrtestcomptimetiffoli_cf1dac.py",
+        "uri" : "quantum_encoding_5a7eeb.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 25
       }
     }, {
       "location" : {
-        "uri" : "quantum_encoding_5a7eeb.py",
+        "uri" : "c3x_build_f7ba3d.py",
         "uriBaseId" : "%SRCROOT%",
         "index" : 26
       }
     }, {
       "location" : {
-        "uri" : "c3x_build_f7ba3d.py",
-        "uriBaseId" : "%SRCROOT%",
-        "index" : 27
-      }
-    }, {
-      "location" : {
         "uri" : "test_mcx_gate_065857.py",
         "uriBaseId" : "%SRCROOT%",
-        "index" : 28
+        "index" : 27
       }
     } ],
     "results" : [ {
@@ -497,7 +491,7 @@
         }
       } ],
       "partialFingerprints" : {
-        "primaryLocationLineHash" : "ab60a25906267da0:1",
+        "primaryLocationLineHash" : "a924d4c7a47cb584:1",
         "primaryLocationStartColumnFingerprint" : "0"
       }
     }, {
@@ -525,7 +519,7 @@
         }
       } ],
       "partialFingerprints" : {
-        "primaryLocationLineHash" : "3a820c28f2164370:1",
+        "primaryLocationLineHash" : "e9c4678707ff219f:1",
         "primaryLocationStartColumnFingerprint" : "0"
       }
     }, {
@@ -553,7 +547,7 @@
         }
       } ],
       "partialFingerprints" : {
-        "primaryLocationLineHash" : "ab60a25906267da0:1",
+        "primaryLocationLineHash" : "18bf08ec6c796643:1",
         "primaryLocationStartColumnFingerprint" : "0"
       }
     }, {
@@ -581,35 +575,7 @@
         }
       } ],
       "partialFingerprints" : {
-        "primaryLocationLineHash" : "3a820c28f2164370:1",
-        "primaryLocationStartColumnFingerprint" : "0"
-      }
-    }, {
-      "ruleId" : "ql-double-measurement",
-      "ruleIndex" : 1,
-      "rule" : {
-        "id" : "ql-double-measurement",
-        "index" : 1
-      },
-      "message" : {
-        "text" : "Two consecutive measurements on qubit '0' at locations: (10, 5) and (11, 5)"
-      },
-      "locations" : [ {
-        "physicalLocation" : {
-          "artifactLocation" : {
-            "uri" : "measurement_postulate_single_qubit_f_fb7a34.py",
-            "uriBaseId" : "%SRCROOT%",
-            "index" : 2
-          },
-          "region" : {
-            "startLine" : 11,
-            "startColumn" : 5,
-            "endColumn" : 22
-          }
-        }
-      } ],
-      "partialFingerprints" : {
-        "primaryLocationLineHash" : "274b8d01f48ce5e7:1",
+        "primaryLocationLineHash" : "e9c4678707ff219f:1",
         "primaryLocationStartColumnFingerprint" : "0"
       }
     }, {
@@ -625,9 +591,9 @@
       "locations" : [ {
         "physicalLocation" : {
           "artifactLocation" : {
-            "uri" : "measurement_postulate_single_qubit_f_fb7a34_2.py",
+            "uri" : "measurement_postulate_single_qubit_f_fb7a34.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 3
+            "index" : 2
           },
           "region" : {
             "startLine" : 71,
@@ -655,7 +621,7 @@
           "artifactLocation" : {
             "uri" : "qubits_d78ad0.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 4
+            "index" : 3
           },
           "region" : {
             "startLine" : 8,
@@ -683,7 +649,7 @@
           "artifactLocation" : {
             "uri" : "rsa_breaker_4_bit_0f27ff.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 5
+            "index" : 4
           },
           "region" : {
             "startLine" : 31,
@@ -711,7 +677,7 @@
           "artifactLocation" : {
             "uri" : "test_structure_aaba85.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 6
+            "index" : 5
           },
           "region" : {
             "startLine" : 8,
@@ -739,7 +705,7 @@
           "artifactLocation" : {
             "uri" : "_12_quantum_key_distribution_checkpoint_4165fd.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 7
+            "index" : 6
           },
           "region" : {
             "startLine" : 10,
@@ -767,7 +733,7 @@
           "artifactLocation" : {
             "uri" : "ch_3_28325b.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 8
+            "index" : 7
           },
           "region" : {
             "startLine" : 13,
@@ -795,7 +761,7 @@
           "artifactLocation" : {
             "uri" : "ch_3_28325b.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 8
+            "index" : 7
           },
           "region" : {
             "startLine" : 14,
@@ -823,7 +789,7 @@
           "artifactLocation" : {
             "uri" : "hardware_3936ea.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 9
+            "index" : 8
           },
           "region" : {
             "startLine" : 13,
@@ -844,7 +810,7 @@
         "index" : 2
       },
       "message" : {
-        "text" : "Operation 'ry' on qubit 0 after measurement at location: (8, 5)."
+        "text" : "Operation 'ry' on qubit 0 after measurement at location: (68, 5)."
       },
       "locations" : [ {
         "physicalLocation" : {
@@ -854,7 +820,7 @@
             "index" : 2
           },
           "region" : {
-            "startLine" : 9,
+            "startLine" : 69,
             "startColumn" : 5,
             "endColumn" : 20
           }
@@ -872,34 +838,6 @@
         "index" : 2
       },
       "message" : {
-        "text" : "Operation 'ry' on qubit 0 after measurement at location: (68, 5)."
-      },
-      "locations" : [ {
-        "physicalLocation" : {
-          "artifactLocation" : {
-            "uri" : "measurement_postulate_single_qubit_f_fb7a34_2.py",
-            "uriBaseId" : "%SRCROOT%",
-            "index" : 3
-          },
-          "region" : {
-            "startLine" : 69,
-            "startColumn" : 5,
-            "endColumn" : 20
-          }
-        }
-      } ],
-      "partialFingerprints" : {
-        "primaryLocationLineHash" : "95b20fdffee4a834:1",
-        "primaryLocationStartColumnFingerprint" : "0"
-      }
-    }, {
-      "ruleId" : "ql-operation-after-measurement",
-      "ruleIndex" : 2,
-      "rule" : {
-        "id" : "ql-operation-after-measurement",
-        "index" : 2
-      },
-      "message" : {
         "text" : "Operation 'cx' on qubit 0 after measurement at location: (13, 5)."
       },
       "locations" : [ {
@@ -907,7 +845,7 @@
           "artifactLocation" : {
             "uri" : "one_qubit_fb6117.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 10
+            "index" : 9
           },
           "region" : {
             "startLine" : 15,
@@ -935,7 +873,7 @@
           "artifactLocation" : {
             "uri" : "one_qubit_fb6117.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 10
+            "index" : 9
           },
           "region" : {
             "startLine" : 16,
@@ -963,7 +901,7 @@
           "artifactLocation" : {
             "uri" : "python_quantum_number_generator_1_6_multi_qasm_76fe84.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 11
+            "index" : 10
           },
           "region" : {
             "startLine" : 22,
@@ -991,7 +929,7 @@
           "artifactLocation" : {
             "uri" : "python_quantum_number_generator_1_6_multi_qasm_76fe84.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 11
+            "index" : 10
           },
           "region" : {
             "startLine" : 25,
@@ -1019,7 +957,7 @@
           "artifactLocation" : {
             "uri" : "python_quantum_number_generator_1_6_multi_qasm_76fe84.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 11
+            "index" : 10
           },
           "region" : {
             "startLine" : 28,
@@ -1047,7 +985,7 @@
           "artifactLocation" : {
             "uri" : "q02_417981.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 12
+            "index" : 11
           },
           "region" : {
             "startLine" : 26,
@@ -1075,7 +1013,7 @@
           "artifactLocation" : {
             "uri" : "q02_417981.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 12
+            "index" : 11
           },
           "region" : {
             "startLine" : 27,
@@ -1103,7 +1041,7 @@
           "artifactLocation" : {
             "uri" : "quantum_pixel_generator_multi_qasm_fractional_variable_d8275b.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 13
+            "index" : 12
           },
           "region" : {
             "startLine" : 20,
@@ -1131,7 +1069,7 @@
           "artifactLocation" : {
             "uri" : "quantum_teleportation_1881c2.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 14
+            "index" : 13
           },
           "region" : {
             "startLine" : 23,
@@ -1159,7 +1097,7 @@
           "artifactLocation" : {
             "uri" : "quantum_teleportation_1881c2.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 14
+            "index" : 13
           },
           "region" : {
             "startLine" : 24,
@@ -1187,7 +1125,7 @@
           "artifactLocation" : {
             "uri" : "quantumdice_bc7351.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 15
+            "index" : 14
           },
           "region" : {
             "startLine" : 9,
@@ -1215,7 +1153,7 @@
           "artifactLocation" : {
             "uri" : "quantumdice_bc7351.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 15
+            "index" : 14
           },
           "region" : {
             "startLine" : 11,
@@ -1243,7 +1181,7 @@
           "artifactLocation" : {
             "uri" : "quantumteleportation_2823d6.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 16
+            "index" : 15
           },
           "region" : {
             "startLine" : 13,
@@ -1271,7 +1209,7 @@
           "artifactLocation" : {
             "uri" : "quantumteleportation_2823d6.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 16
+            "index" : 15
           },
           "region" : {
             "startLine" : 14,
@@ -1299,7 +1237,7 @@
           "artifactLocation" : {
             "uri" : "qubits_d78ad0.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 4
+            "index" : 3
           },
           "region" : {
             "startLine" : 7,
@@ -1327,7 +1265,7 @@
           "artifactLocation" : {
             "uri" : "qubits_d78ad0.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 4
+            "index" : 3
           },
           "region" : {
             "startLine" : 9,
@@ -1355,7 +1293,7 @@
           "artifactLocation" : {
             "uri" : "teleportation_practice_4ae2ea.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 17
+            "index" : 16
           },
           "region" : {
             "startLine" : 44,
@@ -1383,7 +1321,7 @@
           "artifactLocation" : {
             "uri" : "teleportation_practice_4ae2ea.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 17
+            "index" : 16
           },
           "region" : {
             "startLine" : 45,
@@ -1411,7 +1349,7 @@
           "artifactLocation" : {
             "uri" : "two_qubit_4cff15.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 18
+            "index" : 17
           },
           "region" : {
             "startLine" : 48,
@@ -1439,7 +1377,7 @@
           "artifactLocation" : {
             "uri" : "two_qubit_4cff15.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 18
+            "index" : 17
           },
           "region" : {
             "startLine" : 49,
@@ -1467,7 +1405,7 @@
           "artifactLocation" : {
             "uri" : "two_qubit_4cff15.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 18
+            "index" : 17
           },
           "region" : {
             "startLine" : 50,
@@ -1495,7 +1433,7 @@
           "artifactLocation" : {
             "uri" : "two_qubit_4cff15.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 18
+            "index" : 17
           },
           "region" : {
             "startLine" : 51,
@@ -1523,7 +1461,7 @@
           "artifactLocation" : {
             "uri" : "aatoms_of_computation_ed6fac.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 19
+            "index" : 18
           },
           "region" : {
             "startLine" : 6,
@@ -1551,7 +1489,7 @@
           "artifactLocation" : {
             "uri" : "balanceada_3_11881b.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 20
+            "index" : 19
           },
           "region" : {
             "startLine" : 6,
@@ -1579,7 +1517,7 @@
           "artifactLocation" : {
             "uri" : "bernaz_035353.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 21
+            "index" : 20
           },
           "region" : {
             "startLine" : 7,
@@ -1589,7 +1527,7 @@
         }
       } ],
       "partialFingerprints" : {
-        "primaryLocationLineHash" : "bbd2e4432a03d314:1",
+        "primaryLocationLineHash" : "a8869250f0bdcfe7:1",
         "primaryLocationStartColumnFingerprint" : "7"
       }
     }, {
@@ -1607,7 +1545,7 @@
           "artifactLocation" : {
             "uri" : "deutsch_jozsa_s_20functions_b84a95.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 22
+            "index" : 21
           },
           "region" : {
             "startLine" : 6,
@@ -1635,7 +1573,7 @@
           "artifactLocation" : {
             "uri" : "ex_1qubit_1randombit_206edf.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 23
+            "index" : 22
           },
           "region" : {
             "startLine" : 11,
@@ -1645,7 +1583,7 @@
         }
       } ],
       "partialFingerprints" : {
-        "primaryLocationLineHash" : "f6074b02b09a3875:1",
+        "primaryLocationLineHash" : "f1950a79247ca7e3:1",
         "primaryLocationStartColumnFingerprint" : "12"
       }
     }, {
@@ -1663,7 +1601,7 @@
           "artifactLocation" : {
             "uri" : "hello_b14c35.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 24
+            "index" : 23
           },
           "region" : {
             "startLine" : 16,
@@ -1691,7 +1629,7 @@
           "artifactLocation" : {
             "uri" : "herrtestcomptimetiffoli_cf1dac.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 25
+            "index" : 24
           },
           "region" : {
             "startLine" : 6,
@@ -1722,34 +1660,6 @@
             "index" : 2
           },
           "region" : {
-            "startLine" : 7,
-            "startColumn" : 12,
-            "endColumn" : 31
-          }
-        }
-      } ],
-      "partialFingerprints" : {
-        "primaryLocationLineHash" : "5f999e383bf14f8:1",
-        "primaryLocationStartColumnFingerprint" : "7"
-      }
-    }, {
-      "ruleId" : "ql-constant-classic-bit",
-      "ruleIndex" : 3,
-      "rule" : {
-        "id" : "ql-constant-classic-bit",
-        "index" : 3
-      },
-      "message" : {
-        "text" : "Circuit 'circ' measures qubit '0' but never uses it."
-      },
-      "locations" : [ {
-        "physicalLocation" : {
-          "artifactLocation" : {
-            "uri" : "measurement_postulate_single_qubit_f_fb7a34_2.py",
-            "uriBaseId" : "%SRCROOT%",
-            "index" : 3
-          },
-          "region" : {
             "startLine" : 67,
             "startColumn" : 12,
             "endColumn" : 31
@@ -1757,7 +1667,7 @@
         }
       } ],
       "partialFingerprints" : {
-        "primaryLocationLineHash" : "a3c52efb904e1179:1",
+        "primaryLocationLineHash" : "9d2f87e9946dd89d:1",
         "primaryLocationStartColumnFingerprint" : "7"
       }
     }, {
@@ -1775,7 +1685,7 @@
           "artifactLocation" : {
             "uri" : "quantum_encoding_5a7eeb.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 26
+            "index" : 25
           },
           "region" : {
             "startLine" : 7,
@@ -1803,7 +1713,7 @@
           "artifactLocation" : {
             "uri" : "qubits_d78ad0.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 4
+            "index" : 3
           },
           "region" : {
             "startLine" : 5,
@@ -1813,7 +1723,7 @@
         }
       } ],
       "partialFingerprints" : {
-        "primaryLocationLineHash" : "5516404f2300dbba:1",
+        "primaryLocationLineHash" : "5f8c3a1f9cda79f4:1",
         "primaryLocationStartColumnFingerprint" : "5"
       }
     }, {
@@ -1831,7 +1741,7 @@
           "artifactLocation" : {
             "uri" : "test_structure_aaba85.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 6
+            "index" : 5
           },
           "region" : {
             "startLine" : 6,
@@ -1859,7 +1769,7 @@
           "artifactLocation" : {
             "uri" : "c3x_build_f7ba3d.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 27
+            "index" : 26
           },
           "region" : {
             "startLine" : 9,
@@ -1869,7 +1779,7 @@
         }
       } ],
       "partialFingerprints" : {
-        "primaryLocationLineHash" : "2934c36125201703:1",
+        "primaryLocationLineHash" : "bd7ed248d5840315:1",
         "primaryLocationStartColumnFingerprint" : "5"
       }
     }, {
@@ -1887,7 +1797,7 @@
           "artifactLocation" : {
             "uri" : "test_mcx_gate_065857.py",
             "uriBaseId" : "%SRCROOT%",
-            "index" : 28
+            "index" : 27
           },
           "region" : {
             "startLine" : 23,
@@ -1897,7 +1807,7 @@
         }
       } ],
       "partialFingerprints" : {
-        "primaryLocationLineHash" : "f6d4e0397095866a:1",
+        "primaryLocationLineHash" : "75b13723673eb69d:1",
         "primaryLocationStartColumnFingerprint" : "13"
       }
     } ],

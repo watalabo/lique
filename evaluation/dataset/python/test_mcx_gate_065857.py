@@ -20,7 +20,7 @@ from qiskit import QuantumCircuit
 
 def create_circuit():
     """ Test if linear_mcx is correct """
-    mcx_qiskit = QuantumCircuit(6)
+    mcx_qiskit = QuantumCircuit(6) # ql-oversized-circuit
 
     mcx_qiskit.mcx(
         control_qubits=list(range(6 - 2)),

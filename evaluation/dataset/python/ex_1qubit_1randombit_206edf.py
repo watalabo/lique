@@ -8,7 +8,7 @@ from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister
 def create_circuit():
     qr = QuantumRegister(1)
     cr = ClassicalRegister(1)
-    meas_circ = QuantumCircuit(qr, cr)
+    meas_circ = QuantumCircuit(qr, cr) # ql-constant-classic-bit
     meas_circ.barrier(qr)
     meas_circ.measure(qr, cr)
     return meas_circ

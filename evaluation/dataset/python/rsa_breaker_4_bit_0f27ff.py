@@ -11,7 +11,7 @@ def create_circuit():
 
     qr = QuantumRegister(available_qubits)   
     cr = ClassicalRegister(available_qubits)
-    qc = QuantumCircuit(qr,cr)
+    qc = QuantumCircuit(qr,cr) # ql-constant-classic-bit
     x0 = randint(1, N-1) 
     x_binary = np.zeros(available_qubits, dtype=bool)
 

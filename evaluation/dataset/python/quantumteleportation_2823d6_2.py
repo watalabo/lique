@@ -3,7 +3,7 @@ from qiskit import QuantumCircuit
 
 
 def create_circuit():
-    teleport = QuantumCircuit(4, 4)
+    teleport = QuantumCircuit(4, 4) # ql-oversized-circuit
     teleport.x(0)
     teleport.h(1)
     teleport.cx(1, 2)

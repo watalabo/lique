@@ -6,7 +6,7 @@ def create_circuit():
     # Init Circuit
     q_i = QuantumRegister(3, 'q_c')
     q_o = QuantumRegister(1, 'q_t')
-    qc = QuantumCircuit(q_i, q_o)
+    qc = QuantumCircuit(q_i, q_o) # ql-unmeasurable-qubits
 
     qc.mcx([q_i[0],q_i[1],q_i[2]],q_o[0])
     return qc

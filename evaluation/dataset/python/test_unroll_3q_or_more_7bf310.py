@@ -16,6 +16,6 @@ def create_circuit():
     """
     qr = QuantumRegister(3, 'qr')
     cr = ClassicalRegister(1, 'cr')
-    circuit = QuantumCircuit(qr, cr)
+    circuit = QuantumCircuit(qr, cr) # ql-unmeasurable-qubits
     circuit.ccx(qr[0], qr[1], qr[2]).c_if(cr, 0) # ql-conditional-without-measurement
     return circuit
