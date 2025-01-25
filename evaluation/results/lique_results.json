@@ -766,11 +766,6 @@
   },
   {
     "file_name": "test_decompose_78559e",
-    "line_number": 20,
-    "rule_id": "ql-oversized-circuit"
-  },
-  {
-    "file_name": "test_decompose_78559e",
     "line_number": 21,
     "rule_id": "ql-conditional-without-measurement"
   },
@@ -806,11 +801,6 @@
   },
   {
     "file_name": "test_structure_aaba85",
-    "line_number": 5,
-    "rule_id": "ql-oversized-circuit"
-  },
-  {
-    "file_name": "test_structure_aaba85",
     "line_number": 6,
     "rule_id": "ql-conditional-without-measurement"
   },
@@ -823,11 +813,6 @@
     "file_name": "test_structure_aaba85",
     "line_number": 8,
     "rule_id": "ql-conditional-without-measurement"
-  },
-  {
-    "file_name": "test_structure_aaba85_2",
-    "line_number": 12,
-    "rule_id": "ql-oversized-circuit"
   },
   {
     "file_name": "test_structure_aaba85_2",
@@ -853,11 +838,6 @@
     "file_name": "test_structure_aaba85_2",
     "line_number": 16,
     "rule_id": "ql-conditional-without-measurement"
-  },
-  {
-    "file_name": "test_unroll_3q_or_more_7bf310",
-    "line_number": 18,
-    "rule_id": "ql-oversized-circuit"
   },
   {
     "file_name": "test_unroll_3q_or_more_7bf310",

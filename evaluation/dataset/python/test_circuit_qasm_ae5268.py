@@ -18,7 +18,7 @@ def create_circuit():
     qr1 = QuantumRegister(1, 'qr1')
     qr2 = QuantumRegister(2, 'qr2')
     cr = ClassicalRegister(3, 'cr')
-    qc = QuantumCircuit(qr1, qr2, cr)
+    qc = QuantumCircuit(qr1, qr2, cr) # ql-constant-classic-bit
     qc.s(qr2[1])
     qc.sdg(qr2[1])
     qc.cx(qr1[0], qr2[1])

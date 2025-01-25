@@ -8,7 +8,7 @@ def create_circuit():
     # define a classical register with a single bit
     c = ClassicalRegister(2,"c")
     # define a quantum circuit
-    qc = QuantumCircuit(q,c)
+    qc = QuantumCircuit(q,c) # ql-constant-classic-bit
     qc.measure(q,c)
     qc.h(q[0]).c_if(c,0) # ql-operation-after-measurement
     qc.measure(q,c) # ql-double-measurement

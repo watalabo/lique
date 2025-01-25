@@ -2,6 +2,6 @@ rule,count
 ql-unmeasurable-qubits,14
 ql-operation-after-measurement,70
 ql-double-measurement,24
-ql-constant-classic-bit,20
+ql-constant-classic-bit,21
 ql-conditional-without-measurement,33
 ql-oversized-circuit,10

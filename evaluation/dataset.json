@@ -46,6 +46,11 @@
     },
     {
         "file_name": "ahmed154_73ece9_2",
+        "line_number": 10,
+        "rule_id": "ql-constant-classic-bit"
+    },
+    {
+        "file_name": "ahmed154_73ece9_2",
         "line_number": 12,
         "rule_id": "ql-operation-after-measurement"
     },

@@ -59,7 +59,8 @@ pub(crate) fn contains_or_equal(operand: &GateOperand, other_operand: &GateOpera
     }
 }
 
-/// Returns the number of qubits declared in the given statements and the byte range of the declaration in the QASM file.
+/// Returns a mappint from qubit name to the number of qubits declared in the given statements
+/// and the byte range of the declaration in the QASM file.
 pub(crate) fn collect_qubits(stmts: AstChildren<Stmt>) -> HashMap<String, (usize, Range<usize>)> {
     let mut qubits = HashMap::new();
     for stmt in stmts.clone() {
