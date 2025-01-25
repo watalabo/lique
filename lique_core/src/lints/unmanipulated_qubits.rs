@@ -1,3 +1,5 @@
+use core::ops::Range;
+
 use crate::{rule::Rule, Diagnostic};
 
 use oq3_syntax::{
@@ -9,10 +11,21 @@ use super::{count_qubits, manipulated_qubits};
 
 pub fn lint_unmanipulated_qubits(stmts: AstChildren<Stmt>) -> Vec<Diagnostic> {
     let (num_qubits, qubit_range) = count_qubits(stmts.clone());
+    let manipulated_mask = 0;
+    let (diags, _) =
+        lint_unmanipulated_qubits_inner(stmts, num_qubits, qubit_range, manipulated_mask);
+    diags
+}
 
+fn lint_unmanipulated_qubits_inner(
+    stmts: AstChildren<Stmt>,
+    num_qubits: usize,
+    qubit_range: Range<usize>,
+    mut manipulated_mask: usize,
+) -> (Vec<Diagnostic>, usize) {
     let mut diags = Vec::new();
-    let mut manipulated_mask = 0;
     for stmt in stmts {
+        // dbg!(&stmt);
         match stmt {
             Stmt::ExprStmt(expr_stmt) => {
                 if let Some(expr) = expr_stmt.expr()
@@ -22,6 +35,28 @@ pub fn lint_unmanipulated_qubits(stmts: AstChildren<Stmt>) -> Vec<Diagnostic> {
                     for operand in qubit_list.gate_operands() {
                         manipulated_mask |= manipulated_qubits(&operand, num_qubits);
                     }
+                }
+            }
+            Stmt::IfStmt(if_stmt) => {
+                if let Some(then_stmt) = if_stmt.then_branch() {
+                    let then_stmts = then_stmt.statements();
+                    let (_, manipulated_mask_new) = lint_unmanipulated_qubits_inner(
+                        then_stmts,
+                        num_qubits,
+                        qubit_range.clone(),
+                        manipulated_mask,
+                    );
+                    manipulated_mask = manipulated_mask_new;
+                }
+                if let Some(else_stmt) = if_stmt.else_branch() {
+                    let else_stmts = else_stmt.statements();
+                    let (_, manipulated_mask_new) = lint_unmanipulated_qubits_inner(
+                        else_stmts,
+                        num_qubits,
+                        qubit_range.clone(),
+                        manipulated_mask,
+                    );
+                    manipulated_mask = manipulated_mask_new;
                 }
             }
             Stmt::AssignmentStmt(assignment) => {
@@ -79,7 +114,7 @@ pub fn lint_unmanipulated_qubits(stmts: AstChildren<Stmt>) -> Vec<Diagnostic> {
             _ => {}
         }
     }
-    diags
+    (diags, manipulated_mask)
 }
 
 #[cfg(test)]
@@ -119,6 +154,48 @@ qubit[3] q;
 h q[0];
 c[0] = measure q[0];
 h q[1];
+c[1] = measure q[1];"#;
+        let result =
+            syntax_to_semantics::parse_source_string(source, Some("test.qasm"), None::<&[String]>);
+        let stmts = result.syntax_result().syntax_ast().tree().statements();
+        let diags = lint_unmanipulated_qubits(stmts);
+
+        assert_eq!(diags.len(), 0);
+    }
+
+    #[test]
+    fn test_unmanipulated_qubit_if_stmt() {
+        let source = r#"OPENQASM 3.0;
+include "stdgates.inc";
+bit[3] c;
+qubit[3] q;
+h q[0];
+c[0] = measure q[0];
+if (c[0] == 0) {
+    h q[1];
+}
+c[1] = measure q[1];"#;
+        let result =
+            syntax_to_semantics::parse_source_string(source, Some("test.qasm"), None::<&[String]>);
+        let stmts = result.syntax_result().syntax_ast().tree().statements();
+        let diags = lint_unmanipulated_qubits(stmts);
+
+        assert_eq!(diags.len(), 0);
+    }
+
+    #[test]
+    fn test_unmanipulated_qubit_if_else_stmt() {
+        let source = r#"OPENQASM 3.0;
+include "stdgates.inc";
+bit[3] c;
+qubit[3] q;
+h q[0];
+c[0] = measure q[0];
+if (c[0] == 0) {
+    h q[2];
+} else {
+    x q[1];
+}
 c[1] = measure q[1];"#;
         let result =
             syntax_to_semantics::parse_source_string(source, Some("test.qasm"), None::<&[String]>);

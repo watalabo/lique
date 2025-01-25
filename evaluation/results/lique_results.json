@@ -31,11 +31,6 @@
   },
   {
     "file_name": "ahmed154_73ece9",
-    "line_number": 10,
-    "rule_id": "ql-constant-classic-bit"
-  },
-  {
-    "file_name": "ahmed154_73ece9",
     "line_number": 11,
     "rule_id": "ql-conditional-without-measurement"
   },
@@ -117,11 +112,6 @@
   {
     "file_name": "ex_1qubit_1randombit_206edf",
     "line_number": 10,
-    "rule_id": "ql-constant-classic-bit"
-  },
-  {
-    "file_name": "example_qiskit_conditional_5ae7f6",
-    "line_number": 22,
     "rule_id": "ql-constant-classic-bit"
   },
   {
