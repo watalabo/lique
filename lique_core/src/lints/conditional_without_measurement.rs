@@ -7,13 +7,13 @@ use oq3_syntax::{
     AstNode,
 };
 
-use super::count_clbits;
+use super::collect_clbits;
 
 pub fn lint_conditional_without_measurement(stmts: AstChildren<Stmt>) -> Vec<Diagnostic> {
     let mut diags = Vec::new();
     // classical register name -> Bit mask if each bit is measured
     let mut measured_bits = HashMap::new();
-    let num_clbits = count_clbits(stmts.clone());
+    let num_clbits = collect_clbits(stmts.clone());
 
     for stmt in stmts.clone() {
         if let Stmt::AssignmentStmt(assignment) = stmt.clone()
@@ -168,7 +168,6 @@ if (c1 == 0) {
         let stmts = result.syntax_result().syntax_ast().tree().statements();
         let diags = lint_conditional_without_measurement(stmts);
 
-        dbg!(&diags);
         assert_eq!(diags.len(), 1);
         let range = &diags[0].range_zero_indexed;
         assert_eq!(range.start, 128);

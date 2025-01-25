@@ -72,11 +72,6 @@
   {
     "file_name": "c3x_build_f7ba3d",
     "line_number": 8,
-    "rule_id": "ql-oversized-circuit"
-  },
-  {
-    "file_name": "c3x_build_f7ba3d",
-    "line_number": 8,
     "rule_id": "ql-unmeasurable-qubits"
   },
   {
@@ -272,11 +267,6 @@
   {
     "file_name": "qptt_c5e5a7",
     "line_number": 13,
-    "rule_id": "ql-oversized-circuit"
-  },
-  {
-    "file_name": "qptt_c5e5a7",
-    "line_number": 13,
     "rule_id": "ql-unmeasurable-qubits"
   },
   {
@@ -333,11 +323,6 @@
     "file_name": "quantumdice_bc7351",
     "line_number": 11,
     "rule_id": "ql-double-measurement"
-  },
-  {
-    "file_name": "quantummnist_1f1a21",
-    "line_number": 10,
-    "rule_id": "ql-oversized-circuit"
   },
   {
     "file_name": "quantummnist_1f1a21",
@@ -737,7 +722,7 @@
   {
     "file_name": "test_circuit_qasm_ae5268",
     "line_number": 20,
-    "rule_id": "ql-oversized-circuit"
+    "rule_id": "ql-constant-classic-bit"
   },
   {
     "file_name": "test_circuit_qasm_ae5268",

@@ -4,20 +4,24 @@ use oq3_syntax::ast::{AstChildren, Stmt};
 
 use crate::{rule::Rule, Diagnostic};
 
-use super::{count_clbits, count_qubits};
+use super::{collect_clbits, collect_qubits};
 
 pub fn lint_unmeasurable_qubits(stmts: AstChildren<Stmt>) -> Vec<Diagnostic> {
     let mut diags = Vec::new();
-    let (num_qubits, last_qubits_range) = count_qubits(stmts.clone());
-    let num_clbits = count_clbits(stmts.clone()).values().map(|v| v.0).sum::<usize>();
+    let qubits = collect_qubits(stmts.clone());
+    let num_qubits = qubits.values().map(|v| v.0).sum::<usize>();
+    let num_clbits = collect_clbits(stmts.clone())
+        .values()
+        .map(|v| v.0)
+        .sum::<usize>();
 
     if num_clbits < num_qubits {
         let diag = Diagnostic {
-                    rule_id: Rule::UnmeasurableQubits.into(),
-                    message: format!("Number of classical registers({}) is fewer than the number of quantum registers({})", num_clbits, num_qubits),
-                    range_zero_indexed: last_qubits_range,
-                    related_informations: vec![],
-                };
+            rule_id: Rule::UnmeasurableQubits.into(),
+            message: format!("Number of classical registers({}) is fewer than the number of quantum registers({})", num_clbits, num_qubits),
+            range_zero_indexed: qubits.iter().next().unwrap().1.1.clone(),
+            related_informations: vec![],
+        };
         diags.push(diag);
     }
 

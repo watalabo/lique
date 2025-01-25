@@ -716,6 +716,11 @@
     },
     {
         "file_name": "test_circuit_qasm_ae5268",
+        "line_number": 20,
+        "rule_id": "ql-constant-classic-bit"
+    },
+    {
+        "file_name": "test_circuit_qasm_ae5268",
         "line_number": 27,
         "rule_id": "ql-conditional-without-measurement"
     },

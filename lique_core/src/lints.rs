@@ -60,26 +60,27 @@ pub(crate) fn contains_or_equal(operand: &GateOperand, other_operand: &GateOpera
 }
 
 /// Returns the number of qubits declared in the given statements and the byte range of the declaration in the QASM file.
-pub(crate) fn count_qubits(stmts: AstChildren<Stmt>) -> (usize, Range<usize>) {
-    let mut num_qubits = 0;
-    let mut qubits_range: Range<usize> = 0..0;
+pub(crate) fn collect_qubits(stmts: AstChildren<Stmt>) -> HashMap<String, (usize, Range<usize>)> {
+    let mut qubits = HashMap::new();
     for stmt in stmts.clone() {
         if let Stmt::QuantumDeclarationStatement(declaration) = stmt.clone()
             && let Some(qubit) = declaration.qubit_type()
+            && let Some(bits_name) = declaration.name()
             && let Some(designator) = qubit.designator()
             && let Some(expr) = designator.expr()
             && let Expr::Literal(bits) = expr
         {
-            num_qubits += bits.to_string().parse::<usize>().unwrap();
-            qubits_range = stmt.syntax().text_range().into();
+            let num_qubits = bits.to_string().parse::<usize>().unwrap();
+            let qubits_range: Range<usize> = stmt.syntax().text_range().into();
+            qubits.insert(bits_name.to_string(), (num_qubits, qubits_range));
         }
     }
-    (num_qubits, qubits_range)
+    qubits
 }
 
 /// Returns a mapping from classical register name to the number of classical bits declared in the given statements
 /// and the byte range of the declaration in the QASM file.
-pub(crate) fn count_clbits(stmts: AstChildren<Stmt>) -> HashMap<String, (usize, Range<usize>)> {
+pub(crate) fn collect_clbits(stmts: AstChildren<Stmt>) -> HashMap<String, (usize, Range<usize>)> {
     let mut clbits = HashMap::new();
     for stmt in stmts.clone() {
         if let Stmt::ClassicalDeclarationStatement(declaration) = stmt.clone()
@@ -89,23 +90,29 @@ pub(crate) fn count_clbits(stmts: AstChildren<Stmt>) -> HashMap<String, (usize, 
             && let Some(expr) = designator.expr()
             && let Expr::Literal(bits) = expr
         {
-            let num_classical_bits = bits.to_string().parse::<usize>().unwrap();
-            let classical_bits_range: Range<usize> = stmt.syntax().text_range().into();
-            clbits.insert(
-                bits_name.to_string(),
-                (num_classical_bits, classical_bits_range),
-            );
+            let num_clbits = bits.to_string().parse::<usize>().unwrap();
+            let clbits_range: Range<usize> = stmt.syntax().text_range().into();
+            clbits.insert(bits_name.to_string(), (num_clbits, clbits_range));
         }
     }
     clbits
 }
 
+pub(crate) type ManipulatedQubits = HashMap<String, Vec<bool>>;
+
 /// Returns a mask where each bit represents a qubit that is manipulated by the operand.
 /// The mask is little-endian, i.e. the least significant bit represents the first qubit.
-pub(crate) fn manipulated_qubits(operand: &GateOperand, num_qubits: usize) -> usize {
-    let mut manipulated_mask = 0;
+pub(crate) fn mark_manipulated_qubits(
+    manipulated_qubits: &mut ManipulatedQubits,
+    operand: &GateOperand,
+) {
     match operand.clone() {
         GateOperand::IndexedIdentifier(indexed_identifier) => {
+            let qubit_name = indexed_identifier
+                .identifier()
+                .unwrap()
+                .ident_token()
+                .unwrap();
             for operator in indexed_identifier.index_operators() {
                 if let Some(kind) = operator.index_kind()
                     && let IndexKind::ExpressionList(list) = kind
@@ -114,16 +121,17 @@ pub(crate) fn manipulated_qubits(operand: &GateOperand, num_qubits: usize) -> us
                         if let Expr::Literal(literal) = expr {
                             let qubit_index =
                                 literal.syntax().to_string().parse::<usize>().unwrap();
-                            manipulated_mask |= 1 << qubit_index;
+                            manipulated_qubits.get_mut(qubit_name.text()).unwrap()[qubit_index] =
+                                true;
                         }
                     }
                 }
             }
         }
-        GateOperand::Identifier(_) => {
-            manipulated_mask = (1 << num_qubits) - 1;
+        GateOperand::Identifier(identifier) => {
+            let qubit_name = identifier.ident_token().unwrap();
+            manipulated_qubits.get_mut(qubit_name.text()).unwrap()[0] = true;
         }
         _ => {}
     }
-    manipulated_mask
 }

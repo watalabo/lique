@@ -16,21 +16,13 @@
       "recall": 0.9571428571428572,
       "f1": 0.9781021897810219
     },
-    "ql-unmeasurable-qubits": {
-      "tp": 14.0,
-      "fp": 0.0,
+    "ql-constant-classic-bit": {
+      "tp": 20.0,
+      "fp": 1.0,
       "fn": 0.0,
-      "precision": 1.0,
+      "precision": 0.9523809523809523,
       "recall": 1.0,
-      "f1": 1.0
-    },
-    "ql-oversized-circuit": {
-      "tp": 10.0,
-      "fp": 3.0,
-      "fn": 0.0,
-      "precision": 0.7692307692307693,
-      "recall": 1.0,
-      "f1": 0.8695652173913043
+      "f1": 0.975609756097561
     },
     "ql-double-measurement": {
       "tp": 24.0,
@@ -40,146 +32,32 @@
       "recall": 1.0,
       "f1": 1.0
     },
-    "ql-constant-classic-bit": {
-      "tp": 19.0,
-      "fp": 1.0,
+    "ql-oversized-circuit": {
+      "tp": 10.0,
+      "fp": 2.0,
       "fn": 0.0,
-      "precision": 0.95,
+      "precision": 0.8333333333333334,
       "recall": 1.0,
-      "f1": 0.9743589743589743
+      "f1": 0.9090909090909091
+    },
+    "ql-unmeasurable-qubits": {
+      "tp": 14.0,
+      "fp": 0.0,
+      "fn": 0.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
     },
     "all": {
-      "tp": 167.0,
-      "fp": 4.0,
+      "tp": 168.0,
+      "fp": 3.0,
       "fn": 3.0,
-      "precision": 0.9766081871345029,
-      "recall": 0.9823529411764705,
-      "f1": 0.9794721407624634
+      "precision": 0.9824561403508771,
+      "recall": 0.9824561403508771,
+      "f1": 0.9824561403508771
     }
   },
   "tp_cases": {
-    "ql-double-measurement": [
-      {
-        "file_name": "_12_quantum_key_distribution_checkpoint_4165fd",
-        "line_number": 10,
-        "rule_id": "ql-double-measurement"
-      },
-      {
-        "file_name": "ahmed154_73ece9",
-        "line_number": 14,
-        "rule_id": "ql-double-measurement"
-      },
-      {
-        "file_name": "ahmed154_73ece9",
-        "line_number": 16,
-        "rule_id": "ql-double-measurement"
-      },
-      {
-        "file_name": "ahmed154_73ece9_2",
-        "line_number": 13,
-        "rule_id": "ql-double-measurement"
-      },
-      {
-        "file_name": "ahmed154_73ece9_2",
-        "line_number": 15,
-        "rule_id": "ql-double-measurement"
-      },
-      {
-        "file_name": "hardware_3936ea",
-        "line_number": 13,
-        "rule_id": "ql-double-measurement"
-      },
-      {
-        "file_name": "measurement_postulate_single_qubit_f_fb7a34",
-        "line_number": 69,
-        "rule_id": "ql-double-measurement"
-      },
-      {
-        "file_name": "measurement_postulate_single_qubit_f_fb7a34",
-        "line_number": 70,
-        "rule_id": "ql-double-measurement"
-      },
-      {
-        "file_name": "quantumdice_bc7351",
-        "line_number": 9,
-        "rule_id": "ql-double-measurement"
-      },
-      {
-        "file_name": "quantumdice_bc7351",
-        "line_number": 11,
-        "rule_id": "ql-double-measurement"
-      },
-      {
-        "file_name": "qubits_d78ad0",
-        "line_number": 7,
-        "rule_id": "ql-double-measurement"
-      },
-      {
-        "file_name": "qubits_d78ad0",
-        "line_number": 9,
-        "rule_id": "ql-double-measurement"
-      },
-      {
-        "file_name": "quntum_204_dec_2005_202020_206_2042_20am_16e278",
-        "line_number": 26,
-        "rule_id": "ql-double-measurement"
-      },
-      {
-        "file_name": "rsa_breaker_4_bit_0f27ff",
-        "line_number": 30,
-        "rule_id": "ql-double-measurement"
-      },
-      {
-        "file_name": "sandbox_e52934",
-        "line_number": 12,
-        "rule_id": "ql-double-measurement"
-      },
-      {
-        "file_name": "sandbox_e52934",
-        "line_number": 13,
-        "rule_id": "ql-double-measurement"
-      },
-      {
-        "file_name": "sandbox_e52934",
-        "line_number": 15,
-        "rule_id": "ql-double-measurement"
-      },
-      {
-        "file_name": "sandbox_e52934",
-        "line_number": 16,
-        "rule_id": "ql-double-measurement"
-      },
-      {
-        "file_name": "sandbox_e52934",
-        "line_number": 18,
-        "rule_id": "ql-double-measurement"
-      },
-      {
-        "file_name": "sandbox_e52934",
-        "line_number": 19,
-        "rule_id": "ql-double-measurement"
-      },
-      {
-        "file_name": "task_2_4f46b2",
-        "line_number": 22,
-        "rule_id": "ql-double-measurement"
-      },
-      {
-        "file_name": "teleportation_8f1eaf",
-        "line_number": 61,
-        "rule_id": "ql-double-measurement"
-      },
-      {
-        "file_name": "test_circuit_to_dag_5333cb",
-        "line_number": 14,
-        "rule_id": "ql-double-measurement"
-      },
-      {
-        "file_name": "test_circuit_to_dag_5333cb",
-        "line_number": 15,
-        "rule_id": "ql-double-measurement"
-      }
-    ],
     "ql-conditional-without-measurement": [
       {
         "file_name": "ahmed154_73ece9",
@@ -347,6 +225,128 @@
         "rule_id": "ql-conditional-without-measurement"
       }
     ],
+    "ql-double-measurement": [
+      {
+        "file_name": "_12_quantum_key_distribution_checkpoint_4165fd",
+        "line_number": 10,
+        "rule_id": "ql-double-measurement"
+      },
+      {
+        "file_name": "ahmed154_73ece9",
+        "line_number": 14,
+        "rule_id": "ql-double-measurement"
+      },
+      {
+        "file_name": "ahmed154_73ece9",
+        "line_number": 16,
+        "rule_id": "ql-double-measurement"
+      },
+      {
+        "file_name": "ahmed154_73ece9_2",
+        "line_number": 13,
+        "rule_id": "ql-double-measurement"
+      },
+      {
+        "file_name": "ahmed154_73ece9_2",
+        "line_number": 15,
+        "rule_id": "ql-double-measurement"
+      },
+      {
+        "file_name": "hardware_3936ea",
+        "line_number": 13,
+        "rule_id": "ql-double-measurement"
+      },
+      {
+        "file_name": "measurement_postulate_single_qubit_f_fb7a34",
+        "line_number": 69,
+        "rule_id": "ql-double-measurement"
+      },
+      {
+        "file_name": "measurement_postulate_single_qubit_f_fb7a34",
+        "line_number": 70,
+        "rule_id": "ql-double-measurement"
+      },
+      {
+        "file_name": "quantumdice_bc7351",
+        "line_number": 9,
+        "rule_id": "ql-double-measurement"
+      },
+      {
+        "file_name": "quantumdice_bc7351",
+        "line_number": 11,
+        "rule_id": "ql-double-measurement"
+      },
+      {
+        "file_name": "qubits_d78ad0",
+        "line_number": 7,
+        "rule_id": "ql-double-measurement"
+      },
+      {
+        "file_name": "qubits_d78ad0",
+        "line_number": 9,
+        "rule_id": "ql-double-measurement"
+      },
+      {
+        "file_name": "quntum_204_dec_2005_202020_206_2042_20am_16e278",
+        "line_number": 26,
+        "rule_id": "ql-double-measurement"
+      },
+      {
+        "file_name": "rsa_breaker_4_bit_0f27ff",
+        "line_number": 30,
+        "rule_id": "ql-double-measurement"
+      },
+      {
+        "file_name": "sandbox_e52934",
+        "line_number": 12,
+        "rule_id": "ql-double-measurement"
+      },
+      {
+        "file_name": "sandbox_e52934",
+        "line_number": 13,
+        "rule_id": "ql-double-measurement"
+      },
+      {
+        "file_name": "sandbox_e52934",
+        "line_number": 15,
+        "rule_id": "ql-double-measurement"
+      },
+      {
+        "file_name": "sandbox_e52934",
+        "line_number": 16,
+        "rule_id": "ql-double-measurement"
+      },
+      {
+        "file_name": "sandbox_e52934",
+        "line_number": 18,
+        "rule_id": "ql-double-measurement"
+      },
+      {
+        "file_name": "sandbox_e52934",
+        "line_number": 19,
+        "rule_id": "ql-double-measurement"
+      },
+      {
+        "file_name": "task_2_4f46b2",
+        "line_number": 22,
+        "rule_id": "ql-double-measurement"
+      },
+      {
+        "file_name": "teleportation_8f1eaf",
+        "line_number": 61,
+        "rule_id": "ql-double-measurement"
+      },
+      {
+        "file_name": "test_circuit_to_dag_5333cb",
+        "line_number": 14,
+        "rule_id": "ql-double-measurement"
+      },
+      {
+        "file_name": "test_circuit_to_dag_5333cb",
+        "line_number": 15,
+        "rule_id": "ql-double-measurement"
+      }
+    ],
     "ql-constant-classic-bit": [
       {
         "file_name": "a00_qiskit_introduction_1ba1af",
@@ -429,6 +429,11 @@
         "rule_id": "ql-constant-classic-bit"
       },
       {
+        "file_name": "test_circuit_qasm_ae5268",
+        "line_number": 20,
+        "rule_id": "ql-constant-classic-bit"
+      },
+      {
         "file_name": "test_circuit_to_dag_5333cb",
         "line_number": 8,
         "rule_id": "ql-constant-classic-bit"
@@ -442,130 +447,6 @@
         "file_name": "test_mapper_217a32",
         "line_number": 22,
         "rule_id": "ql-constant-classic-bit"
-      }
-    ],
-    "ql-oversized-circuit": [
-      {
-        "file_name": "ch_3_28325b_2",
-        "line_number": 5,
-        "rule_id": "ql-oversized-circuit"
-      },
-      {
-        "file_name": "hardware_3936ea_2",
-        "line_number": 4,
-        "rule_id": "ql-oversized-circuit"
-      },
-      {
-        "file_name": "hello_b14c35_2",
-        "line_number": 15,
-        "rule_id": "ql-oversized-circuit"
-      },
-      {
-        "file_name": "multiplier_5c47de",
-        "line_number": 12,
-        "rule_id": "ql-oversized-circuit"
-      },
-      {
-        "file_name": "q02_417981_2",
-        "line_number": 12,
-        "rule_id": "ql-oversized-circuit"
-      },
-      {
-        "file_name": "quantum_teleportation_1881c2_2",
-        "line_number": 7,
-        "rule_id": "ql-oversized-circuit"
-      },
-      {
-        "file_name": "quantumdice_bc7351",
-        "line_number": 5,
-        "rule_id": "ql-oversized-circuit"
-      },
-      {
-        "file_name": "quantumteleportation_2823d6_2",
-        "line_number": 5,
-        "rule_id": "ql-oversized-circuit"
-      },
-      {
-        "file_name": "teleportation_practice_4ae2ea_2",
-        "line_number": 5,
-        "rule_id": "ql-oversized-circuit"
-      },
-      {
-        "file_name": "test_mcx_gate_065857",
-        "line_number": 22,
-        "rule_id": "ql-oversized-circuit"
-      }
-    ],
-    "ql-unmeasurable-qubits": [
-      {
-        "file_name": "UnmeasureableQubits",
-        "line_number": 6,
-        "rule_id": "ql-unmeasurable-qubits"
-      },
-      {
-        "file_name": "a00_qiskit_introduction_checkpoint_78fe1f",
-        "line_number": 65,
-        "rule_id": "ql-unmeasurable-qubits"
-      },
-      {
-        "file_name": "c3x_build_f7ba3d",
-        "line_number": 8,
-        "rule_id": "ql-unmeasurable-qubits"
-      },
-      {
-        "file_name": "decomposed_a7ee15",
-        "line_number": 7,
-        "rule_id": "ql-unmeasurable-qubits"
-      },
-      {
-        "file_name": "multiplier_5c47de",
-        "line_number": 12,
-        "rule_id": "ql-unmeasurable-qubits"
-      },
-      {
-        "file_name": "one_qubit_fb6117",
-        "line_number": 6,
-        "rule_id": "ql-unmeasurable-qubits"
-      },
-      {
-        "file_name": "python_quantum_number_generator_1_6_multi_qasm_76fe84",
-        "line_number": 5,
-        "rule_id": "ql-unmeasurable-qubits"
-      },
-      {
-        "file_name": "qptt_c5e5a7",
-        "line_number": 13,
-        "rule_id": "ql-unmeasurable-qubits"
-      },
-      {
-        "file_name": "quantum_pixel_generator_multi_qasm_fractional_variable_d8275b",
-        "line_number": 8,
-        "rule_id": "ql-unmeasurable-qubits"
-      },
-      {
-        "file_name": "quantummnist_1f1a21",
-        "line_number": 10,
-        "rule_id": "ql-unmeasurable-qubits"
-      },
-      {
-        "file_name": "task_2_4f46b2",
-        "line_number": 9,
-        "rule_id": "ql-unmeasurable-qubits"
-      },
-      {
-        "file_name": "test_qiskit_738074",
-        "line_number": 6,
-        "rule_id": "ql-unmeasurable-qubits"
-      },
-      {
-        "file_name": "test_structure_aaba85_2",
-        "line_number": 12,
-        "rule_id": "ql-unmeasurable-qubits"
-      },
-      {
-        "file_name": "test_unroll_3q_or_more_7bf310",
-        "line_number": 18,
-        "rule_id": "ql-unmeasurable-qubits"
       }
     ],
     "ql-operation-after-measurement": [
@@ -904,16 +785,145 @@
         "line_number": 50,
         "rule_id": "ql-operation-after-measurement"
       }
+    ],
+    "ql-oversized-circuit": [
+      {
+        "file_name": "ch_3_28325b_2",
+        "line_number": 5,
+        "rule_id": "ql-oversized-circuit"
+      },
+      {
+        "file_name": "hardware_3936ea_2",
+        "line_number": 4,
+        "rule_id": "ql-oversized-circuit"
+      },
+      {
+        "file_name": "hello_b14c35_2",
+        "line_number": 15,
+        "rule_id": "ql-oversized-circuit"
+      },
+      {
+        "file_name": "multiplier_5c47de",
+        "line_number": 12,
+        "rule_id": "ql-oversized-circuit"
+      },
+      {
+        "file_name": "q02_417981_2",
+        "line_number": 12,
+        "rule_id": "ql-oversized-circuit"
+      },
+      {
+        "file_name": "quantum_teleportation_1881c2_2",
+        "line_number": 7,
+        "rule_id": "ql-oversized-circuit"
+      },
+      {
+        "file_name": "quantumdice_bc7351",
+        "line_number": 5,
+        "rule_id": "ql-oversized-circuit"
+      },
+      {
+        "file_name": "quantumteleportation_2823d6_2",
+        "line_number": 5,
+        "rule_id": "ql-oversized-circuit"
+      },
+      {
+        "file_name": "teleportation_practice_4ae2ea_2",
+        "line_number": 5,
+        "rule_id": "ql-oversized-circuit"
+      },
+      {
+        "file_name": "test_mcx_gate_065857",
+        "line_number": 22,
+        "rule_id": "ql-oversized-circuit"
+      }
+    ],
+    "ql-unmeasurable-qubits": [
+      {
+        "file_name": "UnmeasureableQubits",
+        "line_number": 6,
+        "rule_id": "ql-unmeasurable-qubits"
+      },
+      {
+        "file_name": "a00_qiskit_introduction_checkpoint_78fe1f",
+        "line_number": 65,
+        "rule_id": "ql-unmeasurable-qubits"
+      },
+      {
+        "file_name": "c3x_build_f7ba3d",
+        "line_number": 8,
+        "rule_id": "ql-unmeasurable-qubits"
+      },
+      {
+        "file_name": "decomposed_a7ee15",
+        "line_number": 7,
+        "rule_id": "ql-unmeasurable-qubits"
+      },
+      {
+        "file_name": "multiplier_5c47de",
+        "line_number": 12,
+        "rule_id": "ql-unmeasurable-qubits"
+      },
+      {
+        "file_name": "one_qubit_fb6117",
+        "line_number": 6,
+        "rule_id": "ql-unmeasurable-qubits"
+      },
+      {
+        "file_name": "python_quantum_number_generator_1_6_multi_qasm_76fe84",
+        "line_number": 5,
+        "rule_id": "ql-unmeasurable-qubits"
+      },
+      {
+        "file_name": "qptt_c5e5a7",
+        "line_number": 13,
+        "rule_id": "ql-unmeasurable-qubits"
+      },
+      {
+        "file_name": "quantum_pixel_generator_multi_qasm_fractional_variable_d8275b",
+        "line_number": 8,
+        "rule_id": "ql-unmeasurable-qubits"
+      },
+      {
+        "file_name": "quantummnist_1f1a21",
+        "line_number": 10,
+        "rule_id": "ql-unmeasurable-qubits"
+      },
+      {
+        "file_name": "task_2_4f46b2",
+        "line_number": 9,
+        "rule_id": "ql-unmeasurable-qubits"
+      },
+      {
+        "file_name": "test_qiskit_738074",
+        "line_number": 6,
+        "rule_id": "ql-unmeasurable-qubits"
+      },
+      {
+        "file_name": "test_structure_aaba85_2",
+        "line_number": 12,
+        "rule_id": "ql-unmeasurable-qubits"
+      },
+      {
+        "file_name": "test_unroll_3q_or_more_7bf310",
+        "line_number": 18,
+        "rule_id": "ql-unmeasurable-qubits"
+      }
     ]
   },
   "fp_cases": {
     "ql-unmeasurable-qubits": [],
-    "ql-oversized-circuit": [
+    "ql-conditional-without-measurement": [],
+    "ql-operation-after-measurement": [],
+    "ql-double-measurement": [],
+    "ql-constant-classic-bit": [
       {
-        "file_name": "test_circuit_qasm_ae5268",
-        "line_number": 20,
-        "rule_id": "ql-oversized-circuit"
-      },
+        "file_name": "ahmed154_73ece9_2",
+        "line_number": 10,
+        "rule_id": "ql-constant-classic-bit"
+      }
+    ],
+    "ql-oversized-circuit": [
       {
         "file_name": "test_decompose_78559e",
         "line_number": 20,
@@ -924,21 +934,14 @@
         "line_number": 5,
         "rule_id": "ql-oversized-circuit"
       }
-    ],
-    "ql-operation-after-measurement": [],
-    "ql-conditional-without-measurement": [],
-    "ql-constant-classic-bit": [
-      {
-        "file_name": "ahmed154_73ece9_2",
-        "line_number": 10,
-        "rule_id": "ql-constant-classic-bit"
-      }
-    ],
-    "ql-double-measurement": []
+    ]
   },
   "fn_cases": {
-    "ql-constant-classic-bit": [],
+    "ql-double-measurement": [],
+    "ql-oversized-circuit": [],
     "ql-unmeasurable-qubits": [],
+    "ql-conditional-without-measurement": [],
+    "ql-constant-classic-bit": [],
     "ql-operation-after-measurement": [
       {
         "file_name": "ahmed154_73ece9_2",
@@ -955,9 +958,6 @@
         "line_number": 13,
         "rule_id": "ql-operation-after-measurement"
       }
-    ],
-    "ql-conditional-without-measurement": [],
-    "ql-double-measurement": [],
-    "ql-oversized-circuit": []
+    ]
   }
 }

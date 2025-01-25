@@ -1,16 +1,20 @@
 use core::convert::Into;
+use std::collections::HashMap;
 
 use crate::{rule::Rule, Diagnostic};
 
 use oq3_syntax::ast::{AstChildren, Expr, Stmt};
 
-use super::{count_qubits, manipulated_qubits};
+use super::{collect_qubits, mark_manipulated_qubits};
 
 pub fn lint_oversized_circuit(stmts: AstChildren<Stmt>) -> Vec<Diagnostic> {
-    let (num_qubits, qubit_range) = count_qubits(stmts.clone());
+    let qubits = collect_qubits(stmts.clone());
 
     let mut diags = Vec::new();
-    let mut manipulated_mask = 0;
+    let mut manipulated_qubits = qubits
+        .iter()
+        .map(|(name, (num, _))| (name.clone(), vec![false; *num]))
+        .collect::<HashMap<_, _>>();
     for stmt in stmts {
         match stmt {
             Stmt::ExprStmt(expr_stmt) => {
@@ -19,7 +23,7 @@ pub fn lint_oversized_circuit(stmts: AstChildren<Stmt>) -> Vec<Diagnostic> {
                     && let Some(qubit_list) = gate_call.qubit_list()
                 {
                     for operand in qubit_list.gate_operands() {
-                        manipulated_mask |= manipulated_qubits(&operand, num_qubits);
+                        mark_manipulated_qubits(&mut manipulated_qubits, &operand);
                     }
                 }
             }
@@ -28,21 +32,28 @@ pub fn lint_oversized_circuit(stmts: AstChildren<Stmt>) -> Vec<Diagnostic> {
                     && let Expr::MeasureExpression(measurement) = rhs
                     && let Some(operand) = measurement.gate_operand()
                 {
-                    manipulated_mask |= manipulated_qubits(&operand, num_qubits);
+                    mark_manipulated_qubits(&mut manipulated_qubits, &operand);
                 }
             }
             _ => {}
         }
     }
 
-    for i in 0..num_qubits {
-        if manipulated_mask & (1 << i) == 0 {
-            diags.push(Diagnostic {
-                rule_id: Rule::OversizedCircuit.into(),
-                range_zero_indexed: qubit_range.clone(),
-                message: format!("Qubit {} is not unused", i),
-                related_informations: vec![],
-            });
+    for (qubit_name, (_, qubit_range)) in qubits {
+        for (qubit_index, is_manipulated) in manipulated_qubits
+            .get(&qubit_name)
+            .unwrap()
+            .iter()
+            .enumerate()
+        {
+            if !is_manipulated {
+                diags.push(Diagnostic {
+                    rule_id: Rule::OversizedCircuit.into(),
+                    range_zero_indexed: qubit_range.clone(),
+                    message: format!("Qubit {}[{}] is not unused", qubit_name, qubit_index),
+                    related_informations: vec![],
+                });
+            }
         }
     }
     diags
