@@ -1,5 +1,5 @@
 [workspace]
-members = ["lique_core", "lique_linter", "lique_ls"]
+members = ["lique_core", "lique", "lique_ls"]
 resolver = "2"
 
 [workspace.dependencies]

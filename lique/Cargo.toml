@@ -1,7 +1,9 @@
 [package]
-name = "lique_linter"
+name = "lique"
 version = "0.1.0"
 edition = "2021"
+description = "lique is a linter for quantum programs"
+license = "MIT OR Apache-2.0"
 
 [dependencies]
 anyhow = { workspace = true }

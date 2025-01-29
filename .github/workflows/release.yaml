@@ -10,7 +10,6 @@ jobs:
     runs-on: ${{ matrix.job.os }}
     env:
       PROJECT_NAME: "lique"
-      BINARY_NAME: "lique-linter"
     strategy:
       fail-fast: false
       matrix:
@@ -49,7 +48,7 @@ jobs:
           PKG_DIR="archive"
           mkdir -p "${PKG_DIR}"
           cp {README.md,LICENSE} "${PKG_DIR}"
-          cp "target/${{ matrix.job.target }}/release/${BINARY_NAME}${{ matrix.job.binary-extension }}" "${PKG_DIR}"
+          cp "target/${{ matrix.job.target }}/release/${PROJECT_NAME}${{ matrix.job.binary-extension }}" "${PKG_DIR}"
 
           PROJECT_VERSION="${GITHUB_REF#refs/tags/v}"
           TARBALL_PATH="${PROJECT_NAME}-v${PROJECT_VERSION}-${{ matrix.job.target }}${{ matrix.job.package-extension }}"

@@ -2,6 +2,8 @@
 name = "lique_core"
 version = "0.1.0"
 edition = "2021"
+description = "Core library for Lique"
+license = "MIT OR Apache-2.0"
 
 [dependencies]
 oq3_semantics = { workspace = true }

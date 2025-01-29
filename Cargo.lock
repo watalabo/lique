@@ -343,18 +343,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "lique_core"
-version = "0.1.0"
-dependencies = [
- "oq3_semantics",
- "oq3_source_file",
- "oq3_syntax",
- "serde",
- "thiserror",
-]
-
-[[package]]
-name = "lique_linter"
+name = "lique"
 version = "0.1.0"
 dependencies = [
  "anyhow",
@@ -364,6 +353,17 @@ dependencies = [
  "oq3_semantics",
  "oq3_source_file",
  "serde_json",
+]
+
+[[package]]
+name = "lique_core"
+version = "0.1.0"
+dependencies = [
+ "oq3_semantics",
+ "oq3_source_file",
+ "oq3_syntax",
+ "serde",
+ "thiserror",
 ]
 
 [[package]]
