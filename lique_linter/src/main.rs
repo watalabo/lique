@@ -55,7 +55,7 @@ fn main() -> anyhow::Result<ExitCode> {
     let is_diagnostics_empty = diagnostics.is_empty();
     match (command.source_map, command.source_file) {
         (Some(source_map_path), Some(source_file_path)) => {
-            // print_diagnostics_by_source_map(&source_map_path, &source_file_path, diagnostics)?;
+            print_diagnostics_by_source_map(&source_map_path, &source_file_path, diagnostics)?;
         }
         (None, None) => {
             for diag in diagnostics {
