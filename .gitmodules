@@ -1,9 +1,0 @@
-[submodule "lintq"]
-	path = lintq
-	url = https://github.com/sola-st/LintQ
-[submodule "qiskit"]
-	path = qiskit
-	url = https://github.com/watalabo/qiskit
-[submodule "cirq"]
-	path = cirq
-	url = https://github.com/watalabo/cirq

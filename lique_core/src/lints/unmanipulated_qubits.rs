@@ -16,8 +16,7 @@ pub fn lint_unmanipulated_qubits(stmts: AstChildren<Stmt>) -> Vec<Diagnostic> {
         .iter()
         .map(|(name, (num, _))| (name.clone(), vec![false; *num]))
         .collect::<HashMap<_, _>>();
-    let diags = lint_unmanipulated_qubits_inner(stmts, &qubits, &mut manipulated_qubits);
-    diags
+    lint_unmanipulated_qubits_inner(stmts, &qubits, &mut manipulated_qubits)
 }
 
 fn lint_unmanipulated_qubits_inner(
@@ -41,11 +40,11 @@ fn lint_unmanipulated_qubits_inner(
             Stmt::IfStmt(if_stmt) => {
                 if let Some(then_stmt) = if_stmt.then_branch() {
                     let then_stmts = then_stmt.statements();
-                    lint_unmanipulated_qubits_inner(then_stmts, &qubits, manipulated_qubits);
+                    lint_unmanipulated_qubits_inner(then_stmts, qubits, manipulated_qubits);
                 }
                 if let Some(else_stmt) = if_stmt.else_branch() {
                     let else_stmts = else_stmt.statements();
-                    lint_unmanipulated_qubits_inner(else_stmts, &qubits, manipulated_qubits);
+                    lint_unmanipulated_qubits_inner(else_stmts, qubits, manipulated_qubits);
                 }
             }
             Stmt::AssignmentStmt(assignment) => {

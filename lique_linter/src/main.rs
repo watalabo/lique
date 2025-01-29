@@ -55,7 +55,7 @@ fn main() -> anyhow::Result<ExitCode> {
     let is_diagnostics_empty = diagnostics.is_empty();
     match (command.source_map, command.source_file) {
         (Some(source_map_path), Some(source_file_path)) => {
-            print_diagnostics_by_source_map(&source_map_path, &source_file_path, diagnostics)?;
+            // print_diagnostics_by_source_map(&source_map_path, &source_file_path, diagnostics)?;
         }
         (None, None) => {
             for diag in diagnostics {
@@ -116,15 +116,23 @@ fn print_diagnostics_by_source_map(
 
         let source_range = resolve_qasm_range(&diag.range_zero_indexed, &source_map)?;
         let source_range_bytes = source_file_locator.locate_line(source_range)?;
-        Report::build(ReportKind::Warning, (&source_file_path, source_range_bytes))
-            .with_message(diag.message)
-            .with_labels(labels)
-            .finish()
-            .print((
-                &source_file_path,
-                Source::from(&source_file_locator.contents_lines.concat()),
-            ))
-            .unwrap();
+        Report::build(
+            ReportKind::Warning,
+            (&source_file_path, source_range_bytes.clone()),
+        )
+        .with_message(diag.message.clone())
+        .with_labels(labels)
+        .with_label(
+            Label::new((&source_file_path, source_range_bytes))
+                .with_message(diag.message)
+                .with_color(color),
+        )
+        .finish()
+        .print((
+            &source_file_path,
+            Source::from(&source_file_locator.contents_lines.concat()),
+        ))
+        .unwrap();
     }
     Ok(())
 }

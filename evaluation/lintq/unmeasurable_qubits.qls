@@ -1,5 +1,0 @@
-- qlpack: mattepalte/qlint
-- include:
-    tags contain: LintQ
-    id:
-      - ql-unmeasurable-qubits

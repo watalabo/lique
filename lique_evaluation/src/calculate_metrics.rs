@@ -128,19 +128,21 @@ fn count_tp_etc(
     }
 
     for lique_result in lique_results.iter() {
-        if lique_result.rule_id == rule_id {
-            let mut found = false;
-            for dataset_case in dataset.iter() {
-                if lique_result.file_name == dataset_case.file_name
-                    && lique_result.line_number == dataset_case.line_number
-                {
-                    found = true;
-                    break;
-                }
+        if lique_result.file_name == "c3x_build_f7ba3d" && rule_id == "ql-oversized-circuit" {
+            dbg!(&lique_result);
+        }
+
+        let mut found = false;
+        for dataset_case in dataset.iter() {
+            if lique_result.file_name == dataset_case.file_name
+                && lique_result.line_number == dataset_case.line_number
+            {
+                found = true;
+                break;
             }
-            if !found {
-                fp_cases.push(lique_result.clone());
-            }
+        }
+        if !found {
+            fp_cases.push(lique_result.clone());
         }
     }
 
