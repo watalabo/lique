@@ -349,7 +349,7 @@ dependencies = [
  "anyhow",
  "ariadne 0.5.0",
  "clap",
- "lique_core",
+ "lique_core 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "oq3_semantics",
  "oq3_source_file",
  "serde_json",
@@ -367,13 +367,26 @@ dependencies = [
 ]
 
 [[package]]
+name = "lique_core"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2564c2ea5d69db7788f2e678f1aa706b1a103ef1244d4267a34cae1a373aee59"
+dependencies = [
+ "oq3_semantics",
+ "oq3_source_file",
+ "oq3_syntax",
+ "serde",
+ "thiserror",
+]
+
+[[package]]
 name = "lique_ls"
 version = "0.1.0"
 dependencies = [
  "anyhow",
  "js-sys",
  "line-index",
- "lique_core",
+ "lique_core 0.1.0",
  "lsp-types",
  "oq3_semantics",
  "oq3_source_file",
