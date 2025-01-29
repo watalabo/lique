@@ -1,0 +1,70 @@
+name: "Release"
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  release:
+    runs-on: ${{ matrix.job.os }}
+    env:
+      PROJECT_NAME: "lique"
+      BINARY_NAME: "lique-linter"
+    strategy:
+      fail-fast: false
+      matrix:
+        job:
+          - {
+              target: "x86_64-unknown-linux-gnu",
+              os: "ubuntu-24.04",
+              binary-extension: "",
+              package-extension: ".tar.gz",
+            }
+          - {
+              target: "aarch64-apple-darwin",
+              os: "macos-15",
+              binary-extension: "",
+              package-extension: ".tar.gz",
+            }
+          - {
+              target: "x86_64-pc-windows-msvc",
+              os: "windows-2025",
+              binary-extension: ".exe",
+              package-extension: ".zip",
+            }
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Build release
+        run: cargo build --locked --verbose --release --target=${{ matrix.job.target }}
+
+      - name: Create tarball
+        shell: bash
+        id: create_tarball
+        run: |
+          PKG_DIR="archive"
+          mkdir -p "${PKG_DIR}"
+          cp {README.md,LICENSE} "${PKG_DIR}"
+          cp "target/${{ matrix.job.target }}/release/${BINARY_NAME}${{ matrix.job.binary-extension }}" "${PKG_DIR}"
+
+          PROJECT_VERSION="${GITHUB_REF#refs/tags/v}"
+          TARBALL_PATH="${PROJECT_NAME}-v${PROJECT_VERSION}-${{ matrix.job.target }}${{ matrix.job.package-extension }}"
+          echo "TARBALL_PATH=${TARBALL_PATH}" >> "${GITHUB_OUTPUT}"
+
+          if [[ "${{ matrix.job.os }}" =~ ^windows- ]]; then
+            7z a "${TARBALL_PATH}" "${PKG_DIR}"
+          else
+            tar czf "${TARBALL_PATH}" "${PKG_DIR}"
+          fi
+
+      - name: Publish
+        if: ${{ contains(github.ref, '/tags/') }}
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ steps.create_tarball.outputs.TARBALL_PATH }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
