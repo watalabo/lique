@@ -36,8 +36,18 @@
   },
   {
     "file_name": "ahmed154_73ece9",
+    "line_number": 13,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "ahmed154_73ece9",
     "line_number": 14,
     "rule_id": "ql-double-measurement"
+  },
+  {
+    "file_name": "ahmed154_73ece9",
+    "line_number": 15,
+    "rule_id": "ql-operation-after-measurement"
   },
   {
     "file_name": "ahmed154_73ece9",
@@ -51,8 +61,18 @@
   },
   {
     "file_name": "ahmed154_73ece9_2",
+    "line_number": 12,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "ahmed154_73ece9_2",
     "line_number": 13,
     "rule_id": "ql-double-measurement"
+  },
+  {
+    "file_name": "ahmed154_73ece9_2",
+    "line_number": 14,
+    "rule_id": "ql-operation-after-measurement"
   },
   {
     "file_name": "ahmed154_73ece9_2",
@@ -233,6 +253,21 @@
     "file_name": "q02_417981_2",
     "line_number": 12,
     "rule_id": "ql-oversized-circuit"
+  },
+  {
+    "file_name": "q04_qiskit_installation_and_test_7d0f02",
+    "line_number": 100,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "q04_qiskit_installation_and_test_7d0f02",
+    "line_number": 101,
+    "rule_id": "ql-operation-after-measurement"
+  },
+  {
+    "file_name": "q04_qiskit_installation_and_test_7d0f02",
+    "line_number": 102,
+    "rule_id": "ql-operation-after-measurement"
   },
   {
     "file_name": "q04_qiskit_installation_and_test_7d0f02",
@@ -748,6 +783,11 @@
     "file_name": "test_circuit_to_dag_5333cb",
     "line_number": 13,
     "rule_id": "ql-conditional-without-measurement"
+  },
+  {
+    "file_name": "test_circuit_to_dag_5333cb",
+    "line_number": 13,
+    "rule_id": "ql-operation-after-measurement"
   },
   {
     "file_name": "test_circuit_to_dag_5333cb",
