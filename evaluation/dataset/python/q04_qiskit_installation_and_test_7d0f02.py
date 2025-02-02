@@ -98,9 +98,9 @@ def create_circuit():
 
     qc.barrier()
 
-    qc.h(q[0]).c_if(c, 5)
-    qc.x(q[0]).c_if(c, 3)
-    qc.z(q[0]).c_if(c, 1)
+    qc.h(q[0]).c_if(c, 5) # ql-operation-after-measurement
+    qc.x(q[0]).c_if(c, 3) # ql-operation-after-measurement
+    qc.z(q[0]).c_if(c, 1) # ql-operation-after-measurement
     if 0 % 2 == 0:
         qc.h(q[0]) # ql-operation-after-measurement
     else:
